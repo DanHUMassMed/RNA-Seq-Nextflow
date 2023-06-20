@@ -2,9 +2,4 @@
 USER="danhumassmed"
 TAG="star-rsem"
 VERSION="1.0.0"
-echo "********************************************"
-echo docker build -t ${USER}/${TAG}:${VERSION} .
-docker build -t ${USER}/${TAG}:${VERSION} .
-echo "********************************************"
-echo docker push  ${USER}/${TAG}:${VERSION}
-docker push  ${USER}/${TAG}:${VERSION}
+echo docker buildx build --platform linux/amd64,linux/arm64 --push -t ${USER}/${TAG}:${VERSION} .
