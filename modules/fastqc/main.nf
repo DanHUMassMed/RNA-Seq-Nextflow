@@ -2,7 +2,7 @@ params.outdir = 'results'
 
 process FASTQC {
     tag "FASTQC on $sample_id"
-    conda 'bioconda::fastqc=0.11.9'
+    container 'danhumassmed/fastqc-multiqc:1.0.0'
     publishDir params.outdir, mode:'copy'
 
     input:
@@ -13,6 +13,7 @@ process FASTQC {
 
     script:
     """
-    fastqc.sh "$sample_id" "$reads"
+    mkdir fastqc_${sample_id}_logs
+    fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}
     """
 }
