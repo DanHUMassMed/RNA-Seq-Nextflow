@@ -1,0 +1,7 @@
+name: fastqc-multiqc
+channels:
+  #- conda-forge
+  - bioconda
+  - defaults 
+dependencies:
+  - pandas
