@@ -44,14 +44,12 @@ def aggregate_expression_counts(genes_results_files):
     merged_df.to_csv(f"{OUTPUT_FILE}", sep='\t', index=False)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python rsem_summary.py directory_path suffix")
+    if len(sys.argv) != 2:
+        print("Usage: python rsem_summary.py directory_path")
         sys.exit(1)
 
     directory_path = sys.argv[1]
-    suffix = sys.argv[2]
     print("Directory path:", directory_path)
-    print("Suffix:", suffix)
-    matching_files = find_files_with_suffix(directory_path, suffix)
+    matching_files = find_files_with_suffix(directory_path, SUFFIX)
     aggregate_expression_counts(matching_files)
     

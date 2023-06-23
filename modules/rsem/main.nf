@@ -47,3 +47,20 @@ process RSEM_QUANTIFY {
     """
 }
 
+process RSEM_SUMMARY {
+    container "danhumassmed/star-rsem:1.0.0"
+    publishDir params.outdir, mode:'copy'
+
+    input:
+    path('*')
+
+    output:
+    path "rsem_summary" 
+
+    script:
+    """
+    mkdir -p rsem_summary
+    cd rsem_summary
+    rsem_summary.py "${baseDir}/${params.outdir}"
+    """
+}

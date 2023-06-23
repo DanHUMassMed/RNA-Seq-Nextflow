@@ -10,7 +10,7 @@ nextflow.enable.dsl = 2
  * given `params.foo` specify on the run command line `--foo some_value`.
  */
 
-params.reads = "${baseDir}/data/alex_byrne/input_data/Bi*_{1,2}.fq"
+params.reads = "${baseDir}/data/alex_byrne/input_data/*_{1,2}.fq"
 params.star_index_dir="${baseDir}/results/star"
 params.rsem_reference_dir = "${baseDir}/results/rsem/WBPS18"
 params.outdir = "results"

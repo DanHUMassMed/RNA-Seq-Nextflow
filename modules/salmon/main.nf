@@ -18,6 +18,7 @@ process INDEX {
 process QUANT {
     tag "$pair_id"
     container "danhumassmed/salmon-kallisto:1.0.0"
+    publishDir params.outdir, mode:'copy'
 
     input:
     path index 

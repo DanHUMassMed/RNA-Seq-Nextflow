@@ -5,26 +5,23 @@
  */
 nextflow.enable.dsl = 2
 
-/*
- * Default pipeline parameters. They can be overriden on the command line eg.
- * given `params.foo` specify on the run command line `--foo some_value`.
- */
 
-params.reads = "/home/daniel.higgins-umw/project_data/nextflow-training/nf-training/data/ggal/ggal_gut_{1,2}.fq"
-params.transcriptome = "/home/daniel.higgins-umw/project_data/nextflow-training/nf-training/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa"
+
+params.reads = "${baseDir}/data/alex_byrne/input_data/OP*_{1,2}.fq"
+params.fasta_file = "${baseDir}/data/caenorhabditis_elegans.PRJNA13758.WBPS18.genomic.fa"
 params.outdir = "results"
 
 log.info """\
  R N A S E Q - N F   P I P E L I N E
  ===================================
- transcriptome: ${params.transcriptome}
+ fasta_file   : ${params.fasta_file}
  reads        : ${params.reads}
  outdir       : ${params.outdir}
  base_dir     : ${baseDir}
  """
 
 // import modules
-include { RNASEQ } from './modules/sub-workflow/rnaseq'
+include { RNASEQ_SALMON } from './modules/sub-workflow/rnaseq-salmon'
 include { MULTIQC } from './modules/multiqc'
 
 /* 
@@ -32,8 +29,8 @@ include { MULTIQC } from './modules/multiqc'
  */
 workflow {
   read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true ) 
-  RNASEQ( params.transcriptome, read_pairs_ch )
-  MULTIQC( RNASEQ.out )
+  RNASEQ_SALMON( params.fasta_file, read_pairs_ch )
+  MULTIQC( RNASEQ_SALMON.out )
 }
 
 /* 

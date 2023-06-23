@@ -4,7 +4,7 @@ include { INDEX } from '../salmon'
 include { QUANT } from '../salmon'
 include { FASTQC } from '../fastqc'
 
-workflow RNASEQ {
+workflow RNASEQ_SALMON {
   take:
     transcriptome
     read_pairs_ch
