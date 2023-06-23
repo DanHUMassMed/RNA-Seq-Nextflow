@@ -16,14 +16,12 @@ log.info """\
  """
 
 // import modules
-include { STAR_INDEX } from './modules/star'
-include { RSEM_INDEX } from './modules/rsem'
+include { INDEX_STAR_RSEM } from './modules/sub-workflow/index-star-rsem'
 
 /* 
  * main script flow
  */
 workflow {
-  STAR_INDEX( params.fasta_file, params.gtf_file )
-  RSEM_INDEX( params.fasta_file, params.gtf_file )
+  INDEX_STAR_RSEM( params.fasta_file, params.gtf_file )
 }
 
