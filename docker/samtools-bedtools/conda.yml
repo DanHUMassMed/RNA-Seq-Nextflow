@@ -1,4 +1,4 @@
-name: fastqc-multiqc
+name: samtools-bedtools
 channels:
   #- conda-forge
   - bioconda

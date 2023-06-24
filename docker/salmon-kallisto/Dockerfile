@@ -1,8 +1,6 @@
-FROM continuumio/miniconda3:4.9.2
+FROM danhumassmed/base-conda:1.0.1
 
 COPY conda.yml .
-RUN \
-   conda env update -n root -f conda.yml -v\
-&& conda clean -a
+RUN mamba env update -n root -f conda.yml
 
 
