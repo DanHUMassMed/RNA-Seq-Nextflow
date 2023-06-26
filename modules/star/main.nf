@@ -1,7 +1,7 @@
 params.outdir = 'results'
 
 process STAR_INDEX {
-    container "danhumassmed/star-rsem:1.0.0"
+    container "danhumassmed/star-rsem:1.0.1"
     publishDir params.outdir, mode:'copy'
 
     input:
@@ -9,13 +9,13 @@ process STAR_INDEX {
     path gtf_file 
 
     output:
-    path 'star' 
+    path 'star_index' 
 
     script:
     """
     STAR --runThreadN $task.cpus \
         --runMode genomeGenerate \
-        --genomeDir ./star \
+        --genomeDir ./star_index \
         --genomeSAindexNbases 12 \
         --genomeFastaFiles ${fasta_file} \
         --sjdbGTFfile ${gtf_file}
@@ -23,7 +23,7 @@ process STAR_INDEX {
 }
 
 process STAR_ALIGN {
-    container "danhumassmed/star-rsem:1.0.0"
+    container "danhumassmed/star-rsem:1.0.1"
     publishDir params.outdir, mode:'copy'
 
     input:

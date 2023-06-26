@@ -1,26 +1,26 @@
 process RSEM_INDEX {
-    container "danhumassmed/star-rsem:1.0.0"
+    container "danhumassmed/star-rsem:1.0.1"
     publishDir params.outdir, mode:'copy'
 
     input:
-    path fasta_file
-    path gtf_file 
+    path genome_file
+    path annotation_file 
 
     output:
-    path 'rsem' 
+    path 'rsem_index' 
 
     script:
     """
-    mkdir -p ./rsem
+    mkdir -p ./rsem_index
     rsem-prepare-reference \
-        --gtf ${gtf_file} \
-        ${fasta_file} \
-        ./rsem/WBPS18
+        --gtf ${annotation_file} \
+        ${genome_file} \
+        ./rsem_index/rsem
     """
 }
 
 process RSEM_QUANTIFY {
-    container "danhumassmed/star-rsem:1.0.0"
+    container "danhumassmed/star-rsem:1.0.1"
     publishDir params.outdir, mode:'copy'
 
     input:
@@ -40,7 +40,7 @@ process RSEM_QUANTIFY {
         --no-bam-output \
         --alignments \
             ${bam_file} \
-            ${rsem_reference_dir} \
+            ${rsem_reference_dir}/rsem \
             ./rsem_expression_${pair_id}/rsem_${pair_id} >& \
             ./rsem_expression_${pair_id}/rsem_${pair_id}.log
 
@@ -48,7 +48,7 @@ process RSEM_QUANTIFY {
 }
 
 process RSEM_SUMMARY {
-    container "danhumassmed/star-rsem:1.0.0"
+    container "danhumassmed/star-rsem:1.0.1"
     publishDir params.outdir, mode:'copy'
 
     input:

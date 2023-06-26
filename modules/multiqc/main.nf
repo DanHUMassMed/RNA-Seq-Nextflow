@@ -1,7 +1,7 @@
 params.outdir = 'results'
 
 process MULTIQC {
-    container 'danhumassmed/fastqc-multiqc:1.0.0'
+    container 'danhumassmed/fastqc-multiqc:1.0.1'
     publishDir params.outdir, mode:'copy'
 
     input:

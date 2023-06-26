@@ -7,14 +7,14 @@ nextflow.enable.dsl = 2
 
 
 
-params.reads = "${baseDir}/data/alex_byrne/input_data/OP*_{1,2}.fq"
-params.fasta_file = "${baseDir}/data/caenorhabditis_elegans.PRJNA13758.WBPS18.genomic.fa"
+params.reads = "${baseDir}/data/alex_byrne/input_data/*_{1,2}.fq"
+params.salmon_index = "${baseDir}/results/salmon_index"
 params.outdir = "results"
 
 log.info """\
  R N A S E Q - N F   P I P E L I N E
  ===================================
- fasta_file   : ${params.fasta_file}
+ salmon_index   : ${params.salmon_index}
  reads        : ${params.reads}
  outdir       : ${params.outdir}
  base_dir     : ${baseDir}
@@ -29,7 +29,7 @@ include { MULTIQC } from './modules/multiqc'
  */
 workflow {
   read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true ) 
-  RNASEQ_SALMON( params.fasta_file, read_pairs_ch )
+  RNASEQ_SALMON( params.salmon_index, read_pairs_ch )
   MULTIQC( RNASEQ_SALMON.out )
 }
 

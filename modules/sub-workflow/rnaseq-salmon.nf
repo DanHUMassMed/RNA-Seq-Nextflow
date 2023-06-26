@@ -1,19 +1,17 @@
 params.outdir = 'results'
 
-include { INDEX } from '../salmon'
-include { QUANT } from '../salmon'
+include { SALMON_QUANTIFY } from '../salmon'
 include { FASTQC } from '../fastqc'
 
 workflow RNASEQ_SALMON {
   take:
-    transcriptome
+    salmon_index
     read_pairs_ch
  
   main: 
-    INDEX(transcriptome)
-    FASTQC(read_pairs_ch)
-    QUANT(INDEX.out, read_pairs_ch)
+    //FASTQC(read_pairs_ch)
+    SALMON_QUANTIFY(salmon_index, read_pairs_ch)
 
   emit: 
-     QUANT.out | concat(FASTQC.out) | collect
+     SALMON_QUANTIFY.out | collect
 }

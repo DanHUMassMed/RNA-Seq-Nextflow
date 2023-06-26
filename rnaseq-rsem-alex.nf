@@ -11,8 +11,8 @@ nextflow.enable.dsl = 2
  */
 
 params.reads = "${baseDir}/data/alex_byrne/input_data/*_{1,2}.fq"
-params.star_index_dir="${baseDir}/results/star"
-params.rsem_reference_dir = "${baseDir}/results/rsem/WBPS18"
+params.star_index_dir="${baseDir}/results/star_index"
+params.rsem_reference_dir = "${baseDir}/results/rsem_index"
 params.outdir = "results"
 
 log.info """\

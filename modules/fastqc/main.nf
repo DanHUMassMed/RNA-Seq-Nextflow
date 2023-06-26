@@ -2,7 +2,7 @@ params.outdir = 'results'
 
 process FASTQC {
     tag "FASTQC on $sample_id"
-    container 'danhumassmed/fastqc-multiqc:1.0.0'
+    container 'danhumassmed/fastqc-multiqc:1.0.1'
     publishDir params.outdir, mode:'copy'
 
     input:
