@@ -1,0 +1,18 @@
+name: base
+channels:
+  - bioconda
+  - defaults
+  - conda-forge
+dependencies:
+  - r
+  - r-devtools
+  - r-FSA
+  - r-svglite
+  - r-plyr
+  - r-data.table
+  - r-pander
+  - r-ggthemes
+  - r-ggplot2
+  - r-scales
+  - r-argparse
+  - r-stringi
