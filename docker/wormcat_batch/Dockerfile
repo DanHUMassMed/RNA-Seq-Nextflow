@@ -15,4 +15,4 @@ RUN R -e "library('devtools'); install_github('trinker/plotflow')"
 RUN R -e "library('devtools'); install_github('dphiggs01/wormcat')"
 
 RUN mamba install -y -c anaconda openpyxl pandas && \
-    pip install wormcat_batch==1.0.5 --no-input
+    pip install wormcat_batch==1.0.8 --no-input

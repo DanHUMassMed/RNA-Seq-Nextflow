@@ -1,8 +1,8 @@
 # Sofware Provided
 
-| Docker Tag | Wormcat Batch|
-|------------|--------------|
-| 1.0.1      | version 2.0  |
+| Docker Tag | Wormcat     | Wormcat Batch|
+|------------|-------------|--------------|
+| 1.0.1      | version 2.0 | v1.0.8       |
 
 ## Wormcat Batch
 ---
@@ -32,3 +32,23 @@ You can download an Example Microsoft Excel file [here](http://www.wormcat.com/s
 # Usage
 
 The provided Docker image is compatible with [Singularity](https://sylabs.io/docs/) and is actively used in [NextFlow](https://www.nextflow.io/) Pipelines configured for an HPC.
+
+<br>
+
+### Local Execution
+
+To run Wormcat batch locally prepare your Excel file and execute with the below command.
+
+Substituting the following:
+* __<full_path_to_excel>__ path on the local machine that contains the Excel file to process.
+* __<my_wormcat>.xlsx__ the name of the Excel file you want to process.
+
+<br>
+
+```
+docker run -v <full_path_to_excel>:/usr/data danhumassmed/wormcat_batch:1.0.1 wormcat_cli --input_excel /usr/data/<my_wormcat>.xlsx --output-path /usr/data
+```
+
+<br>
+
+The output will be a Zipfile containing the results of the run.
