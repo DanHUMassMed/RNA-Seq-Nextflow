@@ -47,9 +47,7 @@ def update_image_description(image, readme, token, short_desc=None):
     }
     url = f"https://hub.docker.com/v2/repositories/{image}/"
 
-    # print(f"{url=}")
-    # print(f"{headers}")
-    # print(f"{json.dumps(data)=}")
+    
     response = requests.patch(url, data=json.dumps(data), headers=headers)
     if response.status_code >= 200 and response.status_code < 300:
         print(f"Description updated {response.status_code}")

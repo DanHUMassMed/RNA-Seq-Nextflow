@@ -1,7 +1,7 @@
-name: fastqc-multiqc
+name: tuxedo-tools
 channels:
   - bioconda
   - conda-forge
   - defaults 
 dependencies:
-  - multiqc=1.14
+  

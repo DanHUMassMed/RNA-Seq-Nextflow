@@ -1,7 +1,7 @@
 # Sofware Provided
-| Docker Tag | FastQC  | MultiQC    |
-|----------|---------|------------|
-| 1.0.1    | v0.12.1 | version 1.14 |
+| Docker Tag | FastQC  | MultiQC    | RSeQC |
+|----------|---------|--------------|-------|
+| 1.0.1    | v0.12.1 | version 1.14 | 4.0.0 |
 
 ## FastQC 
 ---
@@ -27,6 +27,15 @@ Aggregate results from bioinformatics analyses across many samples into a single
 MultiQC searches a given directory for analysis logs and compiles a HTML report. It's a general use tool, perfect for summarising the output from numerous bioinformatics tools.
 
 ![multiqc](https://ugc.futurelearn.com/uploads/assets/eb/7d/eb7d22ad-5809-4a07-99ab-bf8a64ba7607.png)
+
+## RSeQC
+---
+[https://pythonhosted.org/RSeQC//](https://pythonhosted.org/RSeQC/)
+
+![rseqc](https://pythonhosted.org/RSeQC/_static/logo.png)
+
+RSeQC package provides a number of useful modules that can comprehensively evaluate high throughput sequence data especially RNA-seq data. Some basic modules quickly inspect sequence quality, nucleotide composition bias, PCR bias and GC bias, while RNA-seq specific modules evaluate sequencing saturation, mapped reads distribution, coverage uniformity, strand specificity, transcript level RNA integrity etc.
+
 
 # Usage
 
