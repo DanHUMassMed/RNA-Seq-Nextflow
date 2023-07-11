@@ -1,4 +1,4 @@
-name: fastqc-multiqc
+name: qc-tools
 channels:
   - bioconda
   - conda-forge

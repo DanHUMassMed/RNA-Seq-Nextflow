@@ -1,0 +1,12 @@
+name: de-seq-tools
+channels:
+  - defaults 
+  - bioconda
+  - conda-forge
+dependencies:
+  - samtools 
+  - r-essentials 
+  - r-argparse
+  - bioconductor-deseq2 
+  - bioconductor-tximport
+  - bioconductor-edger
