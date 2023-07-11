@@ -4,6 +4,10 @@ nextflow.enable.dsl = 2
 
 
 
+/*
+ * Create Salmon files based on a specific Wormbase Release
+ * NOTE: Pre-creation on the index will accelerate pipeline runs 
+ */
 
 params.wormbase_version="WS288"
 params.annotation_file = "${baseDir}/data/c_elegans.PRJNA13758.${params.wormbase_version}.canonical_geneset.gtf"

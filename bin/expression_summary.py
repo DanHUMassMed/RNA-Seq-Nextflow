@@ -56,7 +56,7 @@ def main():
     parser.add_argument('-t', '--expression-type', help='Expression type [rsem | salmon]')
     parser.add_argument('-p', '--input-path', help='Input path')
     args = parser.parse_args()
-
+    cmd_line_msg = "expression_summary.py --expression-type [rsem | salmon] --input-path [<base_directory>]"
     execution_variables = {
         'rsem':{'output_file':"genes_expression_expected_count.tsv",
                 'file_suffix':'genes.results',
@@ -73,16 +73,16 @@ def main():
     }
 
     if not args.input_path:
-        print("expression_summary.py --expression-type [rsem | salmon] --input-path [<base_directory>]")
+        print(cmd_line_msg)
         print("Input path is missing.")
         return
-
+    
     if not args.expression_type:
-        print("expression_summary.py --expression-type [rsem | salmon] --input-path [<base_directory>]")
+        print(cmd_line_msg)
         print("Expression type [rsem | salmon] is missing.")
         return
     elif args.expression_type not in ['rsem', 'salmon']:
-        print("expression_summary.py --expression-type [rsem | salmon] --input-path [<base_directory>]")
+        print(cmd_line_msg)
         print("Expression type must be [rsem | salmon].")
         return
 

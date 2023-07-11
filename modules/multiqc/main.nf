@@ -5,13 +5,14 @@ process MULTIQC {
     publishDir params.outdir, mode:'copy'
 
     input:
+    val report_nm
     path('*')
 
     output:
-    path('multiqc_report.html')
+    path(report_nm)
 
     script:
     """
-    multiqc .
+    multiqc . --filename ${report_nm}
     """
 }

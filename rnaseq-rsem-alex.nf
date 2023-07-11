@@ -6,8 +6,7 @@
 nextflow.enable.dsl = 2
 
 /*
- * Default pipeline parameters. They can be overriden on the command line eg.
- * given `params.foo` specify on the run command line `--foo some_value`.
+ * RNA SEQ Pipeline optimized for Alex Byrne 
  */
 
 params.reads = "${baseDir}/data/alex_byrne/input_data/*_{1,2}.fq"
@@ -34,7 +33,11 @@ include { MULTIQC } from './modules/multiqc'
  */
 workflow {
   read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true ) 
+  report_nm = channel.value("multiqc_rsem_report.html")
   RNASEQ_STAR_RSEM( params.star_index_dir, params.rsem_reference_dir, read_pairs_ch )
-  MULTIQC( RNASEQ_STAR_RSEM.out )
+  MULTIQC("RSEM",RNASEQ_STAR_RSEM.out )
 }
 
+workflow.onComplete {
+	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> $params.outdir/${report_nm}\n" : "Oops .. something went wrong" )
+}
