@@ -5,6 +5,7 @@ RUN mamba env update -n root -f conda.yml
 
 RUN apt-get update -q && \
     apt-get install -q -y --no-install-recommends \
+        libicu-dev \
         unzip \
         zip
 
@@ -17,3 +18,4 @@ RUN mkdir -p /usr/local/homer && \
     perl ./configureHomer.pl -install ce11 && \
     echo "export PATH=\$PATH:/usr/local/homer/bin/" >> ~/.bashrc
 
+RUN R -e "install.packages('stringi', configure.args='--disable-pkg-config', repos='https://cran.r-project.org')"
