@@ -61,6 +61,6 @@ process RSEM_SUMMARY {
     """
     mkdir -p rsem_summary
     cd rsem_summary
-    rsem_summary.py "${baseDir}/${params.outdir}"
+    expression_summary.py  --expression-type rsem --input-path "${baseDir}/${params.outdir}"
     """
 }

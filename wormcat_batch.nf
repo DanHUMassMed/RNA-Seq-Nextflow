@@ -5,14 +5,13 @@ nextflow.enable.dsl = 2
 /*
  * Wormcat Batch Test Scripts
  * Used to confirm proper execution of Wormcat with Nextflow
- * NOT USED
  */
 
 params.excel_file = "${baseDir}/data/Murphy_TS.xlsx"
 params.outdir = "results"
 
 log.info """\
- R N A S E Q - N F   P I P E L I N E
+ WORMCAT BATCH - N F   P I P E L I N E
  ===================================
  excel_file   : ${params.excel_file}
  output_dir   : ${params.output_dir}
