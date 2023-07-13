@@ -12,7 +12,7 @@ process SALMON_INDEX {
 
     script:
     """
-    salmon index --threads $task.cpus -t $transcriptome/gentrome.fa -i salmon_index
+    salmon index --threads $task.cpus -t $transcriptome -i salmon_index
     """
 }
 

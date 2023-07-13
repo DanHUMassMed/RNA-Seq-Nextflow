@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 import argparse
 
@@ -11,7 +13,7 @@ def get_gene(line):
     word = line[start_index:end_index].strip()
     return word
     
-def tx2gene(input_file,output_file):
+def tx2gene(input_file, output_file):
 
     with open(input_file, "r") as file:
         # Read lines and filter lines starting with '>'

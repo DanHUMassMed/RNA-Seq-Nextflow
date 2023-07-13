@@ -2,8 +2,6 @@
 
 nextflow.enable.dsl = 2
 
-
-
 /*
  * Create Salmon files based on a specific Wormbase Release
  * NOTE: Pre-creation on the index will accelerate pipeline runs 

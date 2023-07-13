@@ -10,10 +10,10 @@ process DECOY_TRANSCRIPTOME {
     path transcripts_file
 
     output:
-    path "decoy_transcriptome", emit: decoy_transcriptome
+    path "salmon_transcripts/gentrome.fa", emit: gentrome_fa
 
     script:
     """
-    generateDecoyTranscriptome.sh -j $task.cpus -a ${annotation_file} -g ${genome_file} -t ${transcripts_file} -o decoy_transcriptome
+    generateDecoyTranscriptome.sh -j $task.cpus -a ${annotation_file} -g ${genome_file} -t ${transcripts_file} -o salmon_transcripts
     """
 }
