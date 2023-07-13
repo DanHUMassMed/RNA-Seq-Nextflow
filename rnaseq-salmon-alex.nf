@@ -11,7 +11,7 @@ nextflow.enable.dsl = 2
  * NOT USED
  */
 
-params.reads = "${baseDir}/data/alex_byrne/input_data/*_{1,2}.fq"
+params.reads = "${baseDir}/data/alex_byrne/*_{1,2}.fq"
 params.salmon_index = "${baseDir}/results/salmon_index"
 params.outdir = "results"
 
@@ -42,5 +42,5 @@ workflow {
  * completion handler
  */
 workflow.onComplete {
-	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> $params.outdir/${report_nm}\n" : "Oops .. something went wrong" )
+	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${baseDir}/$params.outdir/multiqc_salmon_report.html\n" : "Oops .. something went wrong" )
 }

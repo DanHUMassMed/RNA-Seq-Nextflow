@@ -9,7 +9,7 @@ nextflow.enable.dsl = 2
  * RNA SEQ Pipeline optimized for Alex Byrne 
  */
 
-params.reads = "${baseDir}/data/alex_byrne/input_data/*_{1,2}.fq"
+params.reads = "${baseDir}/data/alex_byrne/*_{1,2}.fq"
 params.star_index_dir="${baseDir}/results/star_index"
 params.rsem_reference_dir = "${baseDir}/results/rsem_index"
 params.outdir = "results"
@@ -39,5 +39,5 @@ workflow {
 }
 
 workflow.onComplete {
-	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> $params.outdir/${report_nm}\n" : "Oops .. something went wrong" )
+	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${baseDir}/$params.outdir/multiqc_rsem_report.html\n" : "Oops .. something went wrong" )
 }
