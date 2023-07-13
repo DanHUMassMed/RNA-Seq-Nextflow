@@ -35,7 +35,7 @@ workflow {
   read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true ) 
   report_nm = channel.value("multiqc_rsem_report.html")
   RNASEQ_STAR_RSEM( params.star_index_dir, params.rsem_reference_dir, read_pairs_ch )
-  MULTIQC("RSEM",RNASEQ_STAR_RSEM.out )
+  MULTIQC(report_nm, RNASEQ_STAR_RSEM.out )
 }
 
 workflow.onComplete {

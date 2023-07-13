@@ -4,7 +4,7 @@ nextflow.enable.dsl = 2
 
 /*
  * Create STAR and rsem index files based on a specific Wormbase Release
- * NOTE: Pre-creation on the index will accelerate pipeline runs 
+ * NOTE: Pre-creation of the index will accelerate pipeline runs 
  */
 
 params.wormbase_version="WS288"

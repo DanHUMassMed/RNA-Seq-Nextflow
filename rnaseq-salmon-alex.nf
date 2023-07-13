@@ -8,7 +8,7 @@ nextflow.enable.dsl = 2
 
 /*
  * RNA SEQ Pipeline EVALUTION for Alex Byrne 
- * NOT USED
+ * NOT CURRENTLY USED
  */
 
 params.reads = "${baseDir}/data/alex_byrne/*_{1,2}.fq"
