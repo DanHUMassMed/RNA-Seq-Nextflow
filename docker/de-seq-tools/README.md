@@ -1,8 +1,8 @@
 # Sofware Provided
 
-| Docker Tag | HOMER    | samtools | DESeq2  |edgeR    |
-|------------|----------|----------|---------|---------|
-| 1.0.1      | v4.11.1  | v1.17    | v1.38.0 | v3.40.0 |
+| Docker Tag | HOMER    | samtools | DESeq2  |edgeR    |rclone  |
+|------------|----------|----------|---------|---------|--------|
+| 1.0.1      | v4.11.1  | v1.17    | v1.38.0 | v3.40.0 |v1.63.1 |
 
 ## HOMER Software for motif discovery and next generation sequencing analysis
 ---
@@ -53,10 +53,24 @@ Differential expression analysis of RNA-seq expression profiles with biological 
 
 
 <br>
+## rclone: Rclone syncs your files to cloud storage
+---
+
+[https://rclone.org/#about](https://rclone.org/#about)
+
+
+Rclone is a command-line program to manage files on cloud storage. It is a feature-rich alternative to cloud vendors' web storage interfaces. Over 70 cloud storage products support rclone including S3 object stores, business & consumer file storage services, as well as standard transfer protocols.
+
+<br>
 
 
 # Usage
 
 The provided Docker image is compatible with [Singularity](https://sylabs.io/docs/) and is actively used in [NextFlow](https://www.nextflow.io/) Pipelines configured for an HPC.
+
+
+```
+docker run -v /home/dan/.config/rclone/rclone.conf:/root/.config/rclone/rclone.conf danhumassmed/de-seq-tools:1.0.1 rclone ls remote:/
+```
 
 <br>
