@@ -11,7 +11,7 @@ nextflow.enable.dsl = 2
  * NOT CURRENTLY USED
  */
 
-params.reads = "${baseDir}/data/alex_byrne/*_{1,2}.fq"
+params.reads = "${baseDir}/data/alex_byrne/*/*_{1,2}.fq.gz"
 params.salmon_index = "${baseDir}/results/salmon_index"
 
 params.input_path = "${baseDir}/results"
