@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Get the data from Dropbox
-data_remote="Buttiauxella Original Files/Novogene raw data/raw_data"
-data_local="/project_data/alex_byrne/data"
+data_remote=$1
+data_local=$2
 
 # Get the directories to be copied
 directories=()

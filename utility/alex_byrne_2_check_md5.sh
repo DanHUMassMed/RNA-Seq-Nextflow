@@ -1,5 +1,5 @@
 #!/bin/bash
-data_local="/home/daniel.higgins-umw/project_data/alex_byrne/data"
+data_local="/home/daniel.higgins-umw/project_data/RNA-Seq-Nextflow/results/project_data/alex_byrne"
 cd $data_local
 
 calculate_md5() {
@@ -38,9 +38,9 @@ do
     # Print the MD5 hash
 
     if [ "$calc_hash" == "$hash_key" ]; then
-        echo "$dir_value PASS"
+        echo "$dir_value PASS" >> report.txt
     else
-        echo "$dir_value $calc_hash $hash_key FAIL"
+        echo "$dir_value $calc_hash $hash_key FAIL" >> report.txt
     fi
 
 done

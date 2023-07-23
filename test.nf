@@ -27,13 +27,12 @@ include { DEBROWSER } from './modules/debrowser'
 /* 
  * main script flow
  */
-// workflow {
-//   dummy_data = channel.fromPath("DUMMY_DATA")
-//   TXIMPORT_COUNTS( dummy_data, params.input_path, params.tx2gene,  params.counts_method )
-// }
-
 workflow {
-  
-  DEBROWSER( )
+   dummy_data = channel.fromPath("DUMMY_DATA")
+   TXIMPORT_COUNTS( dummy_data, params.input_path, params.tx2gene,  params.counts_method )
 }
+
+//workflow {
+//  DEBROWSER( )
+//}
 
