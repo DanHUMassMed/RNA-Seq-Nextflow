@@ -39,7 +39,7 @@ process STAR_ALIGN {
     mkdir -p ./star_aligned_${pair_id}
     STAR --runThreadN $task.cpus \
         --genomeDir ${star_index_dir} \
-        --readFilesIn ${reads[0]} ${reads[1]} \
+        --readFilesIn <(gzip -dc ${reads[0]}) <(gzip -dc ${reads[1]}) \
         --outSAMtype BAM Unsorted \
         --quantMode TranscriptomeSAM \
         --outFileNamePrefix ./star_aligned_${pair_id}/star_${pair_id}
