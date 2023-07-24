@@ -21,7 +21,7 @@ Note: the initial load time can be slow taking upto apoximately 30 seconds on so
 
 
 ```
-docker run --platform linux/amd64 -p 8081:8081 -t danhumassmed/debrowser:1.0.1 
+docker run --platform linux/amd64 -p 8088:8088 -t danhumassmed/debrowser:1.0.1 Rscript /startDEBrowser.R
 ```
 
 <br>

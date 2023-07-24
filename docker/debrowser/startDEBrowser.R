@@ -5,7 +5,7 @@ sink(stdout())
 
 startDEBrowserDocker <- function() {
 
-    port <- 8081
+    port <- 8088
     if (!is.na(Sys.getenv("DEBROWSER_PORT", unset = NA))) {
         port <- as.integer(Sys.getenv("DEBROWSER_PORT"))
     }
