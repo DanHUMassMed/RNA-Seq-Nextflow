@@ -37,3 +37,5 @@ The pipeline takes FASTQ files as input, performs quality control (QC), trimming
 * Gene Quantification
 * DESeq2 heatmap visualizations 
 * Wormcat annotations and visualization of gene set enrichment data
+
+
