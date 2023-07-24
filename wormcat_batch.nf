@@ -14,7 +14,6 @@ log.info """\
  WORMCAT BATCH - N F   P I P E L I N E
  ===================================
  excel_file   : ${params.excel_file}
- output_dir   : ${params.output_dir}
  outdir       : ${params.outdir}
  base_dir     : ${baseDir}
  """
@@ -30,3 +29,9 @@ workflow {
   WORMCAT( excel_file )
 }
 
+/* 
+ * completion handler
+ */
+workflow.onComplete {
+	log.info ( workflow.success ? "\nDone! The results can be found in --> ${baseDir}/${params.outdir}/wormcat_out\n" : "Oops .. something went wrong" )
+}
