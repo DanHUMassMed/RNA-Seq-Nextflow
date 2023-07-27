@@ -9,4 +9,4 @@ echo ../push_description.py -u \"${USER}\" -i ${USER}/${TAG} -r README.md -s \"$
 #docker build -t danhumassmed/wormcat_batch:1.0.1 .
 echo docker buildx build --platform linux/amd64 --push -t ${USER}/${TAG}:${VERSION} .
 echo "********************************************"
-echo "docker run --platform linux/amd64 -v Users/dan/Code/NextFlow/RNA-Seq-Nextflow/docker/debrowser:/var/r_scripts -p 8081:8081 -it ${USER}/${TAG}:${VERSION} "
+echo "docker run --platform linux/amd64 -p 8081:8081 -t ${USER}/${TAG}:${VERSION} "

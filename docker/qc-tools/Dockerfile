@@ -15,4 +15,13 @@ RUN cd /usr/local && \
 
 
 COPY conda.yml .
-RUN mamba env update -n root -f conda.yml
+RUN mamba env update -n root -f conda.yml && \
+    mamba clean -a -y
+
+RUN cd /usr/local && \
+    wget https://sourceforge.net/projects/rseqc/files/RSeQC-5.0.1.tar.gz && \
+    tar -xf RSeQC-5.0.1.tar.gz && \
+    cd RSeQC-5.0.1 && \
+    pip install . && \
+    cd /usr/local && \
+    rm RSeQC-5.0.1.tar.gz

@@ -40,3 +40,18 @@ RSeQC package provides a number of useful modules that can comprehensively evalu
 # Usage
 
 The provided Docker image is compatible with [Singularity](https://sylabs.io/docs/) and is actively used in [NextFlow](https://www.nextflow.io/) Pipelines configured for an HPC.
+
+
+### Example running fastqc (Mac OSX)
+
+```
+local_project_dir="/Users/dan/Code/NextFlow/Bioinformatics_Training/Introduction_to_RNA-seq"
+docker_project_dir="/home/rnaseq"
+input_dir="raw_data"
+output_dir="results/fastqc/"
+
+mkdir -p ${local_project_dir}/${output_dir}
+docker run -v ${local_project_dir}:${docker_project_dir} danhumassmed/qc-tools:1.0.1 \
+    /bin/bash -c \"fastqc -o ${docker_project_dir}/${output_dir} -f fastq ${docker_project_dir}/${input_dir}/*.fq\"
+
+```

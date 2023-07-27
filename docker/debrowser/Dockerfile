@@ -13,8 +13,7 @@ COPY startDEBrowser.R .
 
 RUN mamba env update -n root -f conda.yml
 
-# RUN R -e "library('devtools'); install_github('trinker/plotflow')"
 RUN R -e "install.packages('stringi', configure.args='--disable-pkg-config', repos='https://cran.r-project.org')"
 
 
-CMD ["Rscript", "startDEBrowser.R"]
+CMD ["Rscript", "/startDEBrowser.R"]

@@ -5,4 +5,4 @@ channels:
   - defaults 
 dependencies:
   - multiqc=1.14
-  - rseqc=4.0.0
+
