@@ -8,3 +8,5 @@ echo ../../push_description.py -u \"${USER}\" -i ${USER}/${TAG} -r ../README.md 
 
 
 echo docker buildx build --platform linux/amd64,linux/arm64 --push -t ${USER}/${TAG}:${VERSION} .
+echo "********************************************"
+echo "docker run --rm -v /Users/dan/delme:/home/dan -it ${USER}/${TAG}:${VERSION} /bin/bash"
