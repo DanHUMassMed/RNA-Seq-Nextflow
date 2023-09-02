@@ -10,13 +10,14 @@ The pipeline takes FASTQ files as input, performs quality control (QC), trimming
 
 ## Pipeline Process
 
-* 1a. Get FASTQ data from Dropbox and move it to the HPC (`get_dropbox_data-alex.nf`)
+* 1a. Get FASTQ data from Dropbox and move it to the HPC (`get_dropbox_data-<PI_NAME>.nf`)
 * 1b. Check the MD5 Checksum values of the transferred data
-* 2a. Get genome data from Wormbase for alignment (`utility/wormbase_download.sh`)
+* 2a. Update Wormbase Version Number (e.g.,WS289) wormbase_download.sh, create_star_rsem_index.nf, create_salmon_index.nf 
+* 2b. Get genome data from Wormbase for alignment (`utility/wormbase_download.sh`)
 * 3a. Create STAR and rsem indexes (`create_star_rsem_index.nf`)
-* 3a. Create Salmon index file (`create_salmon_index.nf`)
+* 3b. Create Salmon index file (`create_salmon_index.nf`)
      * NOTE Salmon process is currently used for testing and validation only
-* 4a. Execute Quality Control on FASTQ Data (`rnaseq-rsem-alex.nf`)
+* 4a. Execute Quality Control on FASTQ Data (`rnaseq-rsem-<PI_NAME>.nf`)
 * 4b. Align FASTQ data to the Worm Genome
 * 4c. Quantify the Gene Expression
 * 4d. Summarize results for further analysis

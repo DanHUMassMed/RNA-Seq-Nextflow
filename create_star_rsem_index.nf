@@ -7,7 +7,7 @@ nextflow.enable.dsl = 2
  * NOTE: Pre-creation of the index will accelerate pipeline runs 
  */
 
-params.wormbase_version="WS288"
+params.wormbase_version="WS289"
 params.annotation_file = "${baseDir}/data/c_elegans.PRJNA13758.${params.wormbase_version}.canonical_geneset.gtf"
 params.genome_file = "${baseDir}/data/c_elegans.PRJNA13758.${params.wormbase_version}.genomic.fa"
 params.outdir = "results"

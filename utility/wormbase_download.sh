@@ -1,6 +1,6 @@
 #!/bin/bash
 # Select Version from https://wormbase.org/ 
-wormbase_version="WS288"
+wormbase_version="WS289"
 
 base_dir="/home/daniel.higgins-umw/project_data/RNA-Seq-Nextflow/data"
 

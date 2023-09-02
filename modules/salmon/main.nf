@@ -16,8 +16,26 @@ process SALMON_INDEX {
     """
 }
 
-process SALMON_QUANTIFY {
-    tag "$pair_id"
+process SALMON_QUANTIFY_SINGLE  {
+    tag "SALMON_QUANTIFY_SINGLE on ${reads.getName().split("\\.")[0]}"
+    container "danhumassmed/salmon-kallisto:1.0.1"
+    publishDir params.outdir, mode:'copy'
+
+    input:
+    path index 
+    path reads 
+
+    output:
+    path "./salmon_expression_${reads.getName().split("\\.")[0]}"
+
+    script:
+    """
+    salmon quant --gcBias --threads $task.cpus --libType=U -i $index -r ${reads} -o ./salmon_expression_${reads.getName().split("\\.")[0]}
+    """
+}
+
+process SALMON_QUANTIFY{
+    tag "SALMON_QUANTIFY on $pair_id"
     container "danhumassmed/salmon-kallisto:1.0.1"
     publishDir params.outdir, mode:'copy'
 
@@ -52,4 +70,6 @@ process SALMON_SUMMARY {
     expression_summary.py --expression-type salmon --input-path ${baseDir}/${params.outdir}
     """
 }
+
+
 

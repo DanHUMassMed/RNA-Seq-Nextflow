@@ -1,7 +1,7 @@
 params.outdir = 'results'
 
-include { FASTQC } from '../fastqc'
-include { SALMON_QUANTIFY; SALMON_SUMMARY } from '../salmon'
+include { FASTQC; FASTQC_SINGLE } from '../fastqc'
+include { SALMON_QUANTIFY; SALMON_QUANTIFY_SINGLE; SALMON_SUMMARY } from '../salmon'
 include { TXIMPORT_COUNTS } from '../de-seq-tools'
 
 workflow RNASEQ_SALMON {
@@ -18,4 +18,20 @@ workflow RNASEQ_SALMON {
     TXIMPORT_COUNTS(SALMON_QUANTIFY.out.collect(), input_path, tx2gene, counts_method)
   emit: 
      SALMON_QUANTIFY.out | concat(FASTQC.out) | collect
+}
+
+workflow RNASEQ_SALMON_SINGLE {
+  take:
+    salmon_index
+    reads_ch
+    input_path 
+    tx2gene
+    counts_method
+ 
+  main: 
+    FASTQC_SINGLE(reads_ch)
+    SALMON_QUANTIFY_SINGLE(salmon_index, reads_ch)
+    TXIMPORT_COUNTS(SALMON_QUANTIFY_SINGLE.out.collect(), input_path, tx2gene, counts_method)
+  emit: 
+     SALMON_QUANTIFY_SINGLE.out | concat(FASTQC_SINGLE.out) | collect
 }

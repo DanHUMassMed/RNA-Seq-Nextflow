@@ -47,6 +47,35 @@ process RSEM_QUANTIFY {
     """
 }
 
+process RSEM_QUANTIFY_SINGLE {
+    tag "RSEM_QUANTIFY_SINGLE on ${bam_file}"
+    container "danhumassmed/star-rsem:1.0.1"
+    publishDir params.outdir, mode:'copy'
+
+    input:
+    val rsem_reference_dir
+    path bam_file
+
+    output:
+    path "rsem_expression_${bam_file.getName().split("\\.")[0]}"
+
+    script:
+    """
+    mkdir -p ./rsem_expression_${bam_file.getName().split("\\.")[0]}
+    rsem-calculate-expression \
+        --num-threads $task.cpus \
+        --time \
+        --no-bam-output \
+        --alignments \
+            ${bam_file} \
+            ${rsem_reference_dir}/rsem \
+            ./rsem_expression_${bam_file.getName().split("\\.")[0]}/rsem_${bam_file.getName().split("\\.")[0]} >& \
+            ./rsem_expression_${bam_file.getName().split("\\.")[0]}/rsem_${bam_file.getName().split("\\.")[0]}.log
+
+    """
+}
+
+
 process RSEM_SUMMARY {
     container "danhumassmed/star-rsem:1.0.1"
     publishDir params.outdir, mode:'copy'
