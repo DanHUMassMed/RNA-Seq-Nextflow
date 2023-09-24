@@ -9,16 +9,10 @@ current_user=`echo ${LOGNAME}@hpc.umassmed.edu`
 
  
 
- ## Test if we are in an interactive session
- if [ -v LSF_JOB_TIMESTAMP_VALUE ]; then
-    interactive_date=$(date -d "@$LSF_JOB_TIMESTAMP_VALUE" +"%Y-%m-%d %H:%M:%S")
-    echo "Starting ... [Interactive session started at ${interactive_date}]"
-    echo -e "Hello\n\nYour DEBrowser session has started on the UMass HPC.\n\nYou can connect from UMass Chan Open OnDemand SCI Desctop using the following link http://${host_ip}:8088\n\nor create an SSH tunnel with this command 'ssh -L 8088:${host_ip}:8088 ${current_user}'\n\nand connect using your local pc at 127.0.0.1:8088"|/usr/bin/mail -s 'DEBrowser started on HPC' ${email}
-    exec singularity exec --pid ${HOME}/.singularity/danhumassmed-debrowser-1.0.1.img Rscript /startDEBrowser.R
- else
-     echo "You must start debrowser from a running interactive session."
-     echo "EXAMPLE: bsub -Is -q interactive -n 2  -W 4:00 -R rusage[mem=16GB] /bin/bash"
- fi
+#interactive_date=$(date -d "@$LSF_JOB_TIMESTAMP_VALUE" +"%Y-%m-%d %H:%M:%S")
+#echo "Starting ... [Interactive session started at ${interactive_date}]"
+echo -e "Hello\n\nYour DEBrowser session has started on the UMass HPC.\n\nYou can connect from UMass Chan Open OnDemand SCI Desctop using the following link http://${host_ip}:8088\n\nor create an SSH tunnel with this command 'ssh -L 8088:${host_ip}:8088 ${current_user}'\n\nand connect using your local pc at 127.0.0.1:8088"|/usr/bin/mail -s 'DEBrowser started on HPC' ${email}
+exec singularity exec --pid ${HOME}/.singularity/danhumassmed-debrowser-1.0.1.img Rscript /startDEBrowser.R
 
 
 

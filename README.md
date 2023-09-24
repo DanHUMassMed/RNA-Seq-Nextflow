@@ -1,19 +1,19 @@
-# RNA-Seq Analysis for Alex Byrne Lab
+# RNA-Seq Analysis
 
 ## Introduction
 
 This repository utilizes Nextflow to create a reproducable bioinformatics pipeline for RNA sequencing analysis using STAR, RSEM and/or Salmon with gene counts and extensive quality control.
 
-The pipeline takes FASTQ files as input, performs quality control (QC), trimming, and alignment, and produces a gene expression matrix, extensive QC reports, and gene set enrichment data.
+The pipeline takes FASTQ files as input, performs initial MD5 checks, quality control (QC) checks, trimming, and alignment, and produces a gene expression matrix, QC reports, and gene set enrichment data.
 
 
 
 ## Pipeline Process
 
 * 1a. Get FASTQ data from Dropbox and move it to the HPC (`get_dropbox_data-<PI_NAME>.nf`)
-* 1b. Check the MD5 Checksum values of the transferred data
-* 2a. Update Wormbase Version Number (e.g.,WS289) wormbase_download.sh, create_star_rsem_index.nf, create_salmon_index.nf 
-* 2b. Get genome data from Wormbase for alignment (`utility/wormbase_download.sh`)
+* 1b. Check the MD5 Checksum values of the transferred data (`check_md5.py`)
+* 2a. Update Wormbase GeneIDs based on Version Number (e.g.,WS289) (`utility/wormbase_download.sh`, `create_star_rsem_index.nf`, `create_salmon_index.nf`) 
+* 2b. Get genome/transcript data from Wormbase for alignment (`utility/wormbase_download.sh`)
 * 3a. Create STAR and rsem indexes (`create_star_rsem_index.nf`)
 * 3b. Create Salmon index file (`create_salmon_index.nf`)
      * NOTE Salmon process is currently used for testing and validation only
@@ -31,7 +31,7 @@ The pipeline takes FASTQ files as input, performs quality control (QC), trimming
 
 ## Pipeline Outputs
 
-* MD5 Checksume Report
+* MD5 Checksum Report
 * FAST QC Reports
 * Multi QC Report
 * Isoform Quantification
