@@ -69,6 +69,6 @@ process CHECK_MD5 {
 
     script:
     """
-    check_md5.sh "${baseDir}/${data_local}"
+    check_md5.py "${baseDir}/${data_local}"
     """
 }
