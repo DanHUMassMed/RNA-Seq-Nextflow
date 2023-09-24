@@ -39,4 +39,12 @@ The pipeline takes FASTQ files as input, performs initial MD5 checks, quality co
 * DESeq2 heatmap visualizations 
 * Wormcat annotations and visualization of gene set enrichment data
 
+---
+## Process flow diagrams
+
+<img src="./docs/rna-seq-process-1.png" width=700/>
+<br>
+<img src="./docs/rna-seq-process-2.png" width=700/>
+
+
 
