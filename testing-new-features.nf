@@ -19,25 +19,42 @@ params.data_root="mike_francis"
 params.outdir = "results"
 
 log.info """\
- TRIMMOMATIC - N F   P I P E L I N E
+ TEST - N F   P I P E L I N E
  ===================================
  reads        : ${params.reads}
  outdir       : ${params.outdir}
  base_dir     : ${baseDir}
  """
 
-// import modules
-include { TRIM_HEADCROP; TRIM_AGGREGATE } from './modules/trimmomatic'
+
+process TRIM_TEST {
+    container "danhumassmed/picard-trimmomatic:1.0.1"
+    publishDir params.outdir, mode:'copy'
+
+    input:
+    tuple val(sample_id), path(reads)
+    val data_root
+    val dir_suffix
+
+    script:
+    def trim_control="HEADCROP:10 MINLEN:36"
+    """
+    testing-new-features.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
+    """
+
+    output:
+    path "test_${dir_suffix}" 
+
+}
 
 /* 
  * main script flow
  */
 workflow {
   read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true )
-  dir_suffix = channel.fromList(generateUUIDs(50))
-
-  TRIM_HEADCROP( read_pairs_ch, params.data_root, dir_suffix )
-  TRIM_AGGREGATE(TRIM_HEADCROP.out.collect() )
+  List<String> uuids = generateUUIDs(50)
+  dir_suffix = channel.fromList(uuids)
+  TRIM_TEST( read_pairs_ch, params.data_root, dir_suffix )
 }
 
 /* 

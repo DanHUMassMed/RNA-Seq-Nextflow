@@ -2,8 +2,11 @@
 .nextflow/
 data/
 results/
+results-backups/
 work/
 
 # Files to ignore
 .nextflow.log*
+.nextflow.pid
 .DS_Store
+nohup.out

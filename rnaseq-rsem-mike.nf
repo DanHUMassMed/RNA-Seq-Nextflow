@@ -9,8 +9,7 @@ nextflow.enable.dsl = 2
  * RNA SEQ Pipeline optimized for Alex Byrne 
  */
 
-//params.reads = "${baseDir}/data/mike_francis/**/*_{1,2}.fq.gz"
-params.reads = "${baseDir}/results/trimmed/**/*_{1,2}.fq.gz"
+params.reads = "${baseDir}/data/mike_francis/**/*_{1,2}.fq.gz"
 params.star_index_dir="${baseDir}/results/star_index"
 params.rsem_reference_dir = "${baseDir}/results/rsem_index"
 params.outdir = "results"

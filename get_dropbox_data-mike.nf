@@ -9,8 +9,11 @@ nextflow.enable.dsl = 2
  * RNA SEQ Pipeline optimized for Alex Byrne 
  */
 
-params.data_remote="Francis lab_KB_wholeworm RNAseq data_March 2023_Share AW lab/August 2023 experiment"
-params.data_local="data/mike_francis"
+// clone lsd remote:"Francis lab_KB_wholeworm RNAseq data_March 2023_Share AW lab"
+
+//params.data_remote="Francis lab_KB_wholeworm RNAseq data_March 2023_Share AW lab/August 2023 experiment"
+params.data_remote="Francis lab_KB_wholeworm RNAseq data_March 2023_Share AW lab/March 2023 experiment"
+params.data_local="data/mike_francis/Experiment1"
 params.outdir = "results"
 
 log.info """\
