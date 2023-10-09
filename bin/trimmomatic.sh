@@ -19,8 +19,7 @@ trimmomatic PE -threads 4 -phred33 \
             ${read_1} ${read_2} \
             paired_${read_1} unpaired_${read_1} \
             paired_${read_2} unpaired_${read_2} \
-            ${trim_control} \
-            MINLEN:36
+            ${trim_control}
 
 # # trimmomatic simulation
 # cp ${read_1} paired_${read_1}
