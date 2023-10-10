@@ -24,7 +24,7 @@ process TRIM_SLIDING_WINDOW {
     val dir_suffix
 
     script:
-    def trim_control="SLIDINGWINDOW:4:15 MINLEN:75"
+    def trim_control='"SLIDINGWINDOW:4:15 MINLEN:75"'
     """
     trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
     """
@@ -43,7 +43,7 @@ process TRIM_HEADCROP {
     val dir_suffix
 
     script:
-    def trim_control="HEADCROP:10 MINLEN:75"
+    def trim_control='"HEADCROP:10 MINLEN:75"'
     """
     trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
     """
