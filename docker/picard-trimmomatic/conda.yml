@@ -6,4 +6,6 @@ channels:
 dependencies:
   - picard=2.18.23
   - trimmomatic=0.39
+  - fastp=0.23.4
+
  

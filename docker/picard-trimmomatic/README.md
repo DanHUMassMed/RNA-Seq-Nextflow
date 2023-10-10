@@ -1,8 +1,8 @@
 # Sofware Provided
 
-| Docker Tag | Picard    | Trimmomatic |
-|------------|-----------|-------------|
-| 1.0.1      | v2.18.23  | v0.39       |
+| Docker Tag | Picard    | Trimmomatic |fastp   |
+|------------|-----------|-------------|--------|
+| 1.0.1      | v2.18.23  | v0.39       |v0.23.4 |
 
 ## Picard
 ---
@@ -55,6 +55,15 @@ For single-ended data, one input and one output file are specified, plus the pro
 
 <br>
 
+## fastp
+---
+
+[https://github.com/OpenGene/fastp](https://github.com/OpenGene/fastp)
+
+
+A tool designed to provide fast all-in-one preprocessing for FastQ files. This tool is developed in C++ with multithreading supported to afford high performance.
+
+<br>
 
 # Usage
 
