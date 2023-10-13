@@ -1,3 +1,4 @@
+# Manaual: https://github.com/OpenGene/fastp
 read1=$1
 read2=$2
 mount_dir=$PWD
