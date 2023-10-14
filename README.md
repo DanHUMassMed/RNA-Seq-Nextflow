@@ -27,7 +27,7 @@ The pipeline takes FASTQ files as input, performs initial MD5 checks, quality co
 * 5c. Produce heatmap visualizations  
 * 6a. Execute Wormcat Batch (`wormcat_batch.nf`)
 
-
+Note: when running use `nextflow run PIPLINE.nf -bg -N daniel.higgins@umassmed.edu`, which will run in the background and email when the process terminates (success or failure)
 
 ## Pipeline Outputs
 

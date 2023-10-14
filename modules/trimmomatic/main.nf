@@ -1,4 +1,3 @@
-params.outdir = 'results'
 
 //http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
 

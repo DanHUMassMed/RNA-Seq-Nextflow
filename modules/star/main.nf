@@ -1,4 +1,3 @@
-params.outdir = 'results'
 
 process STAR_INDEX {
     container "danhumassmed/star-rsem:1.0.1"

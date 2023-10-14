@@ -1,5 +1,3 @@
-params.outdir = 'results'
-
 
 include { FASTQC; FASTQC_SINGLE } from '../fastqc'
 include { STAR_ALIGN; STAR_ALIGN_SINGLE } from '../star'

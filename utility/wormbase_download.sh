@@ -2,8 +2,8 @@
 # Select Version from https://wormbase.org/ 
 wormbase_version="WS289"
 
-base_dir="/home/daniel.higgins-umw/project_data/RNA-Seq-Nextflow/data"
-
+launch_dir="/home/daniel.higgins-umw/project_data/RNA-Seq-Nextflow"
+base_dir="${launch_dir}/pipelines/shared/data"
 
 base_url="ftp://ftp.wormbase.org/pub/wormbase/releases/${wormbase_version}/species/c_elegans/PRJNA13758/"
 genes_fasta="c_elegans.PRJNA13758.${wormbase_version}.genomic.fa.gz"

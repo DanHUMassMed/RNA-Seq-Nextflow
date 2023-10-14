@@ -1,4 +1,3 @@
-params.outdir = 'results'
 
 process FASTQC {
     tag "FASTQC on $sample_id"

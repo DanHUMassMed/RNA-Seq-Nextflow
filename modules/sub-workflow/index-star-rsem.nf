@@ -1,4 +1,3 @@
-params.outdir = 'results'
 
 // import modules
 include { STAR_INDEX } from '../star'

@@ -20,7 +20,6 @@ length=${#directories[@]}
 # Reset the IFS to its default value (space)
 IFS=" "
 
-
 # Iterate over the directories and provide the time it takes to copy
 # also provide info on the number of files to copy and how many have been copies so far
 counter=0

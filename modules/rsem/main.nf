@@ -81,7 +81,7 @@ process RSEM_SUMMARY {
     publishDir params.outdir, mode:'copy'
 
     input:
-    path('*')
+    path('rsem_expression_*')
 
     output:
     path "rsem_summary" 
@@ -90,6 +90,6 @@ process RSEM_SUMMARY {
     """
     mkdir -p rsem_summary
     cd rsem_summary
-    expression_summary.py  --expression-type rsem --input-path "${baseDir}/${params.outdir}"
+    ${launchDir}/bin/expression_summary.py  --expression-type rsem --input-path ..
     """
 }

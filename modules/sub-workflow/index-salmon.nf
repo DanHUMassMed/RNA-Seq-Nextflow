@@ -1,4 +1,3 @@
-params.outdir = 'results'
 
 // import modules
 include { DECOY_TRANSCRIPTOME } from '../bedtools'

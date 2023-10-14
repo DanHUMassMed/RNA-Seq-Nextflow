@@ -26,7 +26,7 @@ process SALMON_QUANTIFY_SINGLE  {
     path reads 
 
     output:
-    path "./salmon_expression_${reads.getName().split("\\.")[0]}"
+    path "salmon_expression_${reads.getName().split("\\.")[0]}"
 
     script:
     """
@@ -44,7 +44,7 @@ process SALMON_QUANTIFY{
     tuple val(pair_id), path(reads) 
 
     output:
-    path "./salmon_expression_${pair_id}"
+    path "salmon_expression_${pair_id}"
 
     script:
     """

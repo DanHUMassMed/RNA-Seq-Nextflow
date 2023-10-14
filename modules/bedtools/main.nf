@@ -1,4 +1,3 @@
-params.outdir = 'results'
 
 process DECOY_TRANSCRIPTOME {
     container 'danhumassmed/samtools-bedtools:1.0.1'

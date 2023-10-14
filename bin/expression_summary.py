@@ -16,18 +16,20 @@ def extract_salmon_experiment_name(file_path):
     experiment_name = directory_path[index:]
     return experiment_name
 
-def find_files_with_suffix(directory, suffix):
+def find_files_with_suffix(directory, dir_prefix, file_suffix):
     matching_files = []
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.endswith(suffix):
-                matching_files.append(os.path.join(root, file))
+    for root, dirs, files in os.walk(directory,followlinks=True):
+        if dir_prefix in root:
+            print(f"{root=}")
+            for file in files:
+                if file.endswith(file_suffix):
+                    matching_files.append(os.path.join(root, file))
     return matching_files
 
 def aggregate_expression_counts(input_path, execution_variables):
     experiment_data_dfs = []
     
-    results_files = find_files_with_suffix(input_path, execution_variables['file_suffix'])
+    results_files = find_files_with_suffix(input_path, execution_variables['dir_prefix'], execution_variables['file_suffix'])
     # Read in all the individual results from RSEM
     for  result_file in results_files:
         df = pd.read_csv(result_file, delimiter='\t')
@@ -59,12 +61,14 @@ def main():
     cmd_line_msg = "expression_summary.py --expression-type [rsem | salmon] --input-path [<base_directory>]"
     execution_variables = {
         'rsem':{'output_file':"genes_expression_expected_count.tsv",
+                'dir_prefix':'rsem_expression_',
                 'file_suffix':'genes.results',
                 'columns_to_keep':['gene_id', 'expected_count'],
                 'expression_type' : 'rsem',
                 'extract_experiment_name': extract_rsem_experiment_name
                 },
         'salmon':{'output_file':"transcript_expression_counts.tsv",
+                'dir_prefix':'salmon_expression_',
                 'file_suffix':'quant.sf',
                 'columns_to_keep':['Name', 'NumReads'],
                 'expression_type' : 'salmon',

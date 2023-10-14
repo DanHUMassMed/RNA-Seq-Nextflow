@@ -1,8 +1,7 @@
 # Directories to ignore
 .nextflow/
-data/
-results/
-results-backups/
+**/data/
+**/results/
 work/
 
 # Files to ignore

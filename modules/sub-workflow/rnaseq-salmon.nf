@@ -1,4 +1,3 @@
-params.outdir = 'results'
 
 include { FASTQC; FASTQC_SINGLE } from '../fastqc'
 include { SALMON_QUANTIFY; SALMON_QUANTIFY_SINGLE; SALMON_SUMMARY } from '../salmon'
