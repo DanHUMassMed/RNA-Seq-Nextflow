@@ -8,4 +8,5 @@ work/
 .nextflow.log*
 .nextflow.pid
 .DS_Store
+hs_err*.log
 nohup.out

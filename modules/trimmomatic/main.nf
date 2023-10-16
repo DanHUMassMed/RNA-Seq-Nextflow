@@ -42,7 +42,7 @@ process TRIM_HEADCROP {
     val dir_suffix
 
     script:
-    def trim_control='"HEADCROP:5 MINLEN:75"'
+    def trim_control='"HEADCROP:8 MINLEN:75"'
     """
     ${launchDir}/bin/trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
     """

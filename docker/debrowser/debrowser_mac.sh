@@ -15,13 +15,14 @@ fi
 
 start() {
 	if [ -n "$PORT_IN_USE" ]; then
-   	 echo "DEBrowser port is in use by PID:[$PORT_IN_USE]."
+   	   echo "DEBrowser port is in use by PID:[$PORT_IN_USE]."
        echo "DEBrowser container ID:[${DEBROWSER_ID}]."
        echo "Try debrowser.sh RESTART if the port is not accessable from the browser"
 	else
-   	 echo "Starting DEBrowser ..."
+   	   echo "Starting DEBrowser ..."
        echo "Allow 40 seconds for server to start"
-	    nohup docker run --platform linux/amd64 --rm -p 8088:8088 -t danhumassmed/debrowser:1.0.1 Rscript /startDEBrowser.R &
+       echo "DEBrowser is available at: http://127.0.0.1:8088"
+	   nohup docker run --platform linux/amd64 --rm -p 8088:8088 -t danhumassmed/debrowser:1.0.1 Rscript /startDEBrowser.R  > /dev/null 2>&1 &
 	fi
 }
 

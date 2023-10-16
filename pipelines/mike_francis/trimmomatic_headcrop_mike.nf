@@ -1,5 +1,7 @@
 #!/usr/bin/env nextflow 
 
+// nextflow run pipelines/mike_francis/trimmomatic_headcrop_mike.nf -bg -N daniel.higgins@umassmed.edu
+
 import java.util.UUID
 
 List<String> generateUUIDs(int numberOfUUIDs) {
