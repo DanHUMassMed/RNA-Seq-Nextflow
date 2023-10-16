@@ -6,7 +6,7 @@
 nextflow.enable.dsl = 2
 
 /*
- * RNA SEQ Pipeline optimized for Alex Byrne 
+ * RNA SEQ Pipeline 
  */
 
 params.reads = "${baseDir}/data/amy_walker/*/*.fq.gz"

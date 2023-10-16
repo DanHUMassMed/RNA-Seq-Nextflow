@@ -6,7 +6,7 @@
 nextflow.enable.dsl = 2
 
 /*
- * RNA SEQ Pipeline optimized for Alex Byrne 
+ * Stage Dropbox Data to HPC 
  */
 
 params.data_remote="Buttiauxella Original Files/Novogene raw data/raw_data"

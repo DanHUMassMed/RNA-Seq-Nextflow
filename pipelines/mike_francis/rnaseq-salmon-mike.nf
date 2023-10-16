@@ -7,7 +7,7 @@ nextflow.enable.dsl = 2
 
 
 /*
- * RNA SEQ Pipeline EVALUTION for Alex Byrne 
+ * RNA SEQ Pipeline EVALUTION
  * NOT CURRENTLY USED
  */
 

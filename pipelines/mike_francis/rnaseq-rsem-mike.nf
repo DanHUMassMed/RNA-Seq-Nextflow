@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run rnaseq-rsem-mike.nf -bg -N daniel.higgins@umassmed.edu
+// nextflow run pipelines/mike_francis/rnaseq-rsem-mike.nf -bg -N daniel.higgins@umassmed.edu
 
 /* 
  * enables modules 
@@ -8,11 +8,11 @@
 nextflow.enable.dsl = 2
 
 /*
- * RNA SEQ Pipeline optimized for Alex Byrne 
+ * RNA SEQ Pipeline 
  */
 
-//params.reads = "${projectDir}/data/mike_francis/**/*_{1,2}.fq.gz"
-params.reads = "${projectDir}/data/Experiment3/**/*_{1,2}.fq.gz"
+//params.reads = "${projectDir}/data/Experiment3/**/*_{1,2}.fq.gz"
+params.reads = "${projectDir}/results/trimmed/**/*_{1,2}.fq.gz"
 params.star_index_dir="${launchDir}/pipelines/shared/results/star_index"
 params.rsem_reference_dir = "${launchDir}/pipelines/shared/results/rsem_index"
 params.outdir = "${projectDir}/results"

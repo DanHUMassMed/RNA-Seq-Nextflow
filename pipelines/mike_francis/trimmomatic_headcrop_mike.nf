@@ -14,9 +14,9 @@ List<String> generateUUIDs(int numberOfUUIDs) {
 
 nextflow.enable.dsl = 2
 
-params.reads = "${baseDir}/data/mike_francis/**/*_{1,2}.fq.gz"
-params.data_root="mike_francis"
-params.outdir = "results"
+params.reads = "${projectDir}/data/Experiment3/**/*_{1,2}.fq.gz"
+params.data_root="Experiment3"
+params.outdir = "${projectDir}/results"
 
 log.info """\
  TRIMMOMATIC - N F   P I P E L I N E
@@ -27,7 +27,7 @@ log.info """\
  """
 
 // import modules
-include { TRIM_HEADCROP; TRIM_AGGREGATE } from './modules/trimmomatic'
+include { TRIM_HEADCROP; TRIM_AGGREGATE } from "${launchDir}/modules/trimmomatic"
 
 /* 
  * main script flow

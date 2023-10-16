@@ -6,7 +6,7 @@
 nextflow.enable.dsl = 2
 
 /*
- * RNA SEQ Pipeline optimized for Amy Walker
+ * Stage Dropbox Data to HPC
  rclone lsd remote:delme/RNA_AMY
  */
 

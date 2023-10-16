@@ -42,9 +42,9 @@ process TRIM_HEADCROP {
     val dir_suffix
 
     script:
-    def trim_control='"HEADCROP:10 MINLEN:75"'
+    def trim_control='"HEADCROP:5 MINLEN:75"'
     """
-    trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
+    ${launchDir}/bin/trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
     """
 
     output:
@@ -61,7 +61,7 @@ process TRIM_AGGREGATE {
 
     script:
     """
-    trimmomatic_aggregate.sh
+    ${launchDir}/bin/trimmomatic_aggregate.sh
     """
 
     output:

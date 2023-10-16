@@ -6,7 +6,7 @@
 nextflow.enable.dsl = 2
 
 /*
- * RNA SEQ Pipeline optimized for Alex Byrne 
+ * Stage Dropbox Data to HPC
  */
 
 // rclone lsd remote:"Francis lab_KB_wholeworm RNAseq data_March 2023_Share AW lab"
