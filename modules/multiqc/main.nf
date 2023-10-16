@@ -1,6 +1,6 @@
 
 process MULTIQC {
-    container 'danhumassmed/fastqc-multiqc:1.0.1'
+    container 'danhumassmed/qc-tools:1.0.1'
     publishDir params.outdir, mode:'copy'
 
     input:

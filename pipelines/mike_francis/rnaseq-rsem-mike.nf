@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run pipelines/mike_francis/rnaseq-rsem-mike.nf -bg -N daniel.higgins@umassmed.edu
+// nextflow run pipelines/mike_francis/rnaseq-rsem-mike.nf -resume -bg -N daniel.higgins@umassmed.edu
 
 /* 
  * enables modules 

@@ -5,6 +5,7 @@
 work/
 
 # Files to ignore
+docs/overview.pdf
 .nextflow.log*
 .nextflow.pid
 .DS_Store

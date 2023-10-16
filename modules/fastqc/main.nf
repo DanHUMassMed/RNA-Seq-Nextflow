@@ -1,7 +1,7 @@
 
 process FASTQC {
     tag "FASTQC on $sample_id"
-    container 'danhumassmed/fastqc-multiqc:1.0.1'
+    container 'danhumassmed/qc-tools:1.0.1'
     publishDir params.outdir, mode:'copy'
 
     input:
@@ -19,7 +19,7 @@ process FASTQC {
 
 process FASTQC_SINGLE {
     tag "FASTQC on ${reads.getName().split("\\.")[0]}"
-    container 'danhumassmed/fastqc-multiqc:1.0.1'
+    container 'danhumassmed/qc-tools:1.0.1'
     publishDir params.outdir, mode:'copy'
 
     input:
