@@ -25,7 +25,7 @@ process TRIM_SLIDING_WINDOW {
     script:
     def trim_control='"SLIDINGWINDOW:4:15 MINLEN:75"'
     """
-    trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
+    ${launchDir}/bin/trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
     """
 
     output:

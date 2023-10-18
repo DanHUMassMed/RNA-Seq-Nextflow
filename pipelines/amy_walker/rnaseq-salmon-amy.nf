@@ -1,5 +1,7 @@
 #!/usr/bin/env nextflow 
 
+// nextflow run pipelines/amy_walker/rnaseq-salmon-amy.nf -resume -bg -N daniel.higgins@umassmed.edu
+
 /* 
  * enables modules 
  */
@@ -11,27 +13,27 @@ nextflow.enable.dsl = 2
  * NOT CURRENTLY USED
  */
 
-params.reads = "${baseDir}/data/amy_walker/*/*.fq.gz"
-params.salmon_index = "${baseDir}/results/salmon_index"
+params.reads = "${projectDir}/data/Experiment1/**/*.fq.gz"
 
-params.input_path = "${baseDir}/results"
-params.tx2gene = "${baseDir}/results/salmon_transcripts/tx2gene.tsv"
+params.salmon_index = "${launchDir}/pipelines/shared/results/salmon_index"
+params.tx2gene = "${launchDir}/pipelines/shared/results/salmon_transcripts/tx2gene.tsv"
 params.counts_method = "lengthScaledTPM"
 
-params.outdir = "results"
+params.outdir = "${projectDir}/results"
 
 log.info """\
  R N A S E Q - N F   P I P E L I N E
  ===================================
- salmon_index : ${params.salmon_index}
- reads        : ${params.reads}
- outdir       : ${params.outdir}
- base_dir     : ${baseDir}
+ reads         : ${params.reads}
+ salmon_index  : ${params.salmon_index}
+ tx2gene       : ${params.tx2gene}
+ counts_method : ${params.counts_method}
+ outdir        : ${params.outdir}
  """
 
 // import modules
-include { RNASEQ_SALMON_SINGLE } from './modules/sub-workflow/rnaseq-salmon'
-include { MULTIQC } from './modules/multiqc'
+include { RNASEQ_SALMON_SINGLE } from "${launchDir}//modules/sub-workflow/rnaseq-salmon"
+include { MULTIQC } from "${launchDir}/modules/multiqc"
 
 /* 
  * main script flow
@@ -39,7 +41,7 @@ include { MULTIQC } from './modules/multiqc'
 workflow {
   reads_ch = channel.fromPath( params.reads, checkIfExists: true ) 
   report_nm = channel.value("multiqc_salmon_report.html")
-  RNASEQ_SALMON_SINGLE( params.salmon_index, reads_ch, params.input_path, params.tx2gene, params.counts_method)
+  RNASEQ_SALMON_SINGLE( params.salmon_index, reads_ch, params.tx2gene, params.counts_method)
   MULTIQC(report_nm, RNASEQ_SALMON_SINGLE.out )
 }
 
@@ -47,5 +49,5 @@ workflow {
  * completion handler
  */
 workflow.onComplete {
-	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${baseDir}/${params.outdir}/multiqc_salmon_report.html\n" : "Oops .. something went wrong" )
+	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${params.outdir}/multiqc_salmon_report.html\n" : "Oops .. something went wrong" )
 }

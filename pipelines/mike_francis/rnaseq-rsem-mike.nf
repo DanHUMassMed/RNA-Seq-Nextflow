@@ -25,8 +25,6 @@ log.info """\
  star_index_dir     : ${params.star_index_dir}
  rsem_reference_dir : ${params.rsem_reference_dir}
  outdir             : ${params.outdir}
- project_dir        : ${projectDir}
- launch_dir         : ${launchDir}
  """
 
 // import modules

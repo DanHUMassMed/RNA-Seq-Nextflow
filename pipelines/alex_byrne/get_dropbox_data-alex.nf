@@ -1,39 +1,43 @@
 #!/usr/bin/env nextflow 
 
-/* 
- * enables modules 
- */
+// rclone lsl remote:"RNA-seq/daf19 & tir1 RNAseq Working Files" --human-readable| sed 's/\.000000000//g'
+
 nextflow.enable.dsl = 2
 
 /*
- * Stage Dropbox Data to HPC 
+ * Stage Dropbox Data to HPC
  */
 
-params.data_remote="Buttiauxella Original Files/Novogene raw data/raw_data"
-params.data_local="data/alex_byrne"
-params.outdir = "results"
+params.data_remote="RNA-seq/daf19 & tir1 RNAseq Working Files"
+params.data_local="Experiment1"
+params.outdir = "${projectDir}/data"
+params.reportdir = "${params.outdir}/${params.data_local}"
+
+
 
 log.info """\
  R N A S E Q - N F   P I P E L I N E
  ===================================
- data_remote     : ${params.data_remote}
- data_local      : ${params.data_local}
- outdir          : ${params.outdir}
- base_dir        : ${baseDir}
+ data_remote : ${params.data_remote}
+ data_local  : ${params.data_local}
+ outdir      : ${params.outdir}
+ reportdir   : ${params.reportdir}
  """
 
 /* 
  * main script flow
  */
 
-include { GET_DROPBOX_DATA } from './modules/de-seq-tools'
-include { CHECK_MD5 } from './modules/de-seq-tools'
+include { GET_DROPBOX_DATA } from "${launchDir}/modules/de-seq-tools"
+include { CHECK_MD5 } from "${launchDir}/modules/de-seq-tools"
 
 workflow {
   GET_DROPBOX_DATA(params.data_remote, params.data_local)
-  CHECK_MD5(GET_DROPBOX_DATA.out.data_local_dir)
+  CHECK_MD5(GET_DROPBOX_DATA.out.collect())
 }
 
 workflow.onComplete {
-	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${baseDir}/${params.outdir}/md5_report.html\n" : "Oops .. something went wrong" )
+	log.info ( workflow.success ? "\nDone! The data is avialable --> ${params.reportdir}\n" : "Oops .. something went wrong" )
 }
+
+

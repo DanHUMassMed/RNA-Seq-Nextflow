@@ -67,7 +67,7 @@ process SALMON_SUMMARY {
     """
     mkdir -p salmon_summary
     cd salmon_summary
-    expression_summary.py --expression-type salmon --input-path ${baseDir}/${params.outdir}
+    ${launchDir}/bin/expression_summary.py --expression-type salmon --input-path ${baseDir}/${params.outdir}
     """
 }
 

@@ -13,7 +13,7 @@ process TX2GENE {
     script:
     """
     mkdir -p salmon_transcripts
-    tx2gene_map.py --input-file ${transcriptome} --output-file salmon_transcripts/tx2gene.tsv
+    ${launchDir}/bin/tx2gene_map.py --input-file ${transcriptome} --output-file salmon_transcripts/tx2gene.tsv
     """
 }
 
@@ -23,7 +23,6 @@ process TXIMPORT_COUNTS {
 
     input:
     path('*')
-    path input_path
     path tx2gene
     val count_method 
 
@@ -33,7 +32,7 @@ process TXIMPORT_COUNTS {
     script:
     """
     mkdir -p salmon_summary
-    ${launchDir}/bin/tx_import.R --input-path ${input_path} --output-path salmon_summary --tx2gene ${tx2gene} --counts-method ${count_method}
+    ${launchDir}/bin/tx_import.R --input-path . --output-path salmon_summary --tx2gene ${tx2gene} --counts-method ${count_method}
     """
 }
 
@@ -52,13 +51,13 @@ process GET_DROPBOX_DATA {
     """
 
     output:
-    path "${data_local}"
+    path "${data_local}", emit: data_local_dir
     
 }
 
 process CHECK_MD5 {
     container 'danhumassmed/de-seq-tools:1.0.1'
-    publishDir params.reportdir, mode:'copy'
+    publishDir params.outdir, mode:'copy'
 
     input:
     path data_local

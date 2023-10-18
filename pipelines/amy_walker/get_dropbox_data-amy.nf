@@ -1,5 +1,7 @@
 #!/usr/bin/env nextflow 
 
+// nextflow run pipelines/amy_walker/get_dropbox_data-amy.nf -resume -bg -N daniel.higgins@umassmed.edu
+// rclone lsd remote:"staging/RNA_AMY"
 /* 
  * enables modules 
  */
@@ -10,9 +12,11 @@ nextflow.enable.dsl = 2
  rclone lsd remote:delme/RNA_AMY
  */
 
-params.data_remote="delme/RNA_AMY"
-params.data_local="data/amy_walker"
-params.outdir = "results"
+params.data_remote="staging/RNA_AMY"
+params.data_local="Experiment1"
+params.outdir = "${projectDir}/data"
+
+
 
 log.info """\
  R N A S E Q - N F   P I P E L I N E
@@ -27,8 +31,8 @@ log.info """\
  * main script flow
  */
 
-include { GET_DROPBOX_DATA } from './modules/de-seq-tools'
-include { CHECK_MD5 } from './modules/de-seq-tools'
+include { GET_DROPBOX_DATA } from "${launchDir}/modules/de-seq-tools"
+include { CHECK_MD5 } from "${launchDir}/modules/de-seq-tools"
 
 workflow {
   GET_DROPBOX_DATA(params.data_remote, params.data_local)
@@ -36,5 +40,5 @@ workflow {
 }
 
 workflow.onComplete {
-	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${baseDir}/${params.outdir}/md5_report.html\n" : "Oops .. something went wrong" )
+	log.info ( workflow.success ? "\nDone! The data is avialable --> ${params.outdir}\n" : "Oops .. something went wrong" )
 }

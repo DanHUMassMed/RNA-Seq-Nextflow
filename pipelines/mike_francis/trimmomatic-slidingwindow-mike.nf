@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run trimmomatic_slidingwindow.nf -bg -N daniel.higgins@umassmed.edu
+//nextflow run pipelines/mike_francis/trimmomatic-slidingwindow-mike.nf -bg -N daniel.higgins@umassmed.edu
 
 
 import java.util.UUID
@@ -17,20 +17,20 @@ List<String> generateUUIDs(int numberOfUUIDs) {
 
 nextflow.enable.dsl = 2
 
-params.reads = "${baseDir}/data/mike_francis/Experiment2/**/*_{1,2}.fq.gz"
-params.data_root="mike_francis"
-params.outdir = "results"
+params.reads = "${projectDir}/data/Experiment3/**/*_{1,2}.fq.gz"
+params.data_root="Experiment2"
+params.outdir = "${projectDir}/results"
 
 log.info """\
  TRIMMOMATIC - N F   P I P E L I N E
  ===================================
  reads        : ${params.reads}
+ data_root    : ${params.data_root}
  outdir       : ${params.outdir}
- base_dir     : ${baseDir}
  """
 
 // import modules
-include { TRIM_SLIDING_WINDOW; TRIM_AGGREGATE } from './modules/trimmomatic'
+include { TRIM_SLIDING_WINDOW; TRIM_AGGREGATE } from "${launchDir}/modules/trimmomatic"
 
 /* 
  * main script flow
@@ -60,5 +60,5 @@ workflow.onComplete {
 
     sendMail(to: 'daniel.higgins@umassmed.edu', subject: 'TRIMMOMATIC completed', body: msg)
 
-	log.info ( workflow.success ? "\nDone! The results can be found in --> ${baseDir}/${params.outdir}/trimmed\n" : "Oops .. something went wrong" )
+	log.info ( workflow.success ? "\nDone! The results can be found in --> ${params.outdir}/trimmed\n" : "Oops .. something went wrong" )
 }

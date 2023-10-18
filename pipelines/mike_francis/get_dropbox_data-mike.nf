@@ -24,10 +24,10 @@ params.reportdir = "${params.outdir}/${params.data_local}"
 log.info """\
  R N A S E Q - N F   P I P E L I N E
  ===================================
- data_remote    : ${params.data_remote}
- outdir         : ${params.outdir}
- project_dir    : ${projectDir}
- launch_dir     : ${launchDir}
+ data_remote : ${params.data_remote}
+ data_local  : ${params.data_local}
+ outdir      : ${params.outdir}
+ reportdir   : ${params.reportdir}
  """
 
 /* 
