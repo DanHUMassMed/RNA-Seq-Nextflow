@@ -1,18 +1,20 @@
 #!/usr/bin/env nextflow 
 
-/* 
- * enables modules 
- */
+// nextflow run pipelines/alex_byrne/rnaseq-rsem-alex.nf -resume -bg -N daniel.higgins@umassmed.edu
+
+
 nextflow.enable.dsl = 2
 
 /*
- * RNA SEQ Pipeline optimized for Alex Byrne 
+ * RNA SEQ Pipeline 
  */
 
-params.reads = "${baseDir}/data/alex_byrne/*/*_{1,2}.fq.gz"
-params.star_index_dir="${baseDir}/results/star_index"
-params.rsem_reference_dir = "${baseDir}/results/rsem_index"
-params.outdir = "results"
+//params.reads = "${projectDir}/data/Experiment1/**/*_{1,2}.fq.gz"
+params.reads = "${projectDir}/results/trimmed/**/*_{1,2}.fq.gz"
+params.star_index_dir="${launchDir}/pipelines/shared/results/star_index"
+params.rsem_reference_dir = "${launchDir}/pipelines/shared/results/rsem_index"
+params.outdir = "${projectDir}/results"
+
 
 log.info """\
  R N A S E Q - N F   P I P E L I N E
@@ -21,12 +23,11 @@ log.info """\
  star_index_dir     : ${params.star_index_dir}
  rsem_reference_dir : ${params.rsem_reference_dir}
  outdir             : ${params.outdir}
- base_dir           : ${baseDir}
  """
 
 // import modules
-include { RNASEQ_STAR_RSEM } from './modules/sub-workflow/rnaseq-star-rsem'
-include { MULTIQC } from './modules/multiqc'
+include { RNASEQ_STAR_RSEM } from "${launchDir}/modules/sub-workflow/rnaseq-star-rsem"
+include { MULTIQC } from "${launchDir}/modules/multiqc"
 
 /* 
  * main script flow
@@ -39,5 +40,5 @@ workflow {
 }
 
 workflow.onComplete {
-	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${baseDir}/$params.outdir/multiqc_rsem_report.html\n" : "Oops .. something went wrong" )
+	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${params.outdir}/multiqc_rsem_report.html\n" : "Oops .. something went wrong" )
 }

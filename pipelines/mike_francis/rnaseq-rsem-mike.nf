@@ -2,9 +2,7 @@
 
 // nextflow run pipelines/mike_francis/rnaseq-rsem-mike.nf -resume -bg -N daniel.higgins@umassmed.edu
 
-/* 
- * enables modules 
- */
+
 nextflow.enable.dsl = 2
 
 /*
