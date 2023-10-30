@@ -22,3 +22,11 @@ gunzip --force ${genes_fasta}
 gunzip --force ${transcripts_fasta}
 gunzip --force ${annotations_gtf}
 gunzip --force ${gene_ids}
+
+# Create GeneIDs.csv
+gene_ids_txt=$(echo "$gene_ids" | sed 's/.\{3\}$//')
+gene_ids_csv=$(echo "$gene_ids" | sed 's/.\{7\}$//')
+gene_ids_csv="${gene_ids_csv}.csv"
+
+awk -F',' '$5=="Live" {print $2","$3","$4","$6}' "$gene_ids_txt" > "$gene_ids_csv"
+sed -i '1iWormbase_Id,Gene_name,Sequence_id,Gene_Type' "$gene_ids_csv"

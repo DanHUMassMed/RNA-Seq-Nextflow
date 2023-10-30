@@ -28,6 +28,6 @@ cp ${project_results}/multiqc_rsem_report.html ${results_base_dir}/01-Quality_Co
 cp -r ${project_results}/rsem_expression_*/*.genes.results ${results_base_dir}/02-Quantification/
 cp -r ${project_results}/rsem_expression_*/*.isoforms.results ${results_base_dir}/02-Quantification/
 cp -r ${project_results}/rsem_summary/* ${results_base_dir}/02-Quantification/
-cp -r ${launch_dir}/pipelines/shared/data/c_elegans.PRJNA13758.WS289.geneIDs.txt ${results_base_dir}/02-Quantification/
+cp -r ${launch_dir}/pipelines/shared/data/c_elegans.PRJNA13758.WS289.geneIDs.csv ${results_base_dir}/02-Quantification/
 
 echo "Results staged at: ${results_base_dir}"
