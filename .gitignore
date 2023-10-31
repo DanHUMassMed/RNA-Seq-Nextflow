@@ -3,6 +3,7 @@
 **/data/
 **/results/
 work/
+**/deseq_out
 
 # Files to ignore
 docs/overview.pdf
