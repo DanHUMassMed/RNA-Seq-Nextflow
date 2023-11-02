@@ -7,6 +7,9 @@ dependencies:
   - samtools 
   - r-essentials 
   - r-argparse
+  - r-svglite
+  - r-gplots
   - bioconductor-deseq2 
   - bioconductor-tximport
   - bioconductor-edger
+  - bioconductor-limma

@@ -12,3 +12,5 @@ docs/overview.pdf
 .DS_Store
 hs_err*.log
 nohup.out
+run_deseq2_logfile.txt
+run_deseq2_warnfile.txt
