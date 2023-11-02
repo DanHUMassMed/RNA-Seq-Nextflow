@@ -15,12 +15,12 @@ suppressPackageStartupMessages({
 })
 
 
-read_counts_data <- function(input_counts_file){
+read_counts_data <- function(input_counts_file) {
     # Extract file extension
     file_extension <- sub(".+\\.(\\w+)$", "\\1", input_counts_file)
     # Determine the seperator 
     sep <- switch(file_extension, csv = ",", tsv = "\t", NULL)
-    
+
     counts_data <- read.table(input_counts_file, header = TRUE, sep = sep)
 
     if( "gene_id" %in% colnames(counts_data)) {
@@ -31,7 +31,7 @@ read_counts_data <- function(input_counts_file){
         # Convert the column "gene_id" to row.names and delete the column since it is redundant
         row.names(counts_data) <- counts_data$gene_id
         counts_data <- counts_data[, -1]
-    } else if( "ID" %in% colnames(counts_data)) {
+    } else if ("ID" %in% colnames(counts_data)) {
         # Convert the column "ID" to row.names and delete the column since it is redundant
         row.names(counts_data) <- counts_data$ID
         counts_data <- counts_data[, -1]
@@ -355,14 +355,14 @@ main <- function() {
     parser$add_argument("-i", "--input-counts-file", help="Counts data file")
     parser$add_argument("-o", "--output-path", help="Output directory")
     parser$add_argument("-m", "--run-meta-filename", help="File name for deseq2 meta data")
-      
+
     args <- parser$parse_args()
 
-    if (is.null(args$input_counts_file)){
+    if (is.null(args$input_counts_file)) {
         stop("The --input-counts-file is required")
     }
 
-    if (is.null(args$output_path)){
+    if (is.null(args$output_path)) {
         stop("The --output-path is required")
     }
 
@@ -370,15 +370,14 @@ main <- function() {
         dir.create(args$output_path)
     }
 
-    if (is.null(args$run_meta_filename)){
-    stop("The --run-meta-filename is required")
+    if (is.null(args$run_meta_filename)) {
+        stop("The --run-meta-filename is required")
     }
-    
+
     print(paste("exec_deseq", args$input_counts_file, args$output_path, args$run_meta_filename))
-    exec_deseq(
-        input_counts_file=args$input_counts_file, 
-        output_path=args$output_path, 
-        run_meta_filename=args$run_meta_filename)
+    exec_deseq(input_counts_file = args$input_counts_file,
+               output_path = args$output_path,
+               run_meta_filename = args$run_meta_filename)
 }
 
 test <- function() {
@@ -388,9 +387,9 @@ test <- function() {
     file_name_root <- sub("\\..*$", "", basename(run_meta_filename))
     output_path <- "/usr/data/deseq_out"
 
-    run_meta_data <- read_run_metafile(run_meta_filename)    
+    run_meta_data <- read_run_metafile(run_meta_filename)
     alldetected <- read_counts_data("/usr/data/deseq_out/run_oxIs12_ABC16_alldetected.csv")
-    print(sprintf("Number of Rows of Data %s",format(nrow(alldetected), big.mark = ",")))
+    print(sprintf("Number of Rows of Data %s", format(nrow(alldetected), big.mark = ",")))
 
     # filename <- sprintf("%s/%s_volcano_plot_test.png", output_path, file_name_root)
     # title <- sprintf("Volcano Plot ( %s )", gsub(" ", "_", file_name_root))

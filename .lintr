@@ -1,2 +1,6 @@
-linters: linters_with_defaults(indentation_linter(=4)) # see vignette("lintr")
-encoding: "UTF-8"
+ lintr::linters_options(
+  with_defaults(
+    line_length_linter = line_length_linter(100),
+    indentation_linter = indentation_linter(4)
+  )
+)
