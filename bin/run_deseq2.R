@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
 
-# Open connections to two different files
-output_file <- file("/usr/data/run_deseq2_logfile.txt", open = "w")
-warning_file <- file("/usr/data/run_deseq2_warnfile.txt", open = "w")
-sink(output_file, type = "output")
-sink(warning_file, type = "message")
+# # Open connections to two different files
+# output_file <- file("/usr/data/run_deseq2_logfile.txt", open = "w")
+# warning_file <- file("/usr/data/run_deseq2_warnfile.txt", open = "w")
+# sink(output_file, type = "output")
+# sink(warning_file, type = "message")
 
 suppressPackageStartupMessages({
     library(DESeq2)
@@ -411,8 +411,8 @@ test <- function() {
 #test()
 main()
 
-# Stop capturing standard output and warnings
-sink(type = "output")
-sink(type = "message")
-close(output_file)
-close(warning_file)
+# # Stop capturing standard output and warnings
+# sink(type = "output")
+# sink(type = "message")
+# close(output_file)
+# close(warning_file)
