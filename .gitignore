@@ -4,6 +4,7 @@
 **/results/
 work/
 **/deseq_out
+**/__pycache__
 
 # Files to ignore
 docs/overview.pdf

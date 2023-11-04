@@ -36,3 +36,21 @@ process FASTQC_SINGLE {
     """
 }
 
+process OVERVIEW_REPORT {
+    container 'danhumassmed/qc-tools:1.0.1'
+    publishDir params.outdir, mode:'copy'
+
+    input:
+    path report_config
+    
+    script:
+    """
+    cp -r ${launchDir}/bin/md_to_pdf/* .
+    ${launchDir}/bin/overview_report.py --report-config "${report_config}"
+    """
+
+    output:
+    path "overview_report.pdf"
+
+}
+
