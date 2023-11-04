@@ -29,6 +29,14 @@ RUN cd /usr/local && \
     cd /usr/local && \
     rm RSeQC-5.0.1.tar.gz
 
+RUN cd /usr/local && \
+    wget https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
+    unzip rclone-current-linux-amd64.zip && \
+    cd rclone-*-linux-amd64 && \
+    cp rclone /usr/bin/ && \
+    chown root:root /usr/bin/rclone && \
+    chmod 755 /usr/bin/rclone
+
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
