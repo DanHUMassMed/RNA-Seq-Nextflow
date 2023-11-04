@@ -17,8 +17,8 @@ mkdir -p "${path_to_data}"
 #-trimlog trimlog.txt
 trimmomatic PE -threads 4 -phred33 \
             ${read_1} ${read_2} \
-            paired_${read_1} unpaired_${read_1} \
-            paired_${read_2} unpaired_${read_2} \
+            T_${read_1} unpaired_${read_1} \
+            T_${read_2} unpaired_${read_2} \
             ${trim_control}
 
 # # trimmomatic simulation
@@ -26,5 +26,5 @@ trimmomatic PE -threads 4 -phred33 \
 # cp ${read_2} paired_${read_2}
 # echo "Log out" >trimlog.txt
 
-cp paired_* "${path_to_data}/"
+cp T_* "${path_to_data}/"
 #cp trimlog.txt "${path_to_data}/"

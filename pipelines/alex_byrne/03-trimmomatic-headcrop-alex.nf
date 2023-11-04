@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run pipelines/alex_byrne/trimmomatic-headcrop-alex.nf -bg -N daniel.higgins@umassmed.edu
+// nextflow run pipelines/alex_byrne/03-trimmomatic-headcrop-alex.nf -bg -N daniel.higgins@umassmed.edu
 
 import java.util.UUID
 
