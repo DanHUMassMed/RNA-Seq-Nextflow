@@ -1,8 +1,7 @@
 #!/usr/bin/env nextflow 
 
-/* 
- * enables modules 
- */
+// nextflow run pipelines/alex_byrne/04-rnaseq-salmon-alex.nf -bg -N daniel.higgins@umassmed.edu
+
 nextflow.enable.dsl = 2
 
 
