@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run pipelines/alex_byrne/deseq-rsem-alex.nf -bg -N daniel.higgins@umassmed.edu
+// nextflow run pipelines/alex_byrne/05-deseq-rsem-alex.nf -bg -N daniel.higgins@umassmed.edu
 
 
 nextflow.enable.dsl = 2

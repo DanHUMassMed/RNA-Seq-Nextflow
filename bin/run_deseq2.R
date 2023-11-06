@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# # Open connections to two different files
+# # Uncomment for DEBUGGING
 # output_file <- file("/usr/data/run_deseq2_logfile.txt", open = "w")
 # warning_file <- file("/usr/data/run_deseq2_warnfile.txt", open = "w")
 # sink(output_file, type = "output")
@@ -85,6 +85,29 @@ create_alldetected <- function(res, counts_data) {
     joined_data$log10padj <- -log10(joined_data$padj)
 
    return(as.data.frame(joined_data))
+}
+
+filter_and_save_csv <- function(alldetected, foldChange_cutoff, padj_cutoff, direction_change, out_directory_path) {
+   
+  # Filter rows based on the specified conditions
+  if (direction_change == "DOWN") {
+    filtered_df <- subset(alldetected, foldChange <= 1 / foldChange_cutoff & padj <= padj_cutoff)
+  } else if (direction_change == "UP") {
+    filtered_df <- subset(alldetected, foldChange >= foldChange_cutoff & padj <= padj_cutoff)
+  } else {
+    stop("Invalid direction_change value. Use 'UP' or 'DOWN'.")
+  }
+
+  # Create output directory
+  if (!file.exists(out_directory_path)) {
+    dir.create(out_directory_path, recursive = TRUE)
+  }
+
+  # Write the filtered data frame to a new CSV file
+  output_csv_file <- file.path(out_directory_path, paste0(direction_change, ".csv"))
+  write.csv(filtered_df, file = output_csv_file, row.names = FALSE)
+  
+  return(output_csv_file)
 }
 
 volcano_plot <- function(counts_data, title, filename){
@@ -347,6 +370,15 @@ exec_deseq <- function(input_counts_file, output_path, run_meta_filename) {
     title <- sprintf("Heatmap ( %s )", gsub(" ", "_", file_name_root))
     heatmap_plot(alldetected, run_meta_data, title, filename)
 
+    # Create UP DOWN Gene Sets for WormCat
+    foldChange_cutoff <- 2
+    padj_cutoff <- 0.01
+    out_directory_path <- sprintf("%s/wc_%s", output_path, file_name_root)
+    direction_changes <- c("UP", "DOWN")
+ 
+    for (direction_change in direction_changes) {
+      filter_and_save_csv(alldetected, foldChange_cutoff, padj_cutoff, direction_change, out_directory_path)
+    }
 }
 
 main <- function() {

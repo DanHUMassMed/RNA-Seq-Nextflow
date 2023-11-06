@@ -1,4 +1,21 @@
 
+
+process WORMCAT_CSV {
+    container 'danhumassmed/wormcat_batch:1.0.1'
+    publishDir params.outdir, mode:'copy'
+
+    input:
+    path csv_path
+
+    output:
+    path "wormcat_${csv_path}" 
+
+    script:
+    """
+    wormcat_cli --input-csv-path ${csv_path} --output-path wormcat_${csv_path}  --clean-temp False
+    """
+}
+
 process WORMCAT {
     container 'danhumassmed/wormcat_batch:1.0.1'
     publishDir params.outdir, mode:'copy'
@@ -7,7 +24,7 @@ process WORMCAT {
     path excel_file
 
     output:
-    path "wormcat_out" 
+    path "wormcat_${excel_file}" 
 
     script:
     """

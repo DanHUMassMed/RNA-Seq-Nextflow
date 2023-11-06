@@ -46,9 +46,6 @@ def filter_and_save_csv(foldChange_cutoff, padj_cutoff, direction_change, input_
     
     return output_csv_file
 
-
-
-
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: .py <directory_root> <prefix>")
