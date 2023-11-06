@@ -85,3 +85,20 @@
     padding: 10px;
     border: 1px solid black; /* 1px solid black sets a black border with a width of 1px */
   }
+
+  .flex-table {
+    width: 100%;
+    max-width: 500px; /* Set the maximum width for the tables */
+}
+
+.flex-table th, .flex-table td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.title-row {
+    text-align: center;
+    background-color: #3e8dbc;
+    color: white;
+}

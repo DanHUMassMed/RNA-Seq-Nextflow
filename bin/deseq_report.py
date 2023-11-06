@@ -10,7 +10,8 @@ from markdown_include.include import MarkdownInclude
 from weasyprint import HTML
 
 
-REPORT_TEMPLATE_FILE="overview_report_template.md"
+REPORT_TEMPLATE_FILE = "deseq_report_template.md"
+DESEQ_REPORT_MD = "deseq_report.md"
 
 
 def get_dropbox_link(remote_location):
@@ -51,26 +52,13 @@ def generate_markdown_from_json(json_file):
     for person in json_data['prepared_for']:
         prepared_for += f"  * {person} \n"
     
-    dropbox_folder = json_data['dropbox_folder']
-    dropbox_link = get_dropbox_link(dropbox_folder)
-    fastq_files = get_fastq_names(dropbox_folder)
-    wormbase_version = json_data['wormbase_version']
-    github_release = json_data['GitHub_release']
-    github_tag = json_data['GitHub_tag']
-
     markdown_content = report_template.format(title=title,
                                               process_date=process_date,
                                               prepared_by=prepared_by,
-                                              prepared_for=prepared_for,
-                                              dropbox_folder=dropbox_folder,
-                                              dropbox_link=dropbox_link,
-                                              fastq_files=fastq_files,
-                                              wormbase_version=wormbase_version,
-                                              github_release=github_release,
-                                              github_tag=github_tag)
+                                              prepared_for=prepared_for)
 
     # Write Markdown content to output file
-    with open('overview_report.md', 'w') as file:
+    with open(DESEQ_REPORT_MD, 'w') as file:
         file.write(markdown_content)
 
     print("Markdown file generated successfully.")
@@ -128,7 +116,7 @@ def main():
     #     return
 
     generate_markdown_from_json(args.report_config)
-    convert_to_pdf('overview_report.md','overview_report_template.css')
+    convert_to_pdf('deseq_report.md','report_template.css')
 
 if __name__ == '__main__':
     main()

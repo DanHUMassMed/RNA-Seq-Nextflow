@@ -10,7 +10,9 @@ from markdown_include.include import MarkdownInclude
 from weasyprint import HTML
 
 
-REPORT_TEMPLATE_FILE="overview_report_template.md"
+REPORT_TEMPLATE_FILE = "overview_report_template.md"
+REPORT_TEMPLATE_CSS = "report_template.css"
+OVERVIEW_REPORT_MD = "overview_report.md"
 
 
 def get_dropbox_link(remote_location):
@@ -35,7 +37,7 @@ def get_fastq_names(remote_location):
          return f"Error: {str(e)}"
 
 
-def generate_markdown_from_json(json_file):
+def generate_markdown(json_file):
     # Read JSON data from file
     with open(json_file, 'r') as file:
         json_data = json.load(file)
@@ -70,7 +72,7 @@ def generate_markdown_from_json(json_file):
                                               github_tag=github_tag)
 
     # Write Markdown content to output file
-    with open('overview_report.md', 'w') as file:
+    with open(OVERVIEW_REPORT_MD, 'w') as file:
         file.write(markdown_content)
 
     print("Markdown file generated successfully.")
@@ -96,16 +98,16 @@ def convert_to_html(markdown_file_name, css_file_name):
             </html>
             """
 
-def convert_to_pdf(markdown_file_name, css_file_name):
-    file_name = os.path.splitext(markdown_file_name)[0]
-    html_string = convert_to_html(markdown_file_name, css_file_name)
+def convert_to_pdf():
+    file_name = os.path.splitext(OVERVIEW_REPORT_MD)[0]
+    html_string = convert_to_html(OVERVIEW_REPORT_MD, REPORT_TEMPLATE_CSS)
 
     with open(
         file_name + ".html", "w", encoding="utf-8", errors="xmlcharrefreplace"
     ) as output_file:
         output_file.write(html_string)
 
-    markdown_path = os.path.dirname(markdown_file_name)
+    markdown_path = os.path.dirname(OVERVIEW_REPORT_MD)
     html = HTML(string=html_string, base_url=markdown_path)
     html.write_pdf(file_name + ".pdf")
 
@@ -127,8 +129,8 @@ def main():
     #     print("Ouput path is missing.")
     #     return
 
-    generate_markdown_from_json(args.report_config)
-    convert_to_pdf('overview_report.md','overview_report_template.css')
+    generate_markdown(args.report_config)
+    convert_to_pdf()
 
 if __name__ == '__main__':
     main()
