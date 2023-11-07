@@ -1,0 +1,10 @@
+{
+    "title":"Analysis for Byrne lab",
+    "process_date":"Oct-19-2023",
+    "prepared_by":"Dan Higgins (daniel.higgins@umassmed.edu)",
+    "prepared_for":["Alex Byrne (Alexandra.Byrne@umassmed.edu)", "Brendan Philippon (Brendan.Philippon@umassmed.edu)"],
+    "dropbox_folder":"RNA-seq/daf19 & tir1 RNAseq Working Files",
+    "wormbase_version":"WS289",
+    "github_release":"https://github.com/DanH-UMassMed/RNA-Seq-Nextflow",
+    "github_tag":"v1.0.4"
+}

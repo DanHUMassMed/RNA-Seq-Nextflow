@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run pipelines/alex_byrne/06-wormcat-alex.nf -bg -N daniel.higgins@umassmed.edu
+// nextflow run pipelines/alex_byrne_lab/06-wormcat-alex.nf -bg -N daniel.higgins@umassmed.edu
 
 
 nextflow.enable.dsl = 2

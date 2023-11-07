@@ -51,14 +51,14 @@ def generate_markdown(json_file):
     prepared_by = json_data['prepared_by']
     prepared_for = ""
     for person in json_data['prepared_for']:
-        prepared_for += f"  * {person} \n"
+        prepared_for += f"\t* {person} \n"
     
     dropbox_folder = json_data['dropbox_folder']
     dropbox_link = get_dropbox_link(dropbox_folder)
     fastq_files = get_fastq_names(dropbox_folder)
     wormbase_version = json_data['wormbase_version']
-    github_release = json_data['GitHub_release']
-    github_tag = json_data['GitHub_tag']
+    github_release = json_data['github_release']
+    github_tag = json_data['github_tag']
 
     markdown_content = report_template.format(title=title,
                                               process_date=process_date,

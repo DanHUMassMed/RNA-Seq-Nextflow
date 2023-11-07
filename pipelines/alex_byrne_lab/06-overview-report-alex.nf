@@ -9,7 +9,7 @@ nextflow.enable.dsl = 2
  * RNA SEQ Pipeline 
  */
 
-params.report_config = "${projectDir}/data/Experiment1/experiment1.json"
+params.report_config = "${projectDir}/config/Experiment1/experiment1.json"
 params.outdir = "${projectDir}/results"
 
 

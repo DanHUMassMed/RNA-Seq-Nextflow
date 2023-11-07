@@ -54,7 +54,7 @@ The provided tagged repository is available to create reproducible outputs from 
 
 <table>
 <tr><td><b>Repo</b></td><td><a href="{github_release}">{github_release}</a></td></tr>
-<tr><td><b>Source</b></td><td><a href="{github_release}/{github_tag}">{github_release}/{github_tag}</a></td></tr>
+<tr><td><b>Source</b></td><td><a href="{github_release}/{github_tag}">{github_release}/releases/tag/{github_tag}</a></td></tr>
 </table>
 
 </div>

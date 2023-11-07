@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run pipelines/alex_byrne/fastqc-alex.nf -resume -bg -N daniel.higgins@umassmed.edu
+// nextflow run pipelines/alex_byrne_lab/02-fastqc-alex.nf -resume -bg -N daniel.higgins@umassmed.edu
 
 
 nextflow.enable.dsl = 2

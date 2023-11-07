@@ -101,7 +101,7 @@ process GET_DROPBOX_DATA {
 
 process CHECK_MD5 {
     container 'danhumassmed/de-seq-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.reportdir, mode:'copy'
 
     input:
     path data_local

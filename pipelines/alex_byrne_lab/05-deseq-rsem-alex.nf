@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run pipelines/alex_byrne/05-deseq-rsem-alex.nf -bg -N daniel.higgins@umassmed.edu
+// nextflow run pipelines/alex_byrne_lab/05-deseq-rsem-alex.nf -bg -N daniel.higgins@umassmed.edu
 
 
 nextflow.enable.dsl = 2
@@ -9,7 +9,7 @@ nextflow.enable.dsl = 2
  * RNA SEQ Pipeline 
  */
 
-params.deseq_meta = "${projectDir}/data/Experiment1/deseq_meta/run_*.csv"
+params.deseq_meta = "${projectDir}/config/Experiment1/deseq_meta/run_*.csv"
 params.counts = "${projectDir}/results/rsem_summary/genes_expression_expected_count.tsv"
 params.low_count_max = 10
 params.outdir = "${projectDir}/results"

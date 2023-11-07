@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run pipelines/alex_byrne/get_dropbox_data-alex.nf -bg -N daniel.higgins@umassmed.edu
+// nextflow run pipelines/alex_byrne_lab/01-get_dropbox_data-alex.nf -bg -N daniel.higgins@umassmed.edu
 // rclone lsl remote:"RNA-seq/daf19 & tir1 RNAseq Working Files" --human-readable| sed 's/\.000000000//g'
 
 nextflow.enable.dsl = 2
@@ -12,7 +12,7 @@ nextflow.enable.dsl = 2
 params.data_remote="RNA-seq/daf19 & tir1 RNAseq Working Files"
 params.data_local="Experiment1"
 params.outdir = "${projectDir}/data"
-params.reportdir = "${params.outdir}/${params.data_local}"
+params.reportdir = "${projectDir}/results"
 
 
 
