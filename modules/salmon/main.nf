@@ -2,7 +2,7 @@
 process SALMON_INDEX {
     tag "$transcriptome.simpleName"
     container "danhumassmed/salmon-kallisto:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
     
     input:
     path transcriptome 
@@ -19,7 +19,7 @@ process SALMON_INDEX {
 process SALMON_QUANTIFY_SINGLE  {
     tag "SALMON_QUANTIFY_SINGLE on ${reads.getName().split("\\.")[0]}"
     container "danhumassmed/salmon-kallisto:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path index 
@@ -37,7 +37,7 @@ process SALMON_QUANTIFY_SINGLE  {
 process SALMON_QUANTIFY{
     tag "SALMON_QUANTIFY on $pair_id"
     container "danhumassmed/salmon-kallisto:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path index 
@@ -55,7 +55,7 @@ process SALMON_QUANTIFY{
 process SALMON_SUMMARY {
     // NOTE: expression_summary.py  requires panadas and star-rsem:1.0.1 has it installed
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path('*')
@@ -67,7 +67,7 @@ process SALMON_SUMMARY {
     """
     mkdir -p salmon_summary
     cd salmon_summary
-    ${launchDir}/bin/expression_summary.py --expression-type salmon --input-path ${baseDir}/${params.outdir}
+    ${launchDir}/bin/expression_summary.py --expression-type salmon --input-path ${baseDir}/${params.results_dir}
     """
 }
 

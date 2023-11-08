@@ -1,7 +1,7 @@
 
 process DECOY_TRANSCRIPTOME {
     container 'danhumassmed/samtools-bedtools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path annotation_file

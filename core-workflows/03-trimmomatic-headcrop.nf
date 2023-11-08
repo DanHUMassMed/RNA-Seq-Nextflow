@@ -1,7 +1,5 @@
 #!/usr/bin/env nextflow 
 
-// nextflow run pipelines/alex_byrne_lab/03-trimmomatic-headcrop-alex.nf -bg -N daniel.higgins@umassmed.edu
-
 import java.util.UUID
 
 List<String> generateUUIDs(int numberOfUUIDs) {
@@ -14,18 +12,13 @@ List<String> generateUUIDs(int numberOfUUIDs) {
 }
 
 
-nextflow.enable.dsl = 2
-
-params.reads = "${projectDir}/data/Experiment1/**/*_{1,2}.fq.gz"
-params.data_root = "Experiment1"
-params.outdir = "${projectDir}/results"
 
 log.info """\
  TRIMMOMATIC - N F   P I P E L I N E
  ===================================
- reads        : ${params.reads}
- data_root    : ${params.data_root}
- outdir       : ${params.outdir}
+ fastq_paired : ${params.fastq_paired}
+ data_for     : ${params.data_for}
+ results_dir  : ${params.results_dir}
  """
 
 // import modules
@@ -35,10 +28,10 @@ include { TRIM_HEADCROP; TRIM_AGGREGATE } from "${launchDir}/modules/trimmomatic
  * main script flow
  */
 workflow {
-  read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true )
+  read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true )
   dir_suffix = channel.fromList(generateUUIDs(50))
 
-  TRIM_HEADCROP( read_pairs_ch, params.data_root, dir_suffix )
+  TRIM_HEADCROP( read_pairs_ch, params.data_for, dir_suffix )
   TRIM_AGGREGATE(TRIM_HEADCROP.out.collect() )
 }
 
@@ -59,5 +52,5 @@ workflow.onComplete {
 
     sendMail(to: 'daniel.higgins@umassmed.edu', subject: 'TRIMMOMATIC completed', body: msg)
 
-	log.info ( workflow.success ? "\nDone! The results can be found in --> ${params.outdir}/trimmed\n" : "Oops .. something went wrong" )
+	log.info ( workflow.success ? "\nDone! The results can be found in --> ${params.results_dir}/trimmed\n" : "Oops .. something went wrong" )
 }

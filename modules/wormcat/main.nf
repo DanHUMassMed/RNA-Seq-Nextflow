@@ -2,7 +2,7 @@
 
 process WORMCAT_CSV {
     container 'danhumassmed/wormcat_batch:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path csv_path
@@ -18,7 +18,7 @@ process WORMCAT_CSV {
 
 process WORMCAT {
     container 'danhumassmed/wormcat_batch:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path excel_file

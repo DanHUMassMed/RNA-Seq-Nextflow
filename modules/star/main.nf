@@ -1,7 +1,7 @@
 
 process STAR_INDEX {
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path fasta_file
@@ -23,7 +23,7 @@ process STAR_INDEX {
 
 process STAR_ALIGN {
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path star_index_dir
@@ -47,7 +47,7 @@ process STAR_ALIGN {
 
 process STAR_ALIGN_SINGLE {
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path star_index_dir

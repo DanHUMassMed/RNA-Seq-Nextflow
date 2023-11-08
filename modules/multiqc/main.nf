@@ -1,7 +1,7 @@
 
 process MULTIQC {
     container 'danhumassmed/qc-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     val report_nm

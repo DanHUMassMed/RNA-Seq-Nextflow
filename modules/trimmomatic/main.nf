@@ -54,7 +54,7 @@ process TRIM_HEADCROP {
 
 process TRIM_AGGREGATE {
     container "danhumassmed/picard-trimmomatic:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path('*')

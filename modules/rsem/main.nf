@@ -1,6 +1,6 @@
 process RSEM_INDEX {
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path genome_file
@@ -21,7 +21,7 @@ process RSEM_INDEX {
 
 process RSEM_QUANTIFY {
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     val rsem_reference_dir
@@ -50,7 +50,7 @@ process RSEM_QUANTIFY {
 process RSEM_QUANTIFY_SINGLE {
     tag "RSEM_QUANTIFY_SINGLE on ${bam_file}"
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     val rsem_reference_dir
@@ -78,7 +78,7 @@ process RSEM_QUANTIFY_SINGLE {
 
 process RSEM_SUMMARY {
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path('rsem_expression_*')

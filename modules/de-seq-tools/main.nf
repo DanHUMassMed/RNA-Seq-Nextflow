@@ -2,7 +2,7 @@
 process TX2GENE {
     tag "$transcriptome.simpleName"
     container 'danhumassmed/de-seq-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path transcriptome 
@@ -19,7 +19,7 @@ process TX2GENE {
 
 process TXIMPORT_COUNTS {
     container 'danhumassmed/de-seq-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path('*')
@@ -38,7 +38,7 @@ process TXIMPORT_COUNTS {
 
 process LOW_COUNT_FILTER {
     container 'danhumassmed/de-seq-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path counts_file
@@ -60,7 +60,7 @@ process LOW_COUNT_FILTER {
 
 process DESEQ_EXEC {
     container 'danhumassmed/de-seq-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     val low_counts_file
@@ -82,7 +82,7 @@ process DESEQ_EXEC {
 
 process GET_DROPBOX_DATA {
     container 'danhumassmed/de-seq-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.data_dir, mode:'copy'
 
     input:
     val data_remote 
@@ -101,7 +101,7 @@ process GET_DROPBOX_DATA {
 
 process CHECK_MD5 {
     container 'danhumassmed/de-seq-tools:1.0.1'
-    publishDir params.reportdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path data_local

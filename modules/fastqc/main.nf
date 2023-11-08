@@ -2,7 +2,7 @@
 process FASTQC {
     tag "FASTQC on $sample_id"
     container 'danhumassmed/qc-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     tuple val(sample_id), path(reads)
@@ -20,7 +20,7 @@ process FASTQC {
 process FASTQC_SINGLE {
     tag "FASTQC on ${reads.getName().split("\\.")[0]}"
     container 'danhumassmed/qc-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path reads
@@ -38,7 +38,7 @@ process FASTQC_SINGLE {
 
 process OVERVIEW_REPORT {
     container 'danhumassmed/qc-tools:1.0.1'
-    publishDir params.outdir, mode:'copy'
+    publishDir params.results_dir, mode:'copy'
 
     input:
     path report_config
