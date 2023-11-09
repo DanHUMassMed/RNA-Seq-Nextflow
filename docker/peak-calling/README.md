@@ -4,9 +4,12 @@
 |------------|----------|-------|-----------------------|-----------|
 | 1.0.1      | v2.2.9.1 | v1.3  |v445                   | v3.53     |
 
+---
+
+<br>
+
  
 ## MACS2: Model-based Analysis of ChIP-Seq (MACS)
----
 
 [https://github.com/macs3-project/MACS#macs-model-based-analysis-for-chip-seq](https://github.com/macs3-project/MACS#macs-model-based-analysis-for-chip-seq)
 
@@ -17,7 +20,6 @@ With the improvement of sequencing techniques, chromatin immunoprecipitation fol
 
 
 ## SEACR: Sparse Enrichment Analysis for CUT&RUN
----
 
 [https://github.com/FredHutch/SEACR](https://github.com/FredHutch/SEACR)
 
@@ -32,7 +34,7 @@ Direct link: [https://doi.org/10.1186/s13072-019-0287-4](https://doi.org/10.1186
 
 
 ## deepTools
----
+
 
 [https://deeptools.readthedocs.io/en/develop/](https://deeptools.readthedocs.io/en/develop/)
 
@@ -53,15 +55,10 @@ The flow chart below depicts the different tool modules that are currently avail
 <img src="https://deeptools.readthedocs.io/en/develop/_images/start_workflow1.png" width="700" alt="Alt Text">
 
 
-
-
-
-
-
 <br>
 
 ## ucsc-bedgraphtobigwig
----
+
 
 [https://hgdownload.soe.ucsc.edu/downloads.html](https://hgdownload.soe.ucsc.edu/downloads.html)
 
@@ -71,6 +68,9 @@ Convert bedGraph to bigWig file. Description of Big Binary Indexed (BBI) files a
 Conda Install: [https://anaconda.org/bioconda/ucsc-bedgraphtobigwig](https://anaconda.org/bioconda/ucsc-bedgraphtobigwig)
 
 <br>
+
+
+---
 
 <br>
 
