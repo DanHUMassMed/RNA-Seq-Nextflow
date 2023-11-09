@@ -1,4 +1,5 @@
-#/bin/bash
+#!/bin/bash
+
 source_dir="./trim_*"
 target_dir="./trimmed"
 
