@@ -11,29 +11,8 @@ from weasyprint import HTML
 
 
 REPORT_TEMPLATE_FILE = "deseq_report_template.md"
+REPORT_TEMPLATE_CSS = "report_template.css"
 DESEQ_REPORT_MD = "deseq_report.md"
-
-
-def get_dropbox_link(remote_location):
-    # rclone command to get dropbox link
-    command = f'rclone link remote:"{remote_location}"'
-
-    try:
-        output = subprocess.check_output(command, shell=True, text=True)
-        dropbox_link = output.strip()
-        return dropbox_link
-    except subprocess.CalledProcessError as e:
-        return f"Error: {str(e)}"
-
-def get_fastq_names(remote_location):
-    # rclone command to get fastq files
-    command = f'rclone lsl remote:"{remote_location}" --human-readable|grep .fq.gz|sed "s/\.000000000//"'
-
-    try:
-        output = subprocess.check_output(command, shell=True, text=True)
-        return output
-    except subprocess.CalledProcessError as e:
-         return f"Error: {str(e)}"
 
 
 def generate_markdown_from_json(json_file):

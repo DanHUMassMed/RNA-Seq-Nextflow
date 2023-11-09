@@ -36,6 +36,25 @@ process FASTQC_SINGLE {
     """
 }
 
+process DESEQ_REPORT {
+    container 'danhumassmed/qc-tools:1.0.1'
+    publishDir params.results_dir, mode:'copy'
+
+    input:
+    path report_config
+    
+    script:
+    """
+    cp -r ${launchDir}/bin/md_to_pdf/* .
+    ${launchDir}/bin/deseq_report.py --report-config "${report_config}"
+    """
+
+    output:
+    path "deseq_report.pdf"
+
+}
+
+
 process OVERVIEW_REPORT {
     container 'danhumassmed/qc-tools:1.0.1'
     publishDir params.results_dir, mode:'copy'
