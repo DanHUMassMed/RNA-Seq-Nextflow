@@ -1,8 +1,9 @@
 # Sofware Provided
 
-| Docker Tag | Picard    | Trimmomatic |fastp   |
-|------------|-----------|-------------|--------|
-| 1.0.1      | v2.18.23  | v0.39       |v0.23.4 |
+| Docker Tag | Picard    | Trimmomatic | fastp   | trim-galore |
+|------------|-----------|-------------|---------|-------------|
+| 1.0.1      | v2.18.23  | v0.39       | v0.23.4 | v0.6.10     |
+
 
 ## Picard
 ---
@@ -62,6 +63,24 @@ For single-ended data, one input and one output file are specified, plus the pro
 
 
 A tool designed to provide fast all-in-one preprocessing for FastQ files. This tool is developed in C++ with multithreading supported to afford high performance.
+
+<br>
+
+## trim-galore
+---
+
+[https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md](https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md)
+
+
+For all high throughput sequencing applications, we would recommend performing some quality control on the data, as it can often straight away point you towards the next steps that need to be taken (e.g. with FastQC). Thorough quality control and taking appropriate steps to remove problems is vital for the analysis of almost all sequencing applications. This is even more critical for the proper analysis of RRBS libraries since they are susceptible to a variety of errors or biases that one could probably get away with in other sequencing applications. In our brief guide to RRBS we discuss the following points:
+
+* poor qualities – affect mapping, may lead to incorrect methylation calls and/or mis-mapping
+* adapter contamination – may lead to low mapping efficiencies, or, if mapped, may result in incorrect methylation calls and/or mis-mapping
+* positions filled in during end-repair will infer the methylation state of the cytosine used for the fill-in reaction but not of the true genomic cytosine
+* paired-end RRBS libraries (especially with long read length) yield redundant methylation information if the read pairs overlap
+* RRBS libraries with long read lengths suffer more from all of the above due to the short size- selected fragment size
+
+Poor base call qualities or adapter contamination are however just as relevant for 'normal', i.e. non-RRBS, libraries.
 
 <br>
 
