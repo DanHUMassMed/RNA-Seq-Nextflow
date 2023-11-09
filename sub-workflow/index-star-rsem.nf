@@ -1,7 +1,7 @@
 
 // import modules
-include { STAR_INDEX } from '../star'
-include { RSEM_INDEX } from '../rsem'
+include { STAR_INDEX } from '../modules/star'
+include { RSEM_INDEX } from '../modules/rsem'
 
 workflow INDEX_STAR_RSEM {
   take:

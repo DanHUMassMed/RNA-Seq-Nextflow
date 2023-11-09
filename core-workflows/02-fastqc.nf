@@ -4,6 +4,7 @@ log.info """\
  R N A S E Q - N F   P I P E L I N E
  ===================================
  fastq_paired : ${params.fastq_paired}
+ fastq_single : ${params.fastq_single}
  results_dir  : ${params.results_dir}
  """
 
@@ -17,10 +18,19 @@ include { MULTIQC } from "${launchDir}/modules/multiqc"
  */
 
 workflow {
-  read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true ) 
-  report_nm = channel.value("multiqc_report.html")
-  FASTQC(read_pairs_ch)
-  MULTIQC(report_nm, FASTQC.out.collect()  )
+  if(params.fastq_paired) {
+    read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true ) 
+    report_nm = channel.value("multiqc_report.html")
+    FASTQC(read_pairs_ch)
+    MULTIQC(report_nm, FASTQC.out.collect()  )
+  } 
+
+  if(params.fastq_single)  {
+    read_ch = channel.fromPath( params.fastq_single, checkIfExists: true ) 
+    report_nm = channel.value("multiqc_report.html")
+    FASTQC_SINGLE(read_ch)
+    MULTIQC(report_nm, FASTQC_SINGLE.out.collect()  )
+  }
 }
 
 workflow.onComplete {

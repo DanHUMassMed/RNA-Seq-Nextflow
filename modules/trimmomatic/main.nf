@@ -14,7 +14,8 @@ Quality | Prob.       | Accuracy
    40   | 1 in 10,000 | 99.99%
 *************************************/
 
-process TRIM_SLIDING_WINDOW {
+process TRIMMOMATIC {
+    tag "TRIMMOMATIC on $sample_id"
     container "danhumassmed/picard-trimmomatic:1.0.1"
 
     input:
@@ -23,9 +24,8 @@ process TRIM_SLIDING_WINDOW {
     val dir_suffix
 
     script:
-    def trim_control='"SLIDINGWINDOW:4:15 MINLEN:75"'
     """
-    ${launchDir}/bin/trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
+    ${launchDir}/bin/trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${params.trimmomatic_control}
     """
 
     output:
@@ -33,18 +33,18 @@ process TRIM_SLIDING_WINDOW {
 
 }
 
-process TRIM_HEADCROP {
+process TRIMMOMATIC_SINGLE {
+    tag "TRIMMOMATIC_SINGLE on ${reads.getName().split("\\.")[0]}"
     container "danhumassmed/picard-trimmomatic:1.0.1"
 
     input:
-    tuple val(sample_id), path(reads)
+    path reads
     val data_root
     val dir_suffix
 
     script:
-    def trim_control='"HEADCROP:10 MINLEN:75"'
     """
-    ${launchDir}/bin/trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${trim_control}
+    ${launchDir}/bin/trimmomatic.sh ${reads} "" ${data_root} ${dir_suffix} ${params.trimmomatic_control}
     """
 
     output:
@@ -52,7 +52,7 @@ process TRIM_HEADCROP {
 
 }
 
-process TRIM_AGGREGATE {
+process TRIMMOMATIC_AGGREGATE {
     container "danhumassmed/picard-trimmomatic:1.0.1"
     publishDir params.results_dir, mode:'copy'
 

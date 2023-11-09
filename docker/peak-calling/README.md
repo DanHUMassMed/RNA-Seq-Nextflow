@@ -1,67 +1,76 @@
 # Sofware Provided
 
-| Docker Tag | Picard    | Trimmomatic |fastp   |
-|------------|-----------|-------------|--------|
-| 1.0.1      | v2.18.23  | v0.39       |v0.23.4 |
+| Docker Tag | macs2    | seacr | ucsc-bedgraphtobigwig | deeptools |
+|------------|----------|-------|-----------------------|-----------|
+| 1.0.1      | v2.2.9.1 | v1.3  |v445                   | v3.53     |
 
-## Picard
+ 
+## MACS2: Model-based Analysis of ChIP-Seq (MACS)
 ---
 
-[https://broadinstitute.github.io/picard/](https://broadinstitute.github.io/picard/)
+[https://github.com/macs3-project/MACS#macs-model-based-analysis-for-chip-seq](https://github.com/macs3-project/MACS#macs-model-based-analysis-for-chip-seq)
 
 
-A set of Java command line tools for manipulating high-throughput sequencing (HTS) data and formats.
-
-<br>
-
-Picard is implemented using the HTSJDK Java library HTSJDK to support accessing file formats that are commonly used for high-throughput sequencing data such as SAM and VCF.
+With the improvement of sequencing techniques, chromatin immunoprecipitation followed by high throughput sequencing (ChIP-Seq) is getting popular to study genome-wide protein-DNA interactions. To address the lack of powerful ChIP-Seq analysis method, we presented the Model-based Analysis of ChIP-Seq (MACS), for identifying transcript factor binding sites. MACS captures the influence of genome complexity to evaluate the significance of enriched ChIP regions and MACS improves the spatial resolution of binding sites through combining the information of both sequencing tag position and orientation. 
 
 <br>
 
-### Additional Resources
 
-* [Detailed tool documentation](https://broadinstitute.github.io/picard/command-line-overview.html#Overview)
-* [Description of output of metrics programs](https://broadinstitute.github.io/picard/picard-metric-definitions.html)
-* [SAM differences in Picard](https://broadinstitute.github.io/picard/sam-differences.html)
-* [Explain SAM flags](https://broadinstitute.github.io/picard/explain-flags.html)
-* [Explain Base Qualities](https://broadinstitute.github.io/picard/explain-qualities.html)
-* [Javadoc](http://broadinstitute.github.io/picard/javadoc/picard/index.html)
-
-<br>
-
-## Trimmomatic
+## SEACR: Sparse Enrichment Analysis for CUT&RUN
 ---
 
-[http://www.usadellab.org/cms/?page=trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
+[https://github.com/FredHutch/SEACR](https://github.com/FredHutch/SEACR)
 
 
-Trimmomatic performs a variety of useful trimming tasks for illumina paired-end and single ended data.The selection of trimming steps and their associated parameters are supplied on the command line.
+SEACR is intended to call peaks and enriched regions from sparse CUT&RUN or chromatin profiling data in which background is dominated by "zeroes" (i.e. regions with no read coverage). It requires [R](https://www.r-project.org) and [Bedtools](https://bedtools.readthedocs.io/en/latest/) to be available in your path, and it requires bedgraphs from paired-end sequencing as input, which can be generated from read pair BED files (i.e. BED coordinates reflecting the 5' and 3' termini of each read pair) using bedtools genomecov with the "-bg" flag, or alternatively from name-sorted paired-end BAM files as described in "Preparing input bedgraph files" below.
 
-The current trimming steps are:
+A description of the method can be found in the following manuscript, which we respectfully request that you cite if you find SEACR useful in your research:
 
-* ILLUMINACLIP: Cut adapter and other illumina-specific sequences from the read.
-* SLIDINGWINDOW: Perform a sliding window trimming, cutting once the average quality within the window falls below a threshold.
-* LEADING: Cut bases off the start of a read, if below a threshold quality
-* TRAILING: Cut bases off the end of a read, if below a threshold quality
-* CROP: Cut the read to a specified length
-* HEADCROP: Cut the specified number of bases from the start of the read
-* MINLEN: Drop the read if it is below a specified length
-* TOPHRED33: Convert quality scores to Phred-33
-* TOPHRED64: Convert quality scores to Phred-64
+Meers MP, Tenenbaum D, Henikoff S. (2019). Peak calling by Sparse Enrichment Analysis for CUT&RUN chromatin profiling. Epigenetics and Chromatin 12(1):42.
 
-It works with FASTQ (using phred + 33 or phred + 64 quality scores, depending on the Illumina pipeline used), either uncompressed or gzipp'ed FASTQ. Use of gzip format is determined based on the .gz extension.
+Direct link: [https://doi.org/10.1186/s13072-019-0287-4](https://doi.org/10.1186/s13072-019-0287-4)
 
-For single-ended data, one input and one output file are specified, plus the processing steps. For paired-end data, two input files are specified, and 4 output files, 2 for the 'paired' output where both reads survived the processing, and 2 for corresponding 'unpaired' output where a read survived, but the partner read did not.
+
+## deepTools
+---
+
+[https://deeptools.readthedocs.io/en/develop/](https://deeptools.readthedocs.io/en/develop/)
+
+
+deepTools is a suite of python tools particularly developed for the efficient analysis of high-throughput sequencing data, such as ChIP-seq, RNA-seq or MNase-seq.
+
+There are 3 ways for using deepTools:
+
+* __Galaxy usage__ – our public deepTools Galaxy server let’s you use the deepTools within the familiar Galaxy framework without the need to master the command line
+* __command line__ usage – simply download and install the tools (see Installation and The tools)
+* __API__ – make use of your favorite deepTools modules in your own python programs (see deepTools API)
 
 <br>
 
-## fastp
+The flow chart below depicts the different tool modules that are currently available.
+
+
+<img src="https://deeptools.readthedocs.io/en/develop/_images/start_workflow1.png" width="700" alt="Alt Text">
+
+
+
+
+
+
+
+<br>
+
+## ucsc-bedgraphtobigwig
 ---
 
-[https://github.com/OpenGene/fastp](https://github.com/OpenGene/fastp)
+[https://hgdownload.soe.ucsc.edu/downloads.html](https://hgdownload.soe.ucsc.edu/downloads.html)
 
 
-A tool designed to provide fast all-in-one preprocessing for FastQ files. This tool is developed in C++ with multithreading supported to afford high performance.
+Convert bedGraph to bigWig file. Description of Big Binary Indexed (BBI) files and visualization of next-generation sequencing experiment results explained by W.J. Kent, PMCID: PMC2922891
+
+Conda Install: [https://anaconda.org/bioconda/ucsc-bedgraphtobigwig](https://anaconda.org/bioconda/ucsc-bedgraphtobigwig)
+
+<br>
 
 <br>
 

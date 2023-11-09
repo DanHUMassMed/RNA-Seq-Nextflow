@@ -1,7 +1,7 @@
 
-include { FASTQC; FASTQC_SINGLE } from '../fastqc'
-include { STAR_ALIGN; STAR_ALIGN_SINGLE } from '../star'
-include { RSEM_QUANTIFY; RSEM_QUANTIFY_SINGLE; RSEM_SUMMARY } from '../rsem'
+include { FASTQC; FASTQC_SINGLE } from '../modules/fastqc'
+include { STAR_ALIGN; STAR_ALIGN_SINGLE } from '../modules/star'
+include { RSEM_QUANTIFY; RSEM_QUANTIFY_SINGLE; RSEM_SUMMARY } from '../modules/rsem'
 
 workflow RNASEQ_STAR_RSEM {
   take:
@@ -26,10 +26,11 @@ workflow RNASEQ_STAR_RSEM_SINGLE {
     read_ch
  
   main: 
-    FASTQC_SINGLE(read_ch)
+    //FASTQC_SINGLE(read_ch)
     STAR_ALIGN_SINGLE(star_index_dir, read_ch)
-    RSEM_QUANTIFY_SINGLE(rsem_reference_dir,STAR_ALIGN_SINGLE.out.bam_file)
+    RSEM_QUANTIFY_SINGLE(rsem_reference_dir, STAR_ALIGN_SINGLE.out.bam_file)
     RSEM_SUMMARY(RSEM_QUANTIFY_SINGLE.out.collect())
   emit: 
-     RSEM_QUANTIFY_SINGLE.out | concat(STAR_ALIGN_SINGLE.out.star_align_dir) | concat(FASTQC_SINGLE.out) |collect
+     //RSEM_QUANTIFY_SINGLE.out | concat(STAR_ALIGN_SINGLE.out.star_align_dir) | concat(FASTQC_SINGLE.out) |collect
+     RSEM_QUANTIFY_SINGLE.out | concat(STAR_ALIGN_SINGLE.out.star_align_dir)  |collect
 }

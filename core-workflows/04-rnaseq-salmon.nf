@@ -12,23 +12,33 @@ log.info """\
  ===================================
  salmon_index_dir : ${params.salmon_index_dir}
  fastq_paired     : ${params.fastq_paired}
+ fastq_single     : ${params.fastq_single}
  tx2gene          : ${params.tx2gene}
  counts_method    : ${params.counts_method}
  results_dir      : ${params.results_dir}
  """
 
 // import modules
-include { RNASEQ_SALMON } from "${launchDir}/modules/sub-workflow/rnaseq-salmon"
+include { RNASEQ_SALMON; RNASEQ_SALMON_SINGLE } from "${launchDir}/sub-workflow/rnaseq-salmon"
 include { MULTIQC } from "${launchDir}/modules/multiqc"
 
 /* 
  * main script flow
  */
 workflow {
-  read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true ) 
-  report_nm = channel.value("multiqc_salmon_report.html")
-  RNASEQ_SALMON( params.salmon_index_dir, read_pairs_ch, params.tx2gene, params.counts_method)
-  MULTIQC(report_nm, RNASEQ_SALMON.out )
+  if(params.fastq_paired) {
+      read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true ) 
+      report_nm = channel.value("multiqc_salmon_report.html")
+      RNASEQ_SALMON( params.salmon_index_dir, read_pairs_ch, params.tx2gene, params.counts_method)
+      MULTIQC(report_nm, RNASEQ_SALMON.out )
+  }
+
+  if(params.fastq_single) {
+      read_ch = channel.fromPath( params.fastq_single, checkIfExists: true ) 
+      report_nm = channel.value("multiqc_salmon_report.html")
+      RNASEQ_SALMON_SINGLE( params.salmon_index_dir, read_ch, params.tx2gene, params.counts_method)
+      MULTIQC(report_nm, RNASEQ_SALMON_SINGLE.out )
+  }
 }
 
 /* 

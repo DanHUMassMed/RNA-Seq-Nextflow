@@ -1,9 +1,9 @@
 {
-    "title":"Analysis for Walker lab",
+    "title":"Analysis for Francis lab",
     "process_date":"Oct-19-2023",
     "prepared_by":"Dan Higgins (daniel.higgins@umassmed.edu)",
-    "prepared_for":["Amy Walker (Amy.Walker@umassmed.edu)"],
-    "dropbox_folder":"RNA-seq/arf1 & EV RNAseq Working Files",
+    "prepared_for":["Mike Francis (michael.francis@umassmed.edu)","Sam Liu (samuel.liu@umassmed.edu)"],
+    "dropbox_folder":"SamLiu_ Francis lab September 2023",
     "wormbase_version":"WS289",
     "github_release":"https://github.com/DanH-UMassMed/RNA-Seq-Nextflow",
     "github_tag":"v1.0.4"

@@ -1,8 +1,8 @@
 
 // import modules
-include { DECOY_TRANSCRIPTOME } from '../bedtools'
-include { SALMON_INDEX } from '../salmon'
-include { TX2GENE } from '../de-seq-tools'
+include { DECOY_TRANSCRIPTOME } from '../modules/bedtools'
+include { SALMON_INDEX } from '../modules/salmon'
+include { TX2GENE } from '../modules/de-seq-tools'
 
 workflow INDEX_SALMON {
   take:

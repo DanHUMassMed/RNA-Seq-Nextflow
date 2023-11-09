@@ -57,11 +57,11 @@ process RSEM_QUANTIFY_SINGLE {
     path bam_file
 
     output:
-    path "rsem_expression_${bam_file.getName().split("\\.")[0]}"
+    path "rsem_expression_${bam_file.getName().substring(5,bam_file.getName().length()-31)}"
 
     script:
     """
-    mkdir -p ./rsem_expression_${bam_file.getName().split("\\.")[0]}
+    mkdir -p ./rsem_expression_${bam_file.getName().substring(5,bam_file.getName().length()-31)}
     rsem-calculate-expression \
         --num-threads $task.cpus \
         --time \
@@ -69,8 +69,8 @@ process RSEM_QUANTIFY_SINGLE {
         --alignments \
             ${bam_file} \
             ${rsem_reference_dir}/rsem \
-            ./rsem_expression_${bam_file.getName().split("\\.")[0]}/rsem_${bam_file.getName().split("\\.")[0]} >& \
-            ./rsem_expression_${bam_file.getName().split("\\.")[0]}/rsem_${bam_file.getName().split("\\.")[0]}.log
+            ./rsem_expression_${bam_file.getName().substring(5,bam_file.getName().length()-31)}/rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)} >& \
+            ./rsem_expression_${bam_file.getName().substring(5,bam_file.getName().length()-31)}/rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)}.log
 
     """
 }

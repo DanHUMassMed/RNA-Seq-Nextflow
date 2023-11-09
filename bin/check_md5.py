@@ -76,6 +76,15 @@ def create_md5_report(md5_details):
     return report
 
 
+def create_md5_error_report():
+    report = "<html>\n<head>\n\t<title>MD5 Check Report</title>\n</head>\n"
+    report += "<body>\n<h1>MD5 Check Report failed to process files!</h1>\n"
+    report += "<h3>Check that MD5 files are available and are in the correct format.</h3>\n"
+    report += "</body>\n</html>"
+
+    return report
+
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python search_md5_files.py <directory_root>")
@@ -99,5 +108,7 @@ if __name__ == "__main__":
             report_file.write(md5_report)
 
     else:
-        print("No MD5.txt files found in the specified directory and its subdirectories.")
+        error_report = create_md5_error_report()
+        with open("md5_report.html", "w") as report_file:
+            report_file.write(error_report)
 

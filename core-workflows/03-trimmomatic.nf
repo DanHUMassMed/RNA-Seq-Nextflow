@@ -17,22 +17,32 @@ log.info """\
  TRIMMOMATIC - N F   P I P E L I N E
  ===================================
  fastq_paired : ${params.fastq_paired}
+ fastq_single : ${params.fastq_single}
  data_for     : ${params.data_for}
  results_dir  : ${params.results_dir}
  """
 
 // import modules
-include { TRIM_HEADCROP; TRIM_AGGREGATE } from "${launchDir}/modules/trimmomatic"
+include { TRIMMOMATIC; TRIMMOMATIC_SINGLE; TRIMMOMATIC_AGGREGATE } from "${launchDir}/modules/trimmomatic"
 
 /* 
  * main script flow
  */
 workflow {
-  read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true )
-  dir_suffix = channel.fromList(generateUUIDs(50))
+  if(params.fastq_paired) {
+    read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true )
+    dir_suffix = channel.fromList(generateUUIDs(50))
+    TRIMMOMATIC( read_pairs_ch, params.data_for, dir_suffix )
+    TRIMMOMATIC_AGGREGATE(TRIMMOMATIC.out.collect() )
+  }
 
-  TRIM_HEADCROP( read_pairs_ch, params.data_for, dir_suffix )
-  TRIM_AGGREGATE(TRIM_HEADCROP.out.collect() )
+  if(params.fastq_single)  {
+    read_ch = channel.fromPath( params.fastq_single, checkIfExists: true ) 
+    dir_suffix = channel.fromList(generateUUIDs(50))
+    TRIMMOMATIC_SINGLE(read_ch, params.data_for, dir_suffix )
+    TRIMMOMATIC_AGGREGATE(TRIMMOMATIC_SINGLE.out.collect()  )
+  }
+
 }
 
 /* 

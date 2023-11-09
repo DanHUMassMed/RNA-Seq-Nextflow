@@ -1,7 +1,7 @@
 
-include { FASTQC; FASTQC_SINGLE } from '../fastqc'
-include { SALMON_QUANTIFY; SALMON_QUANTIFY_SINGLE; SALMON_SUMMARY } from '../salmon'
-include { TXIMPORT_COUNTS } from '../de-seq-tools'
+include { FASTQC; FASTQC_SINGLE } from '../modules/fastqc'
+include { SALMON_QUANTIFY; SALMON_QUANTIFY_SINGLE; SALMON_SUMMARY } from '../modules/salmon'
+include { TXIMPORT_COUNTS } from '../modules/de-seq-tools'
 
 workflow RNASEQ_SALMON {
   take:
@@ -15,7 +15,8 @@ workflow RNASEQ_SALMON {
     SALMON_QUANTIFY(salmon_index, read_pairs_ch)
     TXIMPORT_COUNTS(SALMON_QUANTIFY.out.collect(), tx2gene, counts_method)
   emit: 
-     SALMON_QUANTIFY.out | concat(FASTQC.out) | collect
+     //SALMON_QUANTIFY.out | concat(FASTQC.out) | collect
+     SALMON_QUANTIFY.out | collect
 }
 
 workflow RNASEQ_SALMON_SINGLE {
@@ -30,5 +31,6 @@ workflow RNASEQ_SALMON_SINGLE {
     SALMON_QUANTIFY_SINGLE(salmon_index, reads_ch)
     TXIMPORT_COUNTS(SALMON_QUANTIFY_SINGLE.out.collect(), tx2gene, counts_method)
   emit: 
-     SALMON_QUANTIFY_SINGLE.out | concat(FASTQC_SINGLE.out) | collect
+     //SALMON_QUANTIFY_SINGLE.out | concat(FASTQC_SINGLE.out) | collect
+     SALMON_QUANTIFY_SINGLE.out | collect
 }
