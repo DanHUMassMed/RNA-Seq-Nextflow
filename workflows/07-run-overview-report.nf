@@ -2,19 +2,19 @@
 
 
 log.info """\
- R N A S E Q - N F   P I P E L I N E
+ P A R A M S -- RUN OVERVIEW REPORT
  ===================================
  report_config : ${params.report_config}
  results_dir   : ${params.results_dir}
  """
 
 // import modules
-include { OVERVIEW_REPORT } from "${launchDir}/modules/fastqc"
+include { OVERVIEW_REPORT } from '../modules/fastqc'
 
 /* 
  * main script flow
  */
-workflow { 
+workflow RUN_OVERVIEW_REPORT { 
   report_config_ch = channel.fromPath( params.report_config, checkIfExists: true ) 
   OVERVIEW_REPORT( report_config_ch )
 }

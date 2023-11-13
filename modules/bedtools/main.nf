@@ -4,8 +4,8 @@ process DECOY_TRANSCRIPTOME {
     publishDir params.results_dir, mode:'copy'
 
     input:
-    path annotation_file
     path genome_file
+    path annotation_file
     path transcripts_file
 
     output:

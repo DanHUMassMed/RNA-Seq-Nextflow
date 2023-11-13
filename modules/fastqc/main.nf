@@ -46,7 +46,7 @@ process DESEQ_REPORT {
     script:
     """
     cp -r ${launchDir}/bin/md_to_pdf/* .
-    ${launchDir}/bin/deseq_report.py --report-config "${report_config}"
+    deseq_report.py --report-config "${report_config}"
     """
 
     output:
@@ -64,8 +64,8 @@ process OVERVIEW_REPORT {
     
     script:
     """
-    cp -r ${launchDir}/bin/md_to_pdf/* .
-    ${launchDir}/bin/overview_report.py --report-config "${report_config}"
+    cp -r ${projectDir}/assests/md_to_pdf/* .
+    overview_report.py --report-config "${report_config}"
     """
 
     output:

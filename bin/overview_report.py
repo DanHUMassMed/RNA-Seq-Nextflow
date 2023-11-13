@@ -11,8 +11,8 @@ from weasyprint import HTML
 
 
 REPORT_TEMPLATE_FILE = "overview_report_template.md"
-REPORT_TEMPLATE_CSS = "report_template.css"
-OVERVIEW_REPORT_MD = "overview_report.md"
+REPORT_TEMPLATE_CSS  = "report_template.css"
+OVERVIEW_REPORT_MD   = "overview_report.md"
 
 
 def get_dropbox_link(remote_location):

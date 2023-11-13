@@ -32,7 +32,7 @@ log.info """\
  """
 
 // import modules
-include { RNASEQ_SALMON_SINGLE } from "${launchDir}//modules/sub-workflow/rnaseq-salmon"
+include { RNASEQ_SALMON_SINGLE } from "${launchDir}//modules/subworkflows/rnaseq-salmon"
 include { MULTIQC } from "${launchDir}/modules/multiqc"
 
 /* 

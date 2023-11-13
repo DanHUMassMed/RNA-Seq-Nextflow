@@ -8,7 +8,7 @@
 
 
 log.info """\
- R N A S E Q - N F   P I P E L I N E
+ P A R A M S -- RUN RNASEQ SALMON
  ===================================
  salmon_index_dir : ${params.salmon_index_dir}
  fastq_paired     : ${params.fastq_paired}
@@ -19,13 +19,14 @@ log.info """\
  """
 
 // import modules
-include { RNASEQ_SALMON; RNASEQ_SALMON_SINGLE } from "${launchDir}/sub-workflow/rnaseq-salmon"
-include { MULTIQC } from "${launchDir}/modules/multiqc"
+include { RNASEQ_SALMON        } from '../subworkflows/rnaseq-salmon'
+include { RNASEQ_SALMON_SINGLE } from '../subworkflows/rnaseq-salmon'
+include { MULTIQC              } from '../modules/multiqc'
 
 /* 
  * main script flow
  */
-workflow {
+workflow RUN_RNASEQ_SALMON {
   if(params.fastq_paired) {
       read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true ) 
       report_nm = channel.value("multiqc_salmon_report.html")

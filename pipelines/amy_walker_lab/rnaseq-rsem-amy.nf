@@ -29,7 +29,7 @@ log.info """\
  """
 
 // import modules
-include { RNASEQ_STAR_RSEM_SINGLE } from "${launchDir}/modules/sub-workflow/rnaseq-star-rsem"
+include { RNASEQ_STAR_RSEM_SINGLE } from "${launchDir}/modules/subworkflows/rnaseq-star-rsem"
 include { MULTIQC } from "${launchDir}/modules/multiqc"
 
 /* 

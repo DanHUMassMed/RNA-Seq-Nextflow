@@ -13,7 +13,7 @@ process TX2GENE {
     script:
     """
     mkdir -p salmon_transcripts
-    ${launchDir}/bin/tx2gene_map.py --input-file ${transcriptome} --output-file salmon_transcripts/tx2gene.tsv
+    tx2gene_map.py --input-file ${transcriptome} --output-file salmon_transcripts/tx2gene.tsv
     """
 }
 
@@ -32,7 +32,7 @@ process TXIMPORT_COUNTS {
     script:
     """
     mkdir -p salmon_summary
-    ${launchDir}/bin/tx_import.R --input-path . --output-path salmon_summary --tx2gene ${tx2gene} --counts-method ${count_method}
+    tx_import.R --input-path . --output-path salmon_summary --tx2gene ${tx2gene} --counts-method ${count_method}
     """
 }
 
@@ -54,7 +54,7 @@ process LOW_COUNT_FILTER {
     mkdir -p low_count_summary
     touch low_count_summary/count_data_low_counts_filtered.tsv
     file_nm=\$(readlink -f low_count_summary/count_data_low_counts_filtered.tsv)
-    ${launchDir}/bin/low_counts_filter.R --input-counts-file ${counts_file} --output-path low_count_summary --low-count-filter ${low_count_max}
+    low_counts_filter.R --input-counts-file ${counts_file} --output-path low_count_summary --low-count-filter ${low_count_max}
     """
 }
 
@@ -74,45 +74,46 @@ process DESEQ_EXEC {
     script:
     """
     mkdir -p deseq_${deseq_meta_file.getName().split("\\.")[0]}
-    ${launchDir}/bin/run_deseq2.R --input-counts-file ${low_counts_file} \
+    run_deseq2.R --input-counts-file ${low_counts_file} \
                                   --output-path deseq_${deseq_meta_file.getName().split("\\.")[0]} \
                                   --run-meta-filename ${deseq_meta_file}
     """
 }
 
 process GET_DROPBOX_DATA {
+    debug true
     container 'danhumassmed/de-seq-tools:1.0.1'
     publishDir params.data_dir, mode:'copy'
 
     input:
-    val data_remote 
-    val data_local
-
-    script:
-    """
-    mkdir -p "${data_local}"
-    ${launchDir}/bin/get_dropbox_data.sh "${data_remote}" "${data_local}"
-    """
+        val data_remote 
+        val data_local
 
     output:
-    path "${data_local}", emit: data_local_dir
-    
+        path "${data_local}", emit: data_local_dir
+
+    script:
+        """
+        mkdir -p "${data_local}"
+        get_dropbox_data.sh "${data_remote}" "${data_local}"
+        """    
 }
+
 
 process CHECK_MD5 {
     container 'danhumassmed/de-seq-tools:1.0.1'
     publishDir params.results_dir, mode:'copy'
 
     input:
-    path data_local
+        path data_local
     
-    script:
-    """
-    ${launchDir}/bin/check_md5.py "${data_local}"
-    """
-
     output:
-    path "md5_report.html"
+        path "md5_report.html"
+
+    script:
+        """
+        check_md5.py "${data_local}"
+        """
 
 }
 

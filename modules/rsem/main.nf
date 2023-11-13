@@ -90,6 +90,28 @@ process RSEM_SUMMARY {
     """
     mkdir -p rsem_summary
     cd rsem_summary
-    ${launchDir}/bin/expression_summary.py  --expression-type rsem --input-path ..
+    expression_summary.py  --expression-type rsem --input-path ..
+    """
+}
+
+process GET_WORMBASE_DATA {
+    container "danhumassmed/star-rsem:1.0.1"
+    publishDir params.data_dir, mode:'copy'
+
+    input:
+    val wormbase_version
+
+    output:
+    path "wormbase", emit: wormbase_dir
+    path "wormbase/c_elegans.PRJNA13758.${wormbase_version}.canonical_geneset.gtf", emit: annotation_file
+    path "wormbase/c_elegans.PRJNA13758.${params.wormbase_version}.genomic.fa", emit: genome_file
+    path "wormbase/c_elegans.PRJNA13758.${params.wormbase_version}.mRNA_transcripts.fa", emit: transcripts_file
+
+
+    script:
+    """
+    mkdir -p wormbase
+    cd wormbase
+    wormbase_download.sh ${wormbase_version}
     """
 }

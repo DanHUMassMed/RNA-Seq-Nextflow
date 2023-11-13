@@ -2,7 +2,7 @@
 
 
 log.info """\
- R N A S E Q - N F   P I P E L I N E
+ P A R A M S -- RUN RNASEQ RSEM
  ===================================
  fastq_paired       : ${params.fastq_paired}
  fastq_single       : ${params.fastq_single}
@@ -12,13 +12,14 @@ log.info """\
  """
 
 // import modules
-include { RNASEQ_STAR_RSEM; RNASEQ_STAR_RSEM_SINGLE } from "${launchDir}/sub-workflow/rnaseq-star-rsem"
-include { MULTIQC } from "${launchDir}/modules/multiqc"
+include { RNASEQ_STAR_RSEM        } from '../subworkflows/rnaseq-star-rsem'
+include { RNASEQ_STAR_RSEM_SINGLE } from '../subworkflows/rnaseq-star-rsem'
+include { MULTIQC                 } from '../modules/multiqc'
 
 /* 
  * main script flow
  */
-workflow {
+workflow RUN_RNASEQ_RSEM {
   if(params.fastq_paired) {
     read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true ) 
     report_nm = channel.value("multiqc_rsem_report.html")

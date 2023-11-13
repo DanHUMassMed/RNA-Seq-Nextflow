@@ -25,7 +25,7 @@ process TRIMMOMATIC {
 
     script:
     """
-    ${launchDir}/bin/trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${params.trimmomatic_control}
+    trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${params.trimmomatic_control}
     """
 
     output:
@@ -44,7 +44,7 @@ process TRIMMOMATIC_SINGLE {
 
     script:
     """
-    ${launchDir}/bin/trimmomatic.sh ${reads} "" ${data_root} ${dir_suffix} ${params.trimmomatic_control}
+    trimmomatic.sh ${reads} "" ${data_root} ${dir_suffix} ${params.trimmomatic_control}
     """
 
     output:
@@ -61,7 +61,7 @@ process TRIMMOMATIC_AGGREGATE {
 
     script:
     """
-    ${launchDir}/bin/trimmomatic_aggregate.sh
+    trimmomatic_aggregate.sh
     """
 
     output:

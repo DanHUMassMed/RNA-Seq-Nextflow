@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow 
 
 log.info """\
- R N A S E Q - N F   P I P E L I N E
+ P A R A M S -- RUN FASTQC
  ===================================
  fastq_paired : ${params.fastq_paired}
  fastq_single : ${params.fastq_single}
@@ -9,15 +9,16 @@ log.info """\
  """
 
 // import modules
-include { FASTQC; FASTQC_SINGLE } from "${launchDir}/modules/fastqc"
-include { MULTIQC } from "${launchDir}/modules/multiqc"
+include { FASTQC        } from '../modules/fastqc'
+include { FASTQC_SINGLE } from '../modules/fastqc'
+include { MULTIQC       } from '../modules/multiqc'
 
 /* 
  * Run FastQC on each of the Fastq files
  * Run MultiQC to aggregate all the individual FatsQC Reports
  */
 
-workflow {
+workflow RUN_FASTQC{
   if(params.fastq_paired) {
     read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true ) 
     report_nm = channel.value("multiqc_report.html")

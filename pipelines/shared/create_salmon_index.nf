@@ -25,7 +25,7 @@ log.info """\
  """
 
 // import modules
-include { INDEX_SALMON } from "${launchDir}/modules/sub-workflow/index-salmon"
+include { INDEX_SALMON } from "${launchDir}/modules/subworkflows/index-salmon"
 
 /* 
  * main script flow
