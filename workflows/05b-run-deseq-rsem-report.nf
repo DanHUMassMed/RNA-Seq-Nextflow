@@ -13,6 +13,7 @@ log.info """\
 // import modules
 include { LOW_COUNT_FILTER } from '../modules/de-seq-tools'
 include { DESEQ_EXEC       } from '../modules/de-seq-tools'
+include { DESEQ_REPORT       } from '../modules/fastqc'
 
 /* 
  * main script flow
@@ -22,6 +23,7 @@ workflow RUN_DESEQ_RSEM_REPORT {
   deseq_meta_ch = channel.fromPath( params.deseq_meta, checkIfExists: true ) 
   LOW_COUNT_FILTER( counts_ch, params.low_count_max )
   DESEQ_EXEC( LOW_COUNT_FILTER.out.low_count_file, deseq_meta_ch )
+  DESEQ_REPORT( )
 }
 
 workflow.onComplete {
