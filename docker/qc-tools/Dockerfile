@@ -3,6 +3,7 @@ FROM danhumassmed/base-conda:1.0.1
 RUN apt-get update -q && \
     apt-get install -q -y --no-install-recommends \
         default-jre \
+        wkhtmltopdf \
         libcairo2 \
         libffi-dev \
         libpango-1.0-0 \
