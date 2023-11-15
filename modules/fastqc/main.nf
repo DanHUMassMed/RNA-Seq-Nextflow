@@ -1,42 +1,45 @@
 
 process FASTQC {
     tag "FASTQC on $sample_id"
+    label 'process_medium'
     container 'danhumassmed/qc-tools:1.0.1'
-    publishDir params.results_dir, mode:'copy'
+    publishDir "${params.results_dir}/fastqc", mode:'copy'
 
     input:
     tuple val(sample_id), path(reads)
 
     output:
-    path "fastqc_${sample_id}_logs" 
+    path "${sample_id}_logs" 
 
     script:
     """
-    mkdir fastqc_${sample_id}_logs
-    fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}
+    mkdir ${sample_id}_logs
+    fastqc -o ${sample_id}_logs -f fastq -q ${reads}
     """
 }
 
 process FASTQC_SINGLE {
     tag "FASTQC on ${reads.getName().split("\\.")[0]}"
+    label 'process_medium'
     container 'danhumassmed/qc-tools:1.0.1'
-    publishDir params.results_dir, mode:'copy'
+    publishDir "${params.results_dir}/fastqc", mode:'copy'
 
     input:
     path reads
 
     output:
-    path "fastqc_${reads.getName().split("\\.")[0]}_logs" 
+    path "${reads.getName().split("\\.")[0]}_logs" 
 
     script:
     def file_name_prefix = reads.getName().split("\\.")[0]
     """
-    mkdir fastqc_${file_name_prefix}_logs
-    fastqc -o fastqc_${file_name_prefix}_logs -f fastq -q ${reads}
+    mkdir ${file_name_prefix}_logs
+    fastqc -o ${file_name_prefix}_logs -f fastq -q ${reads}
     """
 }
 
 process DESEQ_REPORT {
+    label 'process_low'
     container 'danhumassmed/qc-tools:1.0.1'
     publishDir params.results_dir, mode:'copy'
 
@@ -56,6 +59,7 @@ process DESEQ_REPORT {
 
 
 process OVERVIEW_REPORT {
+    label 'process_low'
     container 'danhumassmed/qc-tools:1.0.1'
     publishDir params.results_dir, mode:'copy'
 

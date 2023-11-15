@@ -1,5 +1,6 @@
 
 process TX2GENE {
+    label 'process_low'
     tag "$transcriptome.simpleName"
     container 'danhumassmed/de-seq-tools:1.0.1'
     publishDir params.results_dir, mode:'copy'
@@ -18,6 +19,7 @@ process TX2GENE {
 }
 
 process TXIMPORT_COUNTS {
+    label 'process_low'
     container 'danhumassmed/de-seq-tools:1.0.1'
     publishDir params.results_dir, mode:'copy'
 
@@ -37,6 +39,7 @@ process TXIMPORT_COUNTS {
 }
 
 process LOW_COUNT_FILTER {
+    label 'process_low'
     container 'danhumassmed/de-seq-tools:1.0.1'
     publishDir params.results_dir, mode:'copy'
 
@@ -59,6 +62,7 @@ process LOW_COUNT_FILTER {
 }
 
 process DESEQ_EXEC {
+    label 'process_medium'
     container 'danhumassmed/de-seq-tools:1.0.1'
     publishDir params.results_dir, mode:'copy'
 
@@ -81,7 +85,7 @@ process DESEQ_EXEC {
 }
 
 process GET_DROPBOX_DATA {
-    debug true
+    label 'process_low'
     container 'danhumassmed/de-seq-tools:1.0.1'
     publishDir params.data_dir, mode:'copy'
 
@@ -101,6 +105,7 @@ process GET_DROPBOX_DATA {
 
 
 process CHECK_MD5 {
+    label 'process_low'
     container 'danhumassmed/de-seq-tools:1.0.1'
     publishDir params.results_dir, mode:'copy'
 

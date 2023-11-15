@@ -15,6 +15,7 @@ Quality | Prob.       | Accuracy
 *************************************/
 
 process TRIMMOMATIC {
+    label 'process_medium'
     tag "TRIMMOMATIC on $sample_id"
     container "danhumassmed/picard-trimmomatic:1.0.1"
 
@@ -34,6 +35,7 @@ process TRIMMOMATIC {
 }
 
 process TRIMMOMATIC_SINGLE {
+    label 'process_medium'
     tag "TRIMMOMATIC_SINGLE on ${reads.getName().split("\\.")[0]}"
     container "danhumassmed/picard-trimmomatic:1.0.1"
 
@@ -53,6 +55,7 @@ process TRIMMOMATIC_SINGLE {
 }
 
 process TRIMMOMATIC_AGGREGATE {
+    label 'process_low'
     container "danhumassmed/picard-trimmomatic:1.0.1"
     publishDir params.results_dir, mode:'copy'
 

@@ -61,14 +61,14 @@ def main():
     cmd_line_msg = "expression_summary.py --expression-type [rsem | salmon] --input-path [<base_directory>]"
     execution_variables = {
         'rsem':{'output_file':"genes_expression_expected_count.tsv",
-                'dir_prefix':'rsem_expression_',
+                'dir_prefix':'rsem_',
                 'file_suffix':'genes.results',
                 'columns_to_keep':['gene_id', 'expected_count'],
                 'expression_type' : 'rsem',
                 'extract_experiment_name': extract_rsem_experiment_name
                 },
         'salmon':{'output_file':"transcript_expression_counts.tsv",
-                'dir_prefix':'salmon_expression_',
+                'dir_prefix':'salmon_',
                 'file_suffix':'quant.sf',
                 'columns_to_keep':['Name', 'NumReads'],
                 'expression_type' : 'salmon',

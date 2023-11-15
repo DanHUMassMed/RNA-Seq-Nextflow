@@ -1,5 +1,6 @@
 
 process DECOY_TRANSCRIPTOME {
+    label 'process_low'
     container 'danhumassmed/samtools-bedtools:1.0.1'
     publishDir params.results_dir, mode:'copy'
 

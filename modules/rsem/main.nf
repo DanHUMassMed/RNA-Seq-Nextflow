@@ -1,4 +1,5 @@
 process RSEM_INDEX {
+    label 'process_medium'
     container "danhumassmed/star-rsem:1.0.1"
     publishDir params.results_dir, mode:'copy'
 
@@ -20,19 +21,21 @@ process RSEM_INDEX {
 }
 
 process RSEM_QUANTIFY {
+    tag "RSEM_QUANTIFY on ${pair_id}"
+    label 'process_medium'
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.results_dir, mode:'copy'
+    publishDir "${params.results_dir}/rsem_expression", mode:'copy'
 
     input:
     val rsem_reference_dir
     tuple val(pair_id), path(bam_file)
 
     output:
-    path "rsem_expression_${pair_id}"
+    path "rsem_${pair_id}"
 
     script:
     """
-    mkdir -p ./rsem_expression_${pair_id}
+    mkdir -p ./rsem_${pair_id}
     rsem-calculate-expression \
         --num-threads $task.cpus \
         --paired-end \
@@ -41,27 +44,28 @@ process RSEM_QUANTIFY {
         --alignments \
             ${bam_file} \
             ${rsem_reference_dir}/rsem \
-            ./rsem_expression_${pair_id}/rsem_${pair_id} >& \
-            ./rsem_expression_${pair_id}/rsem_${pair_id}.log
+            ./rsem_${pair_id}/rsem_${pair_id} >& \
+            ./rsem_${pair_id}/rsem_${pair_id}.log
 
     """
 }
 
 process RSEM_QUANTIFY_SINGLE {
     tag "RSEM_QUANTIFY_SINGLE on ${bam_file}"
+    label 'process_medium'
     container "danhumassmed/star-rsem:1.0.1"
-    publishDir params.results_dir, mode:'copy'
+    publishDir "${params.results_dir}/rsem_expression", mode:'copy'
 
     input:
     val rsem_reference_dir
     path bam_file
 
     output:
-    path "rsem_expression_${bam_file.getName().substring(5,bam_file.getName().length()-31)}"
+    path "rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)}"
 
     script:
     """
-    mkdir -p ./rsem_expression_${bam_file.getName().substring(5,bam_file.getName().length()-31)}
+    mkdir -p ./rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)}
     rsem-calculate-expression \
         --num-threads $task.cpus \
         --time \
@@ -69,19 +73,20 @@ process RSEM_QUANTIFY_SINGLE {
         --alignments \
             ${bam_file} \
             ${rsem_reference_dir}/rsem \
-            ./rsem_expression_${bam_file.getName().substring(5,bam_file.getName().length()-31)}/rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)} >& \
-            ./rsem_expression_${bam_file.getName().substring(5,bam_file.getName().length()-31)}/rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)}.log
+            ./rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)}/rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)} >& \
+            ./rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)}/rsem_${bam_file.getName().substring(5,bam_file.getName().length()-31)}.log
 
     """
 }
 
 
 process RSEM_SUMMARY {
+    label 'process_low'
     container "danhumassmed/star-rsem:1.0.1"
     publishDir params.results_dir, mode:'copy'
 
     input:
-    path('rsem_expression_*')
+    path('*')
 
     output:
     path "rsem_summary" 
@@ -95,6 +100,7 @@ process RSEM_SUMMARY {
 }
 
 process GET_WORMBASE_DATA {
+    label 'process_low'
     container "danhumassmed/star-rsem:1.0.1"
     publishDir params.data_dir, mode:'copy'
 
