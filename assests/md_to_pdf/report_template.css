@@ -26,7 +26,7 @@
   }
   
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     string-set: heading-name content();
     margin-bottom: 0;
     margin-top: 10%;
@@ -44,7 +44,7 @@
   }
   
   h3, h4 {
-    margin-top: 2rem;
+    margin-top: 1.8rem;
   }
   
   h2 + h3, h3 + h4 {
@@ -55,12 +55,20 @@
     page-break-inside: avoid;
   }
   
-  td, th {
-    padding: 0.5rem 1rem 0;
+  .bordered-table {
+    border: 1px solid black;
+    border-collapse: collapse;
   }
   
-  td:first-child, th:first-child {
-    padding-left: 0;
+  .styled-table th {
+    background-color: #3e8dbc;
+    color: white;
+    text-align: left;
+    border-bottom: 1px solid black; /* Adding line at the bottom */
+  }
+  
+  .styled-table td {
+    font-size: 12px;
   }
   
   .technologies {
@@ -86,16 +94,6 @@
     border: 1px solid black; /* 1px solid black sets a black border with a width of 1px */
   }
 
-  .flex-table {
-    width: 100%;
-    max-width: 500px; /* Set the maximum width for the tables */
-}
-
-.flex-table th, .flex-table td {
-    text-align: left;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}
 
 .title-row {
     text-align: center;

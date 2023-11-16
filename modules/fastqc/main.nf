@@ -45,15 +45,20 @@ process DESEQ_REPORT {
 
     input:
     path report_config
+    path ('*')
     
-    script:
-    """
-    cp -r ${launchDir}/bin/md_to_pdf/* .
-    deseq_report.py --report-config "${report_config}"
-    """
-
     output:
     path "deseq_report.pdf"
+
+    script:
+    """
+    cp -r ${projectDir}/assests/md_to_pdf/* ./results
+    cp ${report_config} ./results
+    cd results
+    deseq_report.py --report-config "${report_config}" --input-path .
+    cd -
+    cp ./results/deseq_report.pdf ./deseq_report.pdf 
+    """
 
 }
 

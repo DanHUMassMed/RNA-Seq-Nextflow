@@ -34,7 +34,7 @@ if(params.run_deseq_rsem) {
 }
 
 if(params.run_deseq_rsem_report) {
-  include { RUN_RNASEQ_SALMON } from "./workflows/05b-run-deseq-rsem-report"
+  include { RUN_DESEQ_RSEM_REPORT } from "./workflows/05b-run-deseq-rsem-report"
 }
 
 if(params.run_wormcat) {
