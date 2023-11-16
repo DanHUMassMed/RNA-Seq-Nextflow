@@ -342,8 +342,13 @@ exec_deseq <- function(input_counts_file, output_path, run_meta_filename) {
     filename <- sprintf("%s/%s_alldetected.csv", output_path, file_name_root)
     write.csv(as.data.frame(alldetected), file = filename, row.names = FALSE)
 
+    plots_directory <- file.path(output_path, "plots")
+    if (!dir.exists(plots_directory)) {
+        dir.create(plots_directory, recursive = TRUE)
+    }
+
     # Create the dispersion plot
-    filename <- sprintf("%s/%s_dispersion_plot.svg", output_path, file_name_root)
+    filename <- sprintf("%s/%s_dispersion_plot.svg", plots_directory, file_name_root)
     svg(filename, width = 8, height = 6)
     dispersion_plot <- plotDispEsts(dds)
     dev.off()
@@ -351,29 +356,29 @@ exec_deseq <- function(input_counts_file, output_path, run_meta_filename) {
     add_title_svg(filename, title)
     
     # Create the volcano plot
-    filename <- sprintf("%s/%s_volcano_plot.png", output_path, file_name_root)
+    filename <- sprintf("%s/%s_volcano_plot.png", plots_directory, file_name_root)
     title <- sprintf("Volcano Plot ( %s )", gsub(" ", "_", file_name_root))
     volcano_plot(alldetected, title, filename)
 
     # Create the scatter plot
-    filename <- sprintf("%s/%s_scatter_plot.png", output_path, file_name_root)
+    filename <- sprintf("%s/%s_scatter_plot.png", plots_directory, file_name_root)
     title <- sprintf("Scatter Plot ( %s )", gsub(" ", "_", file_name_root))
     scatter_plot(alldetected, run_meta_data, title, filename)
 
     # Create the pca plot
-    filename <- sprintf("%s/%s_pca_plot.png", output_path, file_name_root)
+    filename <- sprintf("%s/%s_pca_plot.png", plots_directory, file_name_root)
     title <- sprintf("PCA ( %s )", gsub(" ", "_", file_name_root))
     pca_plot(alldetected, run_meta_data, title, filename)
 
     # Create the heatmap plot
-    filename <- sprintf("%s/%s_heatmap_plot.png", output_path, file_name_root)
+    filename <- sprintf("%s/%s_heatmap_plot.png", plots_directory, file_name_root)
     title <- sprintf("Heatmap ( %s )", gsub(" ", "_", file_name_root))
     heatmap_plot(alldetected, run_meta_data, title, filename)
 
     # Create UP DOWN Gene Sets for WormCat
     foldChange_cutoff <- 2
     padj_cutoff <- 0.01
-    out_directory_path <- sprintf("%s/wc_%s", output_path, file_name_root)
+    out_directory_path <- sprintf("%s/ud_%s", output_path, file_name_root)
     direction_changes <- c("UP", "DOWN")
  
     for (direction_change in direction_changes) {

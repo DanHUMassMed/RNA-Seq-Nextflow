@@ -19,5 +19,5 @@ workflow RUN_DESEQ_RSEM_REPORT {
 }
 
 workflow.onComplete {
-	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${params.results_dir}/overview_report.pdf\n" : "Oops .. something went wrong" )
+	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> ${params.results_dir}/deseq_report.pdf\n" : "Oops .. something went wrong" )
 }

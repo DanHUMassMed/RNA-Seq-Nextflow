@@ -5,6 +5,10 @@ if(params.run_get_dropbox_data) {
   include { GET_EXPERIMENT_DATA } from "./workflows/01-get-dropbox-data"
 }
 
+if(params.run_get_wormbase_data) {
+  include { RUN_GET_WORMBASE_DATA } from "./workflows/00-run-get-wormbase-data"
+}
+
 if(params.run_create_star_rsem_index) {
   include { CREATE_STAR_RSEM_INDEX } from "./workflows/00-create-star-rsem-index"
 }
@@ -48,7 +52,11 @@ if(params.run_overview_report) {
 WorkflowUtils.initialize(params, log)
 
 workflow {
-  //HELLOWORLD("hello")
+  if(params.run_get_wormbase_data ) {
+    log.info("Running Get Wormbase Data")
+    RUN_GET_WORMBASE_DATA() 
+  }
+
   if(params.run_create_star_rsem_index ) {
     log.info("Running Create Star rsem index")
     CREATE_STAR_RSEM_INDEX() 
@@ -103,8 +111,6 @@ workflow {
     log.info("Running Overview Report")
     RUN_OVERVIEW_REPORT()
   }
-
-
 
 }
 

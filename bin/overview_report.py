@@ -59,6 +59,7 @@ def generate_markdown(json_file):
     wormbase_version = json_data['wormbase_version']
     github_release = json_data['github_release']
     github_tag = json_data['github_tag']
+    pipeline_config = json_data['pipeline_config']
 
     markdown_content = report_template.format(title=title,
                                               process_date=process_date,
@@ -69,7 +70,8 @@ def generate_markdown(json_file):
                                               fastq_files=fastq_files,
                                               wormbase_version=wormbase_version,
                                               github_release=github_release,
-                                              github_tag=github_tag)
+                                              github_tag=github_tag,
+                                              pipeline_config=pipeline_config)
 
     # Write Markdown content to output file
     with open(OVERVIEW_REPORT_MD, 'w') as file:

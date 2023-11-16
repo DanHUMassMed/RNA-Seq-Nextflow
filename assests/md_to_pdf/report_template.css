@@ -54,7 +54,12 @@
   ul {
     page-break-inside: avoid;
   }
-  
+ 
+  .source-code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+  }
+ 
   .bordered-table {
     border: 1px solid black;
     border-collapse: collapse;

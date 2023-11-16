@@ -86,11 +86,11 @@ def add_deseq_run_details(report_data):
        page_break = "style='page-break-before: always;'" if experiment > 1 else ""
        html += f"<h3 {page_break}>Experiment {directory[6:]}</h3>\n"
        html += "<br>\n"
-       html += add_data_image_div(directory, f"{directory[6:]}_dispersion_plot.svg")
+       html += add_data_image_div(f"{directory}/plots", f"{directory[6:]}_dispersion_plot.svg")
        html += "<br>\n"
-       html += add_two_img_div(directory, f"{directory[6:]}_heatmap_plot.png",f"{directory[6:]}_pca_plot.png")
+       html += add_two_img_div(f"{directory}/plots", f"{directory[6:]}_heatmap_plot.png",f"{directory[6:]}_pca_plot.png")
        html += "<br>\n"
-       html += add_two_img_div(directory, f"{directory[6:]}_scatter_plot.png",f"{directory[6:]}_volcano_plot.png") 
+       html += add_two_img_div(f"{directory}/plots", f"{directory[6:]}_scatter_plot.png",f"{directory[6:]}_volcano_plot.png") 
 
     report_data['differential_results'] = html
     return report_data
@@ -104,8 +104,8 @@ def add_data_image_div(base_dir,image):
     html +="    <tr><td>Normalization:</td><td>MRN</td></tr>\n"
     html +="    <tr><td>DESeq2 Params:</td><td>fitType=parametric, betaPrior=FALSE, testType=LRT</td></tr>\n"
     html +="    <tr><td>Heatmap Params:</td><td>Scaled=TRUE, Centered=TRUE, Pseudo-count-0.01</td></tr>\n"
-    html +="    <tr><td>Condition 1:</td><td></td></tr>\n"
-    html +="    <tr><td>Condition 2:</td><td></td></tr>\n"
+#    html +="    <tr><td>Condition 1:</td><td></td></tr>\n"
+#    html +="    <tr><td>Condition 2:</td><td></td></tr>\n"
     html +="</table>\n"
     html += "<br>\n"
     html += f"\t<img src='{base_dir}/{image}' style='width: 65%;'>\n"
