@@ -112,12 +112,29 @@ process GET_WORMBASE_DATA {
     path "wormbase/c_elegans.PRJNA13758.${wormbase_version}.canonical_geneset.gtf", emit: annotation_file
     path "wormbase/c_elegans.PRJNA13758.${params.wormbase_version}.genomic.fa", emit: genome_file
     path "wormbase/c_elegans.PRJNA13758.${params.wormbase_version}.mRNA_transcripts.fa", emit: transcripts_file
-
+    path "wormbase/c_elegans.PRJNA13758.${params.wormbase_version}.geneIDs.csv", emit: gene_ids
 
     script:
     """
     mkdir -p wormbase
     cd wormbase
     wormbase_download.sh ${wormbase_version}
+    """
+}
+
+process PUBLISH_WORMBASE_GENE_IDS {
+    label 'process_low'
+    container "danhumassmed/star-rsem:1.0.1"
+    publishDir params.results_dir, mode:'copy'
+
+    input:
+    path gene_ids
+
+    output:
+    path gene_ids
+    
+    script:
+    """
+    echo ${gene_ids}
     """
 }

@@ -18,8 +18,6 @@ DESEQ_REPORT_MD = "./deseq_report.md"
 LOW_COUNTS_FILTERED="./low_count_summary/count_data_low_counts_filtered.tsv"
 RSEM_COUNTS="./rsem_summary/genes_expression_expected_count.tsv"
 
-
-
 def add_title_page(json_file, report_data={}):
     # Extract values from JSON data
     # Read JSON data from file
@@ -86,11 +84,11 @@ def add_deseq_run_details(report_data):
        page_break = "style='page-break-before: always;'" if experiment > 1 else ""
        html += f"<h3 {page_break}>Experiment {directory[6:]}</h3>\n"
        html += "<br>\n"
-       html += add_data_image_div(f"{directory}/plots", f"{directory[6:]}_dispersion_plot.svg")
+       html += add_two_img_div(f"{directory}/plots", f"{directory[6:]}_scatter_plot.png",f"{directory[6:]}_volcano_plot.png") 
        html += "<br>\n"
        html += add_two_img_div(f"{directory}/plots", f"{directory[6:]}_heatmap_plot.png",f"{directory[6:]}_pca_plot.png")
        html += "<br>\n"
-       html += add_two_img_div(f"{directory}/plots", f"{directory[6:]}_scatter_plot.png",f"{directory[6:]}_volcano_plot.png") 
+       html += add_data_image_div(f"{directory}/plots", f"{directory[6:]}_dispersion_plot.svg")
 
     report_data['differential_results'] = html
     return report_data

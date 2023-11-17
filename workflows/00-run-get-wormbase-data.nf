@@ -11,13 +11,13 @@ log.info """\
  """
 
 // import modules
-include { GET_WORMBASE_DATA   } from '../modules/rsem'
+include { GET_WORMBASE_DATA_WF   } from '../subworkflows/get-wormbase-data'
 
 /* 
  * main script flow
  */
 workflow RUN_GET_WORMBASE_DATA {
-    GET_WORMBASE_DATA( params.wormbase_version )
+    GET_WORMBASE_DATA_WF( params.wormbase_version )
 }
 
 workflow.onComplete {

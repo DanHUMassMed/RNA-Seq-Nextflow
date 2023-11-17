@@ -16,6 +16,10 @@
 
 --- 
 
+{differential_results}
+
+<br>
+
 ## DESeq2 Data Preparation
 
 ### Low Count Filtering 
@@ -33,5 +37,4 @@
     
 ---
 
-{differential_results}
 
