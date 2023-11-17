@@ -83,15 +83,89 @@ def add_deseq_run_details(report_data):
        experiment += 1
        page_break = "style='page-break-before: always;'" if experiment > 1 else ""
        html += f"<h3 {page_break}>Experiment {directory[6:]}</h3>\n"
+       ### HACK FOR NOW
+       if directory[6:] == "run_N2_ky5":
+          html += hack_ky5_tables()
+       elif directory[6:] == "run_N2_e113": 
+          html += hack_e113_tables()
+       
        html += "<br>\n"
        html += add_two_img_div(f"{directory}/plots", f"{directory[6:]}_scatter_plot.png",f"{directory[6:]}_volcano_plot.png") 
        html += "<br>\n"
        html += add_two_img_div(f"{directory}/plots", f"{directory[6:]}_heatmap_plot.png",f"{directory[6:]}_pca_plot.png")
-       html += "<br>\n"
-       html += add_data_image_div(f"{directory}/plots", f"{directory[6:]}_dispersion_plot.svg")
+       #html += "<br>\n"
+       #html += add_data_image_div(f"{directory}/plots", f"{directory[6:]}_dispersion_plot.svg")
 
     report_data['differential_results'] = html
     return report_data
+
+def hack_ky5_tables():
+    html = ""
+    html +="<table class='bordered-table styled-table' style= 'width: 600px;'>\n"
+    html +="    <tr><th colspan='4' style='text-align: center;border-bottom: 1px solid white;'>Top 10 ky5_up</th></tr>\n"
+    html +="    <tr><th>Wormbase_Id</th><th>Sequence_id</th><th>Gene_name</th><th>log2FoldChange</th></tr>\n"
+    html +="<tr><td>WBGene00002015</td><td>T27E4.8</td><td>hsp-16.1</td><td>8.3782</td>\n"
+    html +="<tr><td>WBGene00018619</td><td>F48G7.8</td><td>nan</td><td>8.2392</td>\n"
+    html +="<tr><td>WBGene00014047</td><td>ZK666.7</td><td>clec-61</td><td>7.6906</td>\n"
+    html +="<tr><td>WBGene00018527</td><td>F47B3.3</td><td>nan</td><td>7.3259</td>\n"
+    html +="<tr><td>WBGene00011674</td><td>T10B9.4</td><td>cyp-13A8</td><td>7.0591</td>\n"
+    html +="<tr><td>WBGene00009857</td><td>F49A5.5</td><td>clec-28</td><td>6.9792</td>\n"
+    html +="<tr><td>WBGene00019623</td><td>K10C9.1</td><td>nan</td><td>6.9023</td>\n"
+    html +="<tr><td>WBGene00021580</td><td>Y46C8AL.2</td><td>clec-174</td><td>6.7939</td>\n"
+    html +="<tr><td>WBGene00016670</td><td>C45G7.3</td><td>ilys-3</td><td>6.0499</td>\n"
+    html +="<tr><td>WBGene00014046</td><td>ZK666.6</td><td>clec-60</td><td>5.9399</td>\n"
+    html +="</table>\n"
+    html +="<br>\n"
+    html +="<table class='bordered-table styled-table' style= 'width: 600px;'>\n"
+    html +="    <tr><th colspan='4' style='text-align: center;border-bottom: 1px solid white;'>Top 10 ky5_down</th></tr>\n"
+    html +="    <tr><th>Wormbase_Id</th><th>Sequence_id</th><th>Gene_name</th><th>log2FoldChange</th></tr>\n"
+    html +="<tr><td>WBGene00004994</td><td>T25C12.2</td><td>spp-9</td><td>-12.5449</td>\n"
+    html +="<tr><td>WBGene00018911</td><td>F56A4.3</td><td>nan</td><td>-9.1567</td>\n"
+    html +="<tr><td>WBGene00235356</td><td>Y67D8A.10</td><td>nan</td><td>-8.2468</td>\n"
+    html +="<tr><td>WBGene00249808</td><td>Y48G8AL.20</td><td>nan</td><td>-8.1195</td>\n"
+    html +="<tr><td>WBGene00018601</td><td>F48C1.9</td><td>nan</td><td>-7.1819</td>\n"
+    html +="<tr><td>WBGene00018918</td><td>F56A4.10</td><td>nan</td><td>-7.1207</td>\n"
+    html +="<tr><td>WBGene00008911</td><td>F17C8.6</td><td>nan</td><td>-5.7830</td>\n"
+    html +="<tr><td>WBGene00004997</td><td>T22G5.7</td><td>spp-12</td><td>-5.0448</td>\n"
+    html +="<tr><td>WBGene00001387</td><td>F15B9.1</td><td>far-3</td><td>-4.6489</td>\n"
+    html +="<tr><td>WBGene00304815</td><td>Y40A1A.6</td><td>nan</td><td>-3.6454</td>\n"
+    html +="</table>\n"
+    html +="<br>\n"
+    return html
+
+def hack_e113_tables():
+    html = ""
+    html +="<table class='bordered-table styled-table' style= 'width: 600px;'>\n"
+    html +="    <tr><th colspan='4' style='text-align: center;border-bottom: 1px solid white;'>Top 10 e113_up</th></tr>\n"
+    html +="    <tr><th>Wormbase_Id</th><th>Sequence_id</th><th>Gene_name</th><th>log2FoldChange</th></tr>\n"
+    html +="<tr><td>WBGene00019449</td><td>K06H6.1</td><td>nan</td><td>8.7857</td>\n"
+    html +="<tr><td>WBGene00008477</td><td>E03H4.10</td><td>clec-17</td><td>8.1643</td>\n"
+    html +="<tr><td>WBGene00015760</td><td>C14C6.6</td><td>nan</td><td>8.0394</td>\n"
+    html +="<tr><td>WBGene00000749</td><td>ZC373.7</td><td>col-176</td><td>7.9397</td>\n"
+    html +="<tr><td>WBGene00019623</td><td>K10C9.1</td><td>nan</td><td>7.7387</td>\n"
+    html +="<tr><td>WBGene00008816</td><td>F14F8.8</td><td>nan</td><td>7.6263</td>\n"
+    html +="<tr><td>WBGene00000618</td><td>T10B10.1</td><td>col-41</td><td>7.6213</td>\n"
+    html +="<tr><td>WBGene00001068</td><td>F16F9.2</td><td>dpy-6</td><td>7.4190</td>\n"
+    html +="<tr><td>WBGene00022816</td><td>ZK783.1</td><td>fbn-1</td><td>7.2069</td>\n"
+    html +="<tr><td>WBGene00018619</td><td>F48G7.8</td><td>nan</td><td>7.2012</td>\n"
+    html +="</table>\n"
+    html +="<br>\n"
+    html +="<table class='bordered-table styled-table' style= 'width: 600px;'>\n"
+    html +="    <tr><th colspan='4' style='text-align: center;border-bottom: 1px solid white;'>Top 10 e113_down</th></tr>\n"
+    html +="    <tr><th>Wormbase_Id</th><th>Sequence_id</th><th>Gene_name</th><th>log2FoldChange</th></tr>\n"
+    html +="<tr><td>WBGene00018911</td><td>F56A4.3</td><td>nan</td><td>-9.4636</td>\n"
+    html +="<tr><td>WBGene00022495</td><td>Y119D3B.19</td><td>fbxa-78</td><td>-7.1588</td>\n"
+    html +="<tr><td>WBGene00045270</td><td>C04E7.5</td><td>nan</td><td>-7.0679</td>\n"
+    html +="<tr><td>WBGene00007459</td><td>C08F11.12</td><td>nan</td><td>-6.9570</td>\n"
+    html +="<tr><td>WBGene00018062</td><td>F35F10.13</td><td>nan</td><td>-6.2779</td>\n"
+    html +="<tr><td>WBGene00018225</td><td>F40B5.1</td><td>nep-14</td><td>-6.0836</td>\n"
+    html +="<tr><td>WBGene00004170</td><td>Y73F8A.8</td><td>pqn-90</td><td>-5.7193</td>\n"
+    html +="<tr><td>WBGene00009104</td><td>F25C8.1</td><td>nan</td><td>-5.6225</td>\n"
+    html +="<tr><td>WBGene00003462</td><td>F09C12.7</td><td>msp-74</td><td>-5.5895</td>\n"
+    html +="<tr><td>WBGene00185117</td><td>C45B11.9</td><td>nan</td><td>-5.4953</td>\n"
+    html +="</table>\n"
+    html +="<br>\n"
+    return html 
 
 def add_data_image_div(base_dir,image):
     html = "<div>\n"

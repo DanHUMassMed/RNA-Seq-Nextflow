@@ -69,6 +69,7 @@
     background-color: #3e8dbc;
     color: white;
     text-align: left;
+    font-size: 12px;
     border-bottom: 1px solid black; /* Adding line at the bottom */
   }
   
