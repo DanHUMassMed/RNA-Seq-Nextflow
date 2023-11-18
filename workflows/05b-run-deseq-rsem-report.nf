@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow 
 
 log.info """\
- P A R A M S -- RUN OVERVIEW REPORT
+ P A R A M S -- RUN DESEQ REPORT
  ===================================
  report_config : ${params.report_config}
  results_dir   : ${params.results_dir}

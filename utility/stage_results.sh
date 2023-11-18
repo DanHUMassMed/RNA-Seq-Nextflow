@@ -45,4 +45,5 @@ cp ${project_results}/deseq_report.pdf ${stage_dir}/${sub_dirs[3]}/
 # Stage 04-Functional_Analysis
 cp -r ${project_results}/wormcat/wormcat_* ${stage_dir}/${sub_dirs[4]}/
 find ${stage_dir}/${sub_dirs[4]}/ -type f -name "*.zip" -delete
+cp -r ${project_results}/wormcat/wormcat_*/**/*.xlsx ${stage_dir}/${sub_dirs[4]}/
 
