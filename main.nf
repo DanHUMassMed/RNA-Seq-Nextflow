@@ -45,8 +45,8 @@ if(params.run_wormcat) {
   include { RUN_WORMCAT } from "./workflows/06-run-wormcat"
 }
 
-if(params.run_overview_report) {
-  include { RUN_OVERVIEW_REPORT } from "./workflows/07-run-overview-report"
+if(params.run_stage_results) {
+  include { RUN_STAGE_RESULTS } from "./workflows/07-run-stage-results"
 }
 
 WorkflowUtils.initialize(params, log)
@@ -107,9 +107,9 @@ workflow {
     RUN_WORMCAT()
   }
 
-  if(params.run_overview_report) {
-    log.info("Running Overview Report")
-    RUN_OVERVIEW_REPORT()
+  if(params.run_stage_results) {
+    log.info("Running Stage Results")
+    RUN_STAGE_RESULTS()
   }
 
 }

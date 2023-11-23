@@ -1,13 +1,13 @@
 #!/bin/bash
 
-current_date=`date '+%b-%d-%Y'`
-stage_dir="/home/daniel.higgins-umw/project_data/RNA-Seq-Nextflow/utility/Results-${current_date}"
+project_results=$1
+project_data=$2
+stage_dir=$3
 
-project_dir="/home/daniel.higgins-umw/project_data/Francis_Lab/unc17_eat4-Nov--2023"
-project_results="${project_dir}/results"
-project_data="${project_dir}/data"
+#current_date=`date '+%b-%d-%Y'`
+#stage_dir="Results-${current_date}"
 
-# If the results directory aready exists recreate it
+# If the staging directory aready exists recreate it
 if [ -d "$stage_dir" ]; then
     echo "Directory exists. Deleting..."
     rm -r "$stage_dir"
@@ -38,7 +38,6 @@ cp ${project_results}/rsem_summary/* ${stage_dir}/${sub_dirs[2]}/
 cp ${project_data}/wormbase/*.geneIDs.csv ${stage_dir}/${sub_dirs[2]}/
 
 # Stage 03-Differential_Expression
-#cp -r ${project_results}/deseq_* ${stage_dir}/${sub_dirs[3]}/
 find "${project_results}" -type d -name "deseq_*" -exec cp -r {} "${stage_dir}/${sub_dirs[3]}/" \; 
 cp ${project_results}/deseq_report.pdf ${stage_dir}/${sub_dirs[3]}/  
 

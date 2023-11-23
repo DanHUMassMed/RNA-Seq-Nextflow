@@ -6,17 +6,22 @@ log.info """\
  ===================================
  report_config : ${params.report_config}
  results_dir   : ${params.results_dir}
+ data_dir      : ${params.data_dir}
  """
 
 // import modules
 include { OVERVIEW_REPORT } from '../modules/fastqc'
+include { STAGE_RESULTS   } from '../modules/fastqc'
 
 /* 
  * main script flow
  */
-workflow RUN_OVERVIEW_REPORT { 
+workflow RUN_STAGE_RESULTS { 
   report_config_ch = channel.fromPath( params.report_config, checkIfExists: true ) 
+  stage_dir_ch = channel.value( WorkflowUtils.getStageDirName() ) 
+  //stage_dir_ch = channel.value( "Results_dir" ) 
   OVERVIEW_REPORT( report_config_ch )
+  STAGE_RESULTS(params.results_dir, params.data_dir, stage_dir_ch, OVERVIEW_REPORT.out)
 }
 
 workflow.onComplete {

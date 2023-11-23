@@ -71,14 +71,34 @@ process OVERVIEW_REPORT {
     input:
     path report_config
     
+    output:
+    path "overview_report.pdf"
+
     script:
     """
     cp -r ${projectDir}/assests/md_to_pdf/* .
     overview_report.py --report-config "${report_config}"
     """
+}
 
+process STAGE_RESULTS {
+    label 'process_low'
+    container 'danhumassmed/qc-tools:1.0.1'
+    publishDir launchDir, mode:'copy'
+
+    input:
+    path results_dir
+    path data_dir
+    val  output_path 
+    path ignored
+    
     output:
-    path "overview_report.pdf"
+    path "${output_path}"
 
+    script:
+    """
+    mkdir -p "${output_path}"
+    stage_results.sh ${results_dir} ${data_dir} ${output_path}
+    """
 }
 

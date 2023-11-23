@@ -1,5 +1,7 @@
 import nextflow.Nextflow
 import java.util.UUID
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class WorkflowUtils {
 
@@ -17,5 +19,18 @@ class WorkflowUtils {
         }
         return uuidList
     }
+
+    public static String getStageDirName() {
+        Date currentDate = new Date()
+        String desiredDateFormat = "MMM-dd-yyyy"
+
+        SimpleDateFormat formatter = new SimpleDateFormat(desiredDateFormat)
+        String formattedDate = formatter.format(currentDate)
+        String retVal = "Results-$formattedDate"
+        Nextflow.log.warn("WARN:Stage Directory Name: $retVal")
+        return retVal
+    }
+
+
 
 }
