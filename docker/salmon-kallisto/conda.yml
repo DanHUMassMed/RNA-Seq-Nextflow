@@ -6,3 +6,4 @@ channels:
 dependencies:
   - salmon=1.6.0
   - kallisto=0.48.0
+  - fq=0.11.0

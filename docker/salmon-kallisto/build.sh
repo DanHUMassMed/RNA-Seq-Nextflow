@@ -8,4 +8,4 @@ echo ../push_description.py -u \"${USER}\" -i ${USER}/${TAG} -r README.md -s \"$
 
 
 echo "********************************************"
-echo docker buildx build --platform linux/amd64,linux/arm64 --push -t ${USER}/${TAG}:${VERSION} .
+echo docker buildx build --platform linux/amd64 --push -t ${USER}/${TAG}:${VERSION} .
