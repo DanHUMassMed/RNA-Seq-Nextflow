@@ -21,6 +21,10 @@ if(params.run_fastqc) {
   include { RUN_FASTQC } from "./workflows/02-run-fastqc"
 }
 
+if(params.run_find_lib_type) {
+  include { RUN_FIND_LIB_TYPE } from "./workflows/02b-run-find-lib-type"
+}
+
 if(params.run_trimmomatic) {
   include { RUN_TRIMMOMATIC } from "./workflows/03-run-trimmomatic"
 }
@@ -75,6 +79,11 @@ workflow {
   if(params.run_fastqc == true) {
     log.info("Running Get Experiment Data")
     RUN_FASTQC()
+  }
+
+  if(params.run_find_lib_type == true) {
+    log.info("Running FIND LIB TYPE")
+    RUN_FIND_LIB_TYPE()
   }
 
   if(params.run_trimmomatic == true) {
