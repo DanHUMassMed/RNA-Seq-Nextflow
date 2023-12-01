@@ -4,7 +4,7 @@ channels:
   - conda-forge
   - defaults 
 dependencies:
-  - picard=2.18.23
+  - picard=3.1.1
   - trimmomatic=0.39
   - fastp=0.23.4
   - trim-galore=0.6.10
