@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Get the data from Dropbox
-data_remote=$1
-data_local=$2
+data_remote="$1"
+data_local="$2"
 
 # Set the IFS to the backslash character
 IFS="/"

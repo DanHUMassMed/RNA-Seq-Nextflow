@@ -87,7 +87,7 @@ def create_md5_error_report():
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python search_md5_files.py <directory_root>")
+        print("Usage: python check_md5.py <directory_root>")
         sys.exit(1)
 
     directory_root = sys.argv[1]
