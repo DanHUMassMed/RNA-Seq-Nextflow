@@ -17,7 +17,7 @@ OVERVIEW_REPORT_MD   = "overview_report.md"
 
 def get_dropbox_link(remote_location):
     # rclone command to get dropbox link
-    command = f'rclone link remote:"{remote_location}"'
+    command = f'rclone --config="rclone.conf" link remote:"{remote_location}"'
 
     try:
         output = subprocess.check_output(command, shell=True, text=True)
@@ -28,7 +28,7 @@ def get_dropbox_link(remote_location):
 
 def get_fastq_names(remote_location):
     # rclone command to get fastq files
-    command = f'rclone lsl remote:"{remote_location}" --human-readable|grep .fq.gz|sed "s/\.000000000//"'
+    command = f'rclone --config="rclone.conf" lsl remote:"{remote_location}" --human-readable|grep .fq.gz|sed "s/\.000000000//"'
 
     try:
         output = subprocess.check_output(command, shell=True, text=True)
