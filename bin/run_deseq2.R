@@ -87,6 +87,46 @@ create_alldetected <- function(res, counts_data) {
    return(as.data.frame(joined_data))
 }
 
+#######################################################################################
+## Added but not used 
+prepGroup <- function(conds = NULL, cols = NULL, metadata = NULL, covariates = NULL) {
+    if (is.null(conds) || is.null(cols)) return (NULL)
+    coldata <- data.frame(cbind(cols, conds))
+    coldata$conds <- factor(coldata$conds)
+    colnames_coldata <- c("libname", "group")
+    if(!is.null(covariates)){
+        if(covariates!="NoCovariate"){
+            sample_column_ind <- which(apply(metadata, 2, function(x) sum(x %in% cols) == length(cols))) 
+            sample_column <- colnames(metadata)[sample_column_ind]
+            covariates <- metadata[match(cols,metadata[,sample_column]), covariates, drop = FALSE]
+            for(i in 1:ncol(covariates)){
+                cur_covariate <- covariates[,i]
+                cur_covariate <- factor(cur_covariate)
+                coldata <- data.frame(cbind(coldata, cur_covariate))
+                colnames_coldata <- c(colnames_coldata, paste0("covariate",i))   
+            }
+        }
+    }
+    colnames(coldata) <- colnames_coldata
+    coldata
+}
+
+mrn_normalize <- function(df) {
+    
+    columns <- colnames(df)
+    conds <- columns
+    coldata <- prepGroup(conds, columns)
+    df[, columns] <- apply(df[, columns], 2,
+                          function(x) as.integer(x))
+    dds <- DESeqDataSetFromMatrix(countData = as.matrix(df),
+                                  colData = coldata, design = ~group)
+    dds <- estimateSizeFactors(dds)
+    norm <- counts(dds, normalized=TRUE)
+    norm_df <- as.data.frame(norm)
+    return(norm_df)
+}
+#######################################################################################
+
 filter_and_save_csv <- function(alldetected, foldChange_cutoff, padj_cutoff, direction_change, out_directory_path) {
    
   # Filter rows based on the specified conditions

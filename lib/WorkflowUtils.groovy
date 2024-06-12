@@ -31,6 +31,9 @@ class WorkflowUtils {
         return retVal
     }
 
-
+    public static boolean directoryExists(String path) {
+        File dir = new File(path);
+        return dir.exists() && dir.isDirectory();
+    }
 
 }

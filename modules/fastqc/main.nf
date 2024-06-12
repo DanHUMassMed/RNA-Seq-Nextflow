@@ -53,6 +53,7 @@ process DESEQ_REPORT {
     script:
     """
     cp -r ${projectDir}/assests/md_to_pdf/* ./results
+    cp -r ${launchDir}/data/wormbase/*.geneIDs.csv ./results
     cp ${report_config} ./results
     cd results
     deseq_report.py --report-config "${report_config}" --input-path .

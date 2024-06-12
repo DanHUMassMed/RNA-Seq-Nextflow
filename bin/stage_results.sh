@@ -20,6 +20,18 @@ for dir in "${sub_dirs[@]}"; do
     mkdir -p ${stage_dir}/${dir}
 done
 
+# Function to copy directories
+copy_deseq_dirs() {
+    local src_dir="$1"
+    local dest_dir="$2"
+
+    for dir in "$src_dir"/deseq_*; do
+        if [ -d "$dir" ]; then
+            cp -r "$dir" "$dest_dir"
+        fi
+    done
+}
+
 
 # Stage 00-Overview
 cp ${project_results}/overview_report.pdf ${stage_dir}/${sub_dirs[0]}/
@@ -38,7 +50,8 @@ cp ${project_results}/rsem_summary/* ${stage_dir}/${sub_dirs[2]}/
 cp ${project_data}/wormbase/*.geneIDs.csv ${stage_dir}/${sub_dirs[2]}/
 
 # Stage 03-Differential_Expression
-find "${project_results}" -type d -name "deseq_*" -exec cp -r {} "${stage_dir}/${sub_dirs[3]}/" \; 
+#find "${project_results}" -type d -name "deseq_*" -exec cp -r {} "${stage_dir}/${sub_dirs[3]}/" \; 
+copy_deseq_dirs "$project_results" "${stage_dir}/${sub_dirs[3]}"
 cp ${project_results}/deseq_report.pdf ${stage_dir}/${sub_dirs[3]}/  
 
 # Stage 04-Functional_Analysis

@@ -26,9 +26,14 @@ include { STAR_INDEX           } from '../modules/star'
  * main script flow
  */
 workflow CREATE_STAR_RSEM_INDEX {
-  GET_WORMBASE_DATA_WF( params.wormbase_version )
-  STAR_INDEX( GET_WORMBASE_DATA_WF.out.genome_file, GET_WORMBASE_DATA_WF.out.annotation_file )
-  RSEM_INDEX( GET_WORMBASE_DATA_WF.out.genome_file, GET_WORMBASE_DATA_WF.out.annotation_file )
+  if(WorkflowUtils.directoryExists("${params.data_dir}/wormbase")){
+    STAR_INDEX( params.genome_file, params.annotation_file )
+    RSEM_INDEX( params.genome_file, params.annotation_file )
+  }else{
+    GET_WORMBASE_DATA_WF( params.wormbase_version )
+    STAR_INDEX( GET_WORMBASE_DATA_WF.out.genome_file, GET_WORMBASE_DATA_WF.out.annotation_file )
+    RSEM_INDEX( GET_WORMBASE_DATA_WF.out.genome_file, GET_WORMBASE_DATA_WF.out.annotation_file )
+  }
 
 }
 
