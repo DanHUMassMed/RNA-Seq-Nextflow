@@ -4,7 +4,8 @@
 wormbase_version=$1
 echo "Starting Wormbase Download with version $wormbase_version"
 
-base_url="ftp://ftp.wormbase.org/pub/wormbase/releases/${wormbase_version}/species/c_elegans/PRJNA13758"
+base_url="https://downloads.wormbase.org/releases/${wormbase_version}/species/c_elegans/PRJNA13758"
+#base_url="ftp://ftp.wormbase.org/pub/wormbase/releases/${wormbase_version}/species/c_elegans/PRJNA13758"
 genes_fasta="c_elegans.PRJNA13758.${wormbase_version}.genomic.fa.gz"
 transcripts_fasta="c_elegans.PRJNA13758.${wormbase_version}.mRNA_transcripts.fa.gz"
 annotations_gtf="c_elegans.PRJNA13758.${wormbase_version}.canonical_geneset.gtf.gz"

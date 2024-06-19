@@ -40,6 +40,7 @@ cp ${project_results}/overview_report.pdf ${stage_dir}/${sub_dirs[0]}/
 fastqc_dir=${stage_dir}/${sub_dirs[1]}/fastqc 
 mkdir -p ${fastqc_dir}
 cp ${project_results}/fastqc/**/*.html ${fastqc_dir}/
+cp ${project_results}/fastqc/*.html ${stage_dir}/${sub_dirs[1]}/
 cp ${project_results}/multiqc_*report.html ${stage_dir}/${sub_dirs[1]}/
 cp ${project_results}/md5_report.html ${stage_dir}/${sub_dirs[1]}/
 
