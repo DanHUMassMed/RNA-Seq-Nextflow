@@ -48,6 +48,7 @@ cp ${project_results}/md5_report.html ${stage_dir}/${sub_dirs[1]}/
 mkdir -p ${stage_dir}/${sub_dirs[2]}/results
 cp ${project_results}/rsem_expression/**/*.results ${stage_dir}/${sub_dirs[2]}/results
 cp ${project_results}/rsem_summary/* ${stage_dir}/${sub_dirs[2]}/
+cp ${project_results}/low_count_summary/*.tsv ${stage_dir}/${sub_dirs[2]}/
 cp ${project_data}/wormbase/*.geneIDs.csv ${stage_dir}/${sub_dirs[2]}/
 
 # Stage 03-Differential_Expression
