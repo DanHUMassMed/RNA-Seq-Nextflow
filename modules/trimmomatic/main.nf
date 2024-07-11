@@ -26,6 +26,7 @@ process TRIMMOMATIC {
 
     script:
     """
+    cp -r ${projectDir}/assests/adapters .
     trimmomatic.sh ${reads[0]} ${reads[1]} ${data_root} ${dir_suffix} ${params.trimmomatic_control}
     """
 
@@ -46,6 +47,7 @@ process TRIMMOMATIC_SINGLE {
 
     script:
     """
+    cp -r ${projectDir}/assests/adapters .
     trimmomatic.sh ${reads} "" ${data_root} ${dir_suffix} ${params.trimmomatic_control}
     """
 
