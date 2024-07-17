@@ -1,5 +1,5 @@
 
-process FASTQC {
+process FASTQC{
     tag "FASTQC on $sample_id"
     label 'process_medium'
     container 'danhumassmed/qc-tools:1.0.1'
@@ -13,7 +13,7 @@ process FASTQC {
 
     script:
     """
-    mkdir ${sample_id}_logs
+    mkdir -p ${sample_id}_logs
     fastqc -o ${sample_id}_logs -f fastq -q ${reads}
     """
 }

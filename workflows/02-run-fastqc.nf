@@ -20,7 +20,7 @@ include { MULTIQC       } from '../modules/multiqc'
 
 workflow RUN_FASTQC{
   if(params.fastq_paired) {
-    read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true ) 
+    read_pairs_ch = channel.fromFilePairs( params.fastq_paired, checkIfExists: true )
     report_nm = channel.value("multiqc_report.html")
     FASTQC(read_pairs_ch)
     MULTIQC(report_nm, FASTQC.out.collect()  )

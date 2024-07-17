@@ -28,7 +28,8 @@ def get_dropbox_link(remote_location):
 
 def get_fastq_names(remote_location):
     # rclone command to get fastq files
-    command = f'rclone --config="rclone.conf" lsl remote:"{remote_location}" --human-readable|grep .fq.gz|sed "s/\.000000000//"'
+    # command = f'rclone --config="rclone.conf" lsl remote:"{remote_location}" --human-readable|grep .fq.gz|sed "s/\.000000000//"'
+    command = f'rclone --config="rclone.conf" lsl remote:"{remote_location}" --human-readable | grep -E "\\.fq\\.gz$|\\.fastq\\.gz$" | sed "s/\\.000000000//"'
 
     try:
         output = subprocess.check_output(command, shell=True, text=True)

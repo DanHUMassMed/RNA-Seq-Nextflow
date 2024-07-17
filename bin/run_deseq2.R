@@ -374,7 +374,17 @@ exec_deseq <- function(input_counts_file, output_path, run_meta_filename) {
     betaPrior <- FALSE
     testType <- "LRT"
 
+    # All othercode START
     dds <- DESeq(dds, fitType = fitType, betaPrior = betaPrior, test=testType, reduced= ~ 1)
+    # All othercode END
+
+    # # pseudo-replicates code START
+    # dds <- estimateSizeFactors(dds)
+    # dds <- estimateDispersionsGeneEst(dds)
+    # dispersions(dds) <- mcols(dds)$dispGeneEst
+    # dds <- nbinomWaldTest(dds)
+    # # pseudo-replicates code END
+
     norm <- counts(dds, normalized=TRUE)
     res <- results(dds)
 
