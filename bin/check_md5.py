@@ -40,23 +40,24 @@ def verify_hash(md5_dict):
     try:
         provided_hash = md5_dict.get("hash", "")
         filename = md5_dict.get("filename", "")
+        result = {"hash": provided_hash, "filename": filename, "passed": False}
+        if os.path.exists(filename):
+            # Calculate the MD5 hash of the file
+            md5_hash = hashlib.md5()
+            with open(filename, 'rb') as file:
+                while True:
+                    data = file.read(8192)  # Read the file in 8KB chunks
+                    if not data:
+                        break
+                    md5_hash.update(data)
 
-        # Calculate the MD5 hash of the file
-        md5_hash = hashlib.md5()
-        with open(filename, 'rb') as file:
-            while True:
-                data = file.read(8192)  # Read the file in 8KB chunks
-                if not data:
-                    break
-                md5_hash.update(data)
+            calculated_hash = md5_hash.hexdigest()
 
-        calculated_hash = md5_hash.hexdigest()
+            # Compare the provided hash with the calculated hash
+            passed = provided_hash == calculated_hash
 
-        # Compare the provided hash with the calculated hash
-        passed = provided_hash == calculated_hash
-
-        # Create a new dictionary with the "passed" field
-        result = {"hash": provided_hash, "filename": filename, "passed": passed}
+            # Create a new dictionary with the "passed" field
+            result = {"hash": provided_hash, "filename": filename, "passed": passed}
         return result
     except Exception as e:
         return {"error": str(e)}
@@ -102,7 +103,7 @@ if __name__ == "__main__":
         md5_checked_json = []
         for md5_dict in md5_json:
             md5_checked_json.append(verify_hash(md5_dict))
-            
+
         md5_report = create_md5_report(md5_checked_json)
         with open("md5_report.html", "w") as report_file:
             report_file.write(md5_report)

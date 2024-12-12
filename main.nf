@@ -29,6 +29,9 @@ if(params.run_trimmomatic) {
   include { RUN_TRIMMOMATIC } from "./workflows/03-run-trimmomatic"
 }
 
+if(params.run_trim_galore) {
+  include { RUN_TRIM_GALORE } from "./workflows/03b-run-trim-galore"
+}
 if(params.run_rnaseq_rsem) {
   include { RUN_RNASEQ_RSEM } from "./workflows/04-run-rnaseq-rsem"
 }
@@ -91,6 +94,11 @@ workflow {
     RUN_TRIMMOMATIC()
   }
 
+  if(params.run_trim_galore == true) {
+    log.info("Running Trim_galore")
+    RUN_TRIM_GALORE()
+  }
+  
   if(params.run_rnaseq_rsem == true) {
     log.info("Running RNA Seq RSEM")
     RUN_RNASEQ_RSEM()
