@@ -9,23 +9,23 @@ def get_token(username):
     retval = None
     password = os.getenv('DOCKERHUB_API_TOKEN')
 
-    url = f"https://hub.docker.com/v2/users/login"
+    if not password:
+        raise ValueError("DOCKERHUB_API_TOKEN environment variable not set")
+    
+    url = "https://hub.docker.com/v2/users/login/"
     headers = {
-            "Content-Type": "application/json"
-        }
+        "Content-Type": "application/json"
+    }
     
     body = {
-            "username": username,
-            "password": password
-        }
+        "username": username,
+        "password": password
+    }
     
-    # print(f"{url=}")
-    # print(f"{headers}")
-    # print(f"{json.dumps(body)=}")
-    response = requests.post(url, data=json.dumps(body), headers=headers)
-    if response.status_code >= 200 and response.status_code < 300:
-        response_json = response.json()
-        retval = response_json['token']
+    response = requests.post(url, json=body, headers=headers)
+
+    if response.ok:
+        retval = response.json().get('token')
     else:
         response.raise_for_status() 
 

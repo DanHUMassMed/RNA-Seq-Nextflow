@@ -1,5 +1,5 @@
 # Sofware Provided
-[label](https://passwords.google.com/?utm_source%253Dchrome%2526utm_medium%253Ddesktop%2526utm_campaign%253Dpassword_generation_confirmation%2526pli%253D1)
+
 | Docker Tag | Bowtie  | Bowtie2  | Tophat  |
 |------------|---------|----------|---------|
 | 1.0.1      | v1.2.2  | v2.3.4.3 | v2.1.1  |
@@ -43,3 +43,4 @@ __TopHat__ is a fast splice junction mapper for RNA-Seq reads. It aligns RNA-Seq
 The provided Docker image is compatible with [Singularity](https://sylabs.io/docs/) and is actively used in [NextFlow](https://www.nextflow.io/) Pipelines configured for an HPC.
 
 <br>
+
