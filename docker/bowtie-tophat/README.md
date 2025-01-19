@@ -43,4 +43,3 @@ __TopHat__ is a fast splice junction mapper for RNA-Seq reads. It aligns RNA-Seq
 The provided Docker image is compatible with [Singularity](https://sylabs.io/docs/) and is actively used in [NextFlow](https://www.nextflow.io/) Pipelines configured for an HPC.
 
 <br>
-

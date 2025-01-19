@@ -1,8 +1,9 @@
 # Sofware Provided
 
-| Docker Tag | HOMER    | samtools | DESeq2  |edgeR    |rclone  |
-|------------|----------|----------|---------|---------|--------|
-| 1.0.1      | v4.11.1  | v1.17    | v1.38.0 | v3.40.0 |v1.63.1 |
+| Docker Tag | HOMER   | samtools | DESeq2  |edgeR    |rclone  |
+|------------|---------|----------|---------|---------|--------|
+| 1.0.1      | v4.11.1 | v1.17    | v1.38.0 | v3.40.0 |v1.63.1 |
+| 1.0.2      | v5.1    | v1.21    | v1.38.0 | v3.40.0 |v1.69.0 |
 
 ## HOMER Software for motif discovery and next generation sequencing analysis
 ---

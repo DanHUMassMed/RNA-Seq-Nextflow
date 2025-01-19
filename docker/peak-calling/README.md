@@ -1,8 +1,9 @@
 # Sofware Provided
 
-| Docker Tag | macs2    | seacr | ucsc-bedgraphtobigwig | deeptools |
-|------------|----------|-------|-----------------------|-----------|
-| 1.0.1      | v2.2.9.1 | v1.3  |v445                   | v3.53     |
+| Docker Tag | macs2    | seacr | ucsc-bedgraphtobigwig |ucsc-bedclip| deeptools |
+|------------|----------|-------|-----------------------|------------|-----------|
+| 1.0.1      | v2.2.9.1 | v1.3  | v445                  |            | v3.5.3    |
+| 1.0.2      | v2.2.9.1 | v1.3  | v472                  | v469       | v3.5.5    |
 
 ---
 

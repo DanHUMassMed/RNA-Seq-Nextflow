@@ -4,4 +4,4 @@ RUN apt-get update -q && \
     apt-get install -q -y --no-install-recommends \
         bowtie \
         bowtie2 \
-        tophat 
+        tophat

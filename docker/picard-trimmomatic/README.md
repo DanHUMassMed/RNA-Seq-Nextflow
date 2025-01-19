@@ -1,8 +1,9 @@
 # Sofware Provided
 
-| Docker Tag | Picard    | Trimmomatic | fastp   | trim-galore |
-|------------|-----------|-------------|---------|-------------|
-| 1.0.1      | v2.18.23  | v0.39       | v0.23.4 | v0.6.10     |
+| Docker Tag | Picard   | Trimmomatic | fastp   | trim-galore |
+|------------|----------|-------------|---------|-------------|
+| 1.0.1      | v2.18.23 | v0.39       | v0.23.4 | v0.6.10     |
+| 1.0.2      | v3.3.0   | v0.39       | v0.24   | v0.6.10     |
 
 
 ## Picard

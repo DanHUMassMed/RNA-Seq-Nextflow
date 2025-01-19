@@ -1,10 +1,9 @@
-name: de-seq-tools
+name: base
 channels:
   - defaults 
   - bioconda
   - conda-forge
 dependencies:
-  - samtools 
   - r-essentials 
   - r-argparse
   - r-svglite

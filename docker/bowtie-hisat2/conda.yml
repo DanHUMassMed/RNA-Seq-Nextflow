@@ -1,7 +1,8 @@
 name: base
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
   - defaults 
 dependencies:
-  - pandas
+    - hisat2=2.2.1
+

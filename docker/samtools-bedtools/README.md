@@ -1,8 +1,10 @@
 # Sofware Provided
 
-| Docker Tag | Samtools     | Bedtools | mashmap |
-|------------|--------------|--------- | ------- |
-| 1.0.1      | version 1.10 | v2.29.2  | v2.0    |
+| Docker Tag | Samtools | Bedtools | mashmap |
+|------------|----------|--------- | ------- |
+| 1.0.1      | v 1.10   | v2.29.2  | v2.0    |
+|------------|----------|--------- | ------- |
+| 1.0.2      | v 1.21   | v2.31.1  | v2.0    |
 
 ## Salmtools
 ---

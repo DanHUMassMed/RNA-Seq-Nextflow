@@ -1,9 +1,10 @@
 # Sofware Provided
 
-| Docker Tag | Conda      | Python        |Linux        |
-|------------|------------|---------------|-------------|
-| 1.0.0      | miniconda2 | py27_4.8.3    | buster-slim |
-| 1.0.1      | miniconda3 | py38_23.3.1-0 | buster-slim |
+| Docker Tag | Conda      | Python          |Linux        |
+|------------|------------|-----------------|-------------|
+| 1.0.0      | miniconda2 | py27_4.8.3      | buster-slim |
+| 1.0.1      | miniconda3 | py38_23.3.1-0   | buster-slim |
+| 1.0.2      | miniconda3 | py312_24.11.1-0 | buster-slim |
 
 ## miniconda
 ---

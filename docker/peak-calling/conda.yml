@@ -1,4 +1,4 @@
-name: macs2-seacr
+name: base
 channels:
   - bioconda
   - conda-forge
@@ -6,5 +6,5 @@ channels:
 dependencies:
   - macs2=2.2.9.1
   - seacr=1.3
-  - ucsc-bedgraphtobigwig=445
-  - ucsc-bedclip=377
+  - ucsc-bedgraphtobigwig=472
+  - ucsc-bedclip=469

@@ -1,12 +1,12 @@
-name: qc-tools
+name: base
 channels:
   - bioconda
   - conda-forge
   - defaults 
 dependencies:
-  - multiqc=1.14
-  - pillow=10.1.0
-  - click=8.1.3
+  - multiqc=1.26
+  - pillow
+  - click
   - markdown
   - markdown-include=0.8.1
   - weasyprint=52.2
